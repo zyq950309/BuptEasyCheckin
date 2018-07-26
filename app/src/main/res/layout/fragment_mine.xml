@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:background="#9D9D9D"
+            android:layout_height="1dip"
+            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/about_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="登出"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/logout_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginBottom="108dp"
+            android:textColor="#9D9D9D"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="设置"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/setting_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="#9D9D9D"
+            android:layout_above="@+id/logout_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="关于我们"
+            android:layout_width="match_parent"
+            android:id="@+id/about_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="#9D9D9D"
+            android:layout_height="40dp"
+            android:layout_above="@+id/setting_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="283dp"
+            android:weightSum="1"
+            android:layout_height="180dp"
+            android:background="@drawable/info_style"
+            android:layout_above="@+id/about_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="45dp">
+
+            <RelativeLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="18dp">
+
+                <RelativeLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="96dp"
+                    android:layout_marginEnd="96dp">
+
+                    <TextView
+                        android:text="姓名"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/name_show"
+                        android:textAlignment="center"
+                        android:textStyle="normal|bold"
+                        android:textSize="24sp"
+                        android:layout_height="30dp"
+                        android:textColor="#000000"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/top_icon"
+                        android:layout_toEndOf="@+id/top_icon"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp" />
+
+                    <ImageView
+                        android:id="@+id/top_icon"
+                        android:background="@drawable/user_icon"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginStart="28dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:text="宿舍:"
+                android:layout_width="200dp"
+                android:id="@+id/room_show"
+                android:layout_height="wrap_content"
+                android:textColor="#676767"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/profession_show"
+                android:layout_alignStart="@+id/profession_show"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:text="院系:"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/department_show"
+                android:textColor="#676767"
+                android:layout_above="@+id/profession_show"
+                android:layout_alignLeft="@+id/id_show"
+                android:layout_alignStart="@+id/id_show" />
+
+            <TextView
+                android:text="专业:"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/profession_show"
+                android:textColor="#676767"
+                android:layout_above="@+id/room_show"
+                android:layout_alignLeft="@+id/department_show"
+                android:layout_alignStart="@+id/department_show" />
+
+            <TextView
+                android:text="学号:"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_show"
+                android:layout_width="200dp"
+                android:textColor="#676767"
+                android:layout_above="@+id/department_show"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

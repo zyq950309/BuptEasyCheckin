@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mainpage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="bupt.com.bupte.MainpageActivity">
+
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.74">
+
+    </FrameLayout>
+
+
+    <RadioGroup
+        android:id="@+id/navigation_btn"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="55dp">
+
+        <RadioButton
+            android:id="@+id/check_button"
+            android:text="报道"
+            android:gravity="center"
+            android:button="@null"
+            android:checked="true"
+            android:background="@drawable/button_style"
+            android:textColor="@color/radiobutton_textcolor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/check_style"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/explore_button"
+            android:text="探索"
+            android:gravity="center"
+            android:button="@null"
+            android:background="@drawable/button_style"
+            android:textColor="@color/radiobutton_textcolor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/explore_style"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/mine_button"
+            android:text="我的"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:background="@drawable/button_style"
+            android:textColor="@color/radiobutton_textcolor"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/mine_style"
+            android:layout_weight="1"/>
+
+    </RadioGroup>
+</LinearLayout>

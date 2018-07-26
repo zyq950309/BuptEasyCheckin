@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:id="@+id/detailfragment"
+    android:layout_margin="3dp" >
+    <ImageView
+        android:src="@drawable/bar"
+        android:id="@+id/img_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/close_btn"
+        android:src="@drawable/close"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/img_bar"
+        android:layout_alignParentRight="true" />
+    <TextView
+        android:id = "@+id/text_order1"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:layout_below="@id/close_btn"
+        app:layout_widthPercent="20%"
+        android:layout_height="60dp"
+        android:textColor="#000000"/>
+    <TextView
+        android:id = "@+id/text_name1"
+        android:textSize="20sp"
+        android:layout_below="@id/close_btn"
+        android:layout_toRightOf="@id/text_order1"
+        app:layout_widthPercent="20%"
+        android:layout_height="30dp"
+        android:textColor="#000000"/>
+    <TextView
+        android:id = "@+id/text_note1"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:layout_below="@id/close_btn"
+        android:layout_toRightOf="@id/text_name1"
+        app:layout_widthPercent="40%"
+        android:layout_height="30dp"
+        android:textColor="#000000"/>
+    <TextView
+        android:id = "@+id/text_inLine1"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:layout_gravity="right|top"
+        android:layout_below="@id/close_btn"
+        android:layout_toRightOf="@id/text_note1"
+        app:layout_widthPercent="20%"
+        android:layout_height="30dp"
+        android:textColor="#000000"/>
+    <TextView
+        android:id = "@+id/text_detail1"
+        android:layout_below="@id/text_name1"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:layout_toRightOf="@id/text_order1"
+        app:layout_widthPercent="80%"
+        android:layout_height="30dp"
+        android:textColor="#000000"/>
+    <Button
+        android:id="@+id/btn_walknav"
+        android:background="#4b4d5c"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dp"
+        app:layout_widthPercent="42%"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_detail1"
+        app:layout_marginStartPercent="6%"
+        app:layout_marginEndPercent="2%"
+        android:textAllCaps="false" />
+    <Button
+        android:id="@+id/btn_ar"
+        android:background="#4b4d5c"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dp"
+        app:layout_widthPercent="42%"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_detail1"
+        android:layout_toRightOf="@id/btn_walknav"
+        app:layout_marginStartPercent="2%"
+        app:layout_marginEndPercent="6%"
+        android:textAllCaps="false" />
+    <HorizontalScrollView
+        android:id="@+id/scrollView_img"
+        app:layout_widthPercent="88%"
+        app:layout_marginStartPercent="6%"
+        app:layout_marginEndPercent="6%"
+        android:layout_marginTop="5dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/btn_ar">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:maxHeight="80dp"
+                android:maxWidth="160dp"
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="centerInside" />
+            <ImageView
+                android:id="@+id/image_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:maxHeight="80dp"
+                android:maxWidth="160dp"
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="centerInside" />
+            <ImageView
+                android:id="@+id/image_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:maxHeight="80dp"
+                android:maxWidth="160dp"
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <TextView
+        android:id="@+id/text_many"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:layout_height="100dp"
+        app:layout_widthPercent="100%"
+        android:layout_below="@id/scrollView_img"
+        android:textColor="#000000"/>
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/img_flowchart"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="500dp"
+        android:maxWidth="160dp"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:layout_below="@id/text_many"/>
+</android.support.percent.PercentRelativeLayout>
