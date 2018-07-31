@@ -209,9 +209,9 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
         }
     }
 
-    private void setVisible(Button button){//设置清除按钮可见
-        button.setVisibility(View.VISIBLE);
-    }
+//    private void setVisible(Button button){//设置清除按钮可见
+//        button.setVisibility(View.VISIBLE);
+//    }
 
     private boolean search(String name, int id){//查询数据库，验证登录成功,返回学生信息
         name_in=name;
@@ -230,10 +230,10 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
                         .build();
                 try {
                     Response response = okHttpClient.newCall(request).execute();
-                    Log.d("wenti",""+response.code());
+//                    Log.d("wenti",""+response.code());
                     if (response.isSuccessful()) {
                         String responsedata=response.body().string();
-                        Log.d("wenti",responsedata);
+//                        Log.d("wenti",responsedata);
                         Student_info student_info=GsonTools.getPerson(responsedata,Student_info.class);
                         if(student_info.getCode()==0) {
                             if (student_info.getIsLoginOk() == 1) {

@@ -68,8 +68,6 @@ public class MyFragment extends BottomSheetFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        Log.d("wenti","1114");
-        Log.d("wenti4",""+R.id.container);
     }
 
     private void initPlaces() {

@@ -12,7 +12,7 @@
     <com.baidu.mapapi.map.MapView
         android:id="@+id/mapview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
         <ImageView
         android:layout_width="129dp"
@@ -41,7 +41,7 @@
             android:layout_above="@+id/view_line"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="53dp" />
+            android:layout_marginBottom="153dp" />
 
         <Button
             android:layout_width="40dp"
@@ -51,7 +51,7 @@
             android:layout_above="@+id/view_line"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="53dp" />
+            android:layout_marginBottom="153dp" />
 
         <Button
             android:layout_width="40dp"
@@ -61,7 +61,7 @@
             android:layout_above="@+id/view_line"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="93dp" />
+            android:layout_marginBottom="193dp" />
 
     </RelativeLayout>
 

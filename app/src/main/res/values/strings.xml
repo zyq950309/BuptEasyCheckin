@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BuptE</string>
+    <string name="check_in">check in</string>
+
+    <string name="title_activity_walk_nav">WalkNavActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="explore">explore</string>
+    <string name="nonregister">nonregister</string>
+    <string name="checkin_nonlog">请登陆查看你的报道流程</string>
+    <string name="go_login">去登录</string>
 </resources>

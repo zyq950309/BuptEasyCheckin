@@ -1,7 +1,9 @@
 package bupt.com.bupte;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,6 +30,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
+import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.route.BikingRouteResult;
@@ -89,8 +92,10 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     BottomSheetLayout bottomSheetLayout;
     private int Tag;
     private View fragView;
-
-    private Fragment mfragment;
+    private View fragViewLogin;
+    private Boolean IsStudent;
+    private List<String> number;
+    private Boolean Tag1=true;
 
     private Handler handler=new Handler(){
         @Override
@@ -99,6 +104,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 case 1:
                     firstRefresh();
                     Tag=1;
+                    break;
+                case 2:
+                    Toast.makeText(getActivity(), "数据库连接错误", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -109,23 +117,41 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         View view = inflater.inflate(R.layout.fragment_check, container, false);
 
         bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
-        bottomSheetLayout.setPeekSheetTranslation(200);
+//        Log.d("wenti6",""+bottomSheetLayout.getState());
+        bottomSheetLayout.setPeekSheetTranslation(600);
 //        View fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
-        fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
-        order=getArguments().getInt("order");
-        bottomSheetLayout.showWithSheetView(fragView);
+        Bundle bundle=getArguments();
+        order=bundle.getInt("order");
+        IsStudent=bundle.getBoolean("IsStudent");
+        if(IsStudent){
+            fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+            bottomSheetLayout.showWithSheetView(fragView);
 
-        if(order==0) {
             MyFragment myFragment = new MyFragment();
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, myFragment).addToBackStack(null).commit();
-            mfragment=myFragment;
         }else {
-            MyDetailFragment frag = new MyDetailFragment();
-            Bundle bundle = new Bundle();
-            bundle.putInt("order",order);
-            frag.setArguments(bundle);
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, frag).addToBackStack(null)
-                    .commit();
+            fragViewLogin = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+            bottomSheetLayout.showWithSheetView(fragViewLogin);
+
+            LoginFragment myLoginFragment = new LoginFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, myLoginFragment).addToBackStack(null).commit();
+        }
+
+        switch (order){
+            case 1:
+                fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                bottomSheetLayout.showWithSheetView(fragView);
+Log.d("wenti","daozhe");
+                MyDetailFragment myDetailFragment = new MyDetailFragment();
+                Bundle bundleDetail = new Bundle();
+                bundleDetail.putInt("order",order);
+                myDetailFragment.setArguments(bundleDetail);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
+//                fragView=myFragment;
+                break;
+
+            case 100:
+                break;
         }
 
         mMapView = (MapView) view.findViewById(R.id.mapview);
@@ -138,6 +164,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         flush_button.setOnClickListener(this);
 
         search_site();
+        search_sitenum();
         initMapStatus();
         requestLocation();
         return view;
@@ -173,7 +200,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     }
 
     private void initLocation() {//初始化定位器
-        mLocationClient = new LocationClient(getActivity());
+        mLocationClient = new LocationClient(getContext());
         mLocationClient.registerLocationListener(mylistener);
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
@@ -215,11 +242,20 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         for (int i = 0; i < size; i++) {
             LatLng point = site.get(i);
             BitmapDescriptor bitmap = BitmapDescriptorFactory
-                    .fromResource(R.drawable.icon_marka);
+                    .fromResource(R.drawable.use_icon);
+
             OverlayOptions option = new MarkerOptions()
                     .position(point)
                     .icon(bitmap);
+
+            OverlayOptions textOption = new TextOptions()
+                    .bgColor(0x00E0EFF1)
+                    .fontSize(60)
+                    .fontColor(0xFF000000)
+                    .text("百度地图SDK")
+                    .position(point);
             mBaiduMap.addOverlay(option);
+            mBaiduMap.addOverlay(textOption);
         }
     }
 
@@ -234,8 +270,15 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 initMarket(site);
                 break;
             case R.id.flush_button:
-                if(bottomSheetLayout.getState()== BottomSheetLayout.State.HIDDEN){
+                if (IsStudent) {
+                    MyDetailFragment myDetailFragment = new MyDetailFragment();
+                    Bundle bundleDetail = new Bundle();
+                    bundleDetail.putInt("order",order);
+                    myDetailFragment.setArguments(bundleDetail);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
                     bottomSheetLayout.showWithSheetView(fragView);
+                } else {
+                    bottomSheetLayout.showWithSheetView(fragViewLogin);
                 }
         }
     }
@@ -253,14 +296,58 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     if (response.isSuccessful()) {
                         String responsedata = response.body().string();
                         Site_ll site_ll = GsonTools.getPerson(responsedata, Site_ll.class);
-                        if (site_ll.getCode() == "0") {
-                        }else{
+                        if (site_ll.getCode().equals("0")) {
                             latitude=site_ll.getLatitude();
                             longitude=site_ll.getLongitude();
+                        }else{
+                            Message msg = new Message();
+                            msg.what = 2;
+                            handler.sendMessage(msg);
                         }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void search_sitenum() {//查询数据库，报道节点经纬度信息
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(Tag1){
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url("http://123.206.90.229/v1/search.php")
+                            .build();
+                    try {
+                        Response response = okHttpClient.newCall(request).execute();
+                        if (response.isSuccessful()) {
+                            String responsedata = response.body().string();
+                            Site_num site_num = GsonTools.getPerson(responsedata, Site_num.class);
+                            if (site_num.getCode().equals("0")) {
+                                number=site_num.getNumber();
+                                int[] num={0,0,0,0,0};
+                                for(int i=0;i<number.size();i++){
+                                    num[i]=Integer.parseInt(number.get(i));
+                                }
+                                MyToolClass.setNum(num);
+                            }else{
+                                Message msg = new Message();
+                                msg.what = 2;
+                                handler.sendMessage(msg);
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    try{
+                        Thread.sleep(1000);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
                 }
             }
         }).start();
@@ -298,6 +385,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             points.clear();
             if (routeLines != null) {
                 WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
+                MyToolClass.setDistance(line.getDistance());
+                MyToolClass.setTime(line.getDuration());
                 List<WalkingRouteLine.WalkingStep> steps = line.getAllStep();
                 size0=steps.size();
                 for(int i=0;i<size0;i++){
@@ -318,6 +407,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     .width(10)
                     .dottedLine(true);
             mBaiduMap.addOverlay(ooPolyline);
+//            Log.d("wenti","路线");
 //
 //            initSite();
 //            initMarket(site);
@@ -347,5 +437,12 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         public void onGetBikingRouteResult(BikingRouteResult bikingRouteResult) {
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLocationClient.stop();
+        Tag1=false;
     }
 }

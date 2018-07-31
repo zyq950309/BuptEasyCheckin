@@ -48,7 +48,7 @@ public class MaprouteActivity extends Activity implements View.OnClickListener{/
         toAR.setOnClickListener(this);
 
         mNaviHelper = WalkNavigateHelper.getInstance();
-        Log.d("wenti", "" + mNaviHelper);
+//        Log.d("wenti", "" + mNaviHelper);
         try {
             View view = mNaviHelper.onCreate(MaprouteActivity.this);
             mapLayout = (LinearLayout) this.findViewById(R.id.layout_map);
@@ -188,7 +188,7 @@ public class MaprouteActivity extends Activity implements View.OnClickListener{/
 
     public void traversalView(ViewGroup viewGroup) {
         int count = viewGroup.getChildCount();
-        Log.d("wenti",""+count);
+//        Log.d("wenti",""+count);
         for (int i = 0; i < count; i++) {
             View view = viewGroup.getChildAt(i);
             if (view instanceof ViewGroup) {

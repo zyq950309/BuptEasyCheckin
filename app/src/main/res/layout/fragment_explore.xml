@@ -1,11 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
-
-    <View
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:id="@+id/explorefragment"
+    android:layout_margin="3dp" >
+    <ImageView
+        android:src="@drawable/bar"
+        android:id="@+id/img_bar1"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:background="#9D9D9D"
-        android:layout_height="0dp"/>
-</LinearLayout>
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="#000000"
+        android:id = "@+id/text_name_explore"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_below="@id/img_bar1"
+        app:layout_widthPercent="20%"
+        android:layout_height="30dp" />
+    <TextView
+        android:textColor="#000000"
+        android:id = "@+id/text_note_explore"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:layout_below="@id/img_bar1"
+        android:layout_toRightOf="@id/text_name_explore"
+        app:layout_widthPercent="80%"
+        android:layout_height="30dp"/>
+    <TextView
+        android:textColor="#000000"
+        android:id = "@+id/text_detail_explore"
+        android:layout_below="@id/text_name_explore"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        app:layout_widthPercent="100%"
+        android:layout_height="30dp"/>
+    <Button
+        android:id="@+id/btn_walknav_explore"
+        android:background="#4b4d5c"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dp"
+        app:layout_widthPercent="42%"
+        android:layout_height="50dp"
+        android:layout_below="@+id/text_detail_explore"
+        app:layout_marginStartPercent="6%"
+        app:layout_marginEndPercent="2%"
+        android:textAllCaps="false" />
+    <Button
+        android:id="@+id/btn_ar_explore"
+        android:background="#4b4d5c"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dp"
+        app:layout_widthPercent="42%"
+        android:layout_height="50dp"
+        android:layout_below="@+id/text_detail_explore"
+        android:layout_toRightOf="@id/btn_walknav_explore"
+        app:layout_marginStartPercent="2%"
+        app:layout_marginEndPercent="6%"
+        android:textAllCaps="false" />
+    <HorizontalScrollView
+        android:id="@+id/scrollView_img_explore"
+        app:layout_widthPercent="88%"
+        app:layout_marginStartPercent="6%"
+        app:layout_marginEndPercent="6%"
+        android:layout_marginTop="5dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/btn_ar_explore">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_explore1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:maxHeight="80dp"
+                android:maxWidth="160dp"
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="centerInside" />
+            <ImageView
+                android:id="@+id/image_explore2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:maxHeight="80dp"
+                android:maxWidth="160dp"
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="centerInside" />
+            <ImageView
+                android:id="@+id/image_explore3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:maxHeight="80dp"
+                android:maxWidth="160dp"
+                android:adjustViewBounds="true"
+                android:padding="0dp"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <TextView
+        android:textColor="#000000"
+        android:id="@+id/text_many_explore"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:layout_height="100dp"
+        app:layout_widthPercent="100%"
+        android:layout_below="@id/scrollView_img_explore"/>
+
+</android.support.percent.PercentRelativeLayout>

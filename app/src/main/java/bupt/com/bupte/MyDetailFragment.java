@@ -84,6 +84,7 @@ public class MyDetailFragment extends BottomSheetFragment {
         img3 = (ImageView)view.findViewById(R.id.image_3);
         manyttext =(TextView)view.findViewById(R.id.text_many);
         flowchart =(ImageView)view.findViewById(R.id.img_flowchart);
+
         Bundle bundle = getArguments();
         int order = bundle.getInt("order");
 
@@ -460,4 +461,9 @@ public class MyDetailFragment extends BottomSheetFragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        Log.d("wemti","destroy detail");
+    }
 }

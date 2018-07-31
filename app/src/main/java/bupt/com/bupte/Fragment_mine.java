@@ -3,6 +3,7 @@ package bupt.com.bupte;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,8 @@ public class Fragment_mine extends Fragment implements View.OnClickListener{//�
             case R.id.logout_button:
                 Intent intent=new Intent(getActivity(),LoginActivity.class);
                 startActivity(intent);
-                getActivity().finish();
+//                Log.d("wenti",""+getActivity());
+                getActivity().finish();//这个在探索界面存在的时候好像不能finish
                 break;
         }
     }
