@@ -25,7 +25,7 @@ import com.unity3d.player.UnityPlayer;
 
 import java.util.ArrayList;
 
-public class MainpageActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,MyDetailFragment.OnDetailFragmentListener,MyFragment.OnMyFragmentListener{//登录后的主页
+public class MainpageActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,MyDetailFragment.OnDetailFragmentListener,MyFragment.OnMyFragmentListener,Fragment_explore.OnMyFragmentExpListener{//登录后的主页
 
     private RadioGroup navigationBar;
     private RadioButton button_check, button_explore, button_mine;
@@ -176,6 +176,7 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
     @Override
     public void myFragmentInteraction(int order) {
         this.order=order;
+        Log.d("wenti1",""+order);
         Bundle bundle1 = new Bundle();
         bundle1.putBoolean("IsStudent",IsStudent);
         bundle1.putInt("order",order);
@@ -201,5 +202,10 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
         MyFragment frag = new MyFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, frag).addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void myFragmentExpInteraction() {
+        button_check.performClick();
     }
 }

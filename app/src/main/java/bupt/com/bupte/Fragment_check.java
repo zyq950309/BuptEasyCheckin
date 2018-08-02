@@ -126,7 +126,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
         if(IsStudent){
             fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
             bottomSheetLayout.showWithSheetView(fragView);
-
             MyFragment myFragment = new MyFragment();
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, myFragment).addToBackStack(null).commit();
         }else {
@@ -141,12 +140,61 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
             case 1:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
                 bottomSheetLayout.showWithSheetView(fragView);
-Log.d("wenti","daozhe");
-                MyDetailFragment myDetailFragment = new MyDetailFragment();
-                Bundle bundleDetail = new Bundle();
-                bundleDetail.putInt("order",order);
-                myDetailFragment.setArguments(bundleDetail);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
+                MyDetailFragment myDetailFragment1 = new MyDetailFragment();
+                Bundle bundleDetail1 = new Bundle();
+                bundleDetail1.putInt("order",order);
+                myDetailFragment1.setArguments(bundleDetail1);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment1).addToBackStack(null).commit();
+//                fragView=myFragment;
+                break;
+            case 2:
+                fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                bottomSheetLayout.showWithSheetView(fragView);
+                MyDetailFragment myDetailFragment2 = new MyDetailFragment();
+                Bundle bundleDetail2 = new Bundle();
+                bundleDetail2.putInt("order",order);
+                myDetailFragment2.setArguments(bundleDetail2);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment2).addToBackStack(null).commit();
+//                fragView=myFragment;
+                break;
+            case 3:
+                fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                bottomSheetLayout.showWithSheetView(fragView);
+                MyDetailFragment myDetailFragment3 = new MyDetailFragment();
+                Bundle bundleDetail3 = new Bundle();
+                bundleDetail3.putInt("order",order);
+                myDetailFragment3.setArguments(bundleDetail3);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment3).addToBackStack(null).commit();
+//                fragView=myFragment;
+                break;
+            case 4:
+                fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                bottomSheetLayout.showWithSheetView(fragView);
+                MyDetailFragment myDetailFragment4 = new MyDetailFragment();
+                Bundle bundleDetail4 = new Bundle();
+                bundleDetail4.putInt("order",order);
+                myDetailFragment4.setArguments(bundleDetail4);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment4).addToBackStack(null).commit();
+//                fragView=myFragment;
+                break;
+            case 5:
+                fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                bottomSheetLayout.showWithSheetView(fragView);
+                MyDetailFragment myDetailFragment5 = new MyDetailFragment();
+                Bundle bundleDetail5 = new Bundle();
+                bundleDetail5.putInt("order",order);
+                myDetailFragment5.setArguments(bundleDetail5);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment5).addToBackStack(null).commit();
+//                fragView=myFragment;
+                break;
+            case 6:
+                fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                bottomSheetLayout.showWithSheetView(fragView);
+                MyDetailFragment myDetailFragment6 = new MyDetailFragment();
+                Bundle bundleDetail6 = new Bundle();
+                bundleDetail6.putInt("order",order);
+                myDetailFragment6.setArguments(bundleDetail6);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment6).addToBackStack(null).commit();
 //                fragView=myFragment;
                 break;
 
@@ -175,8 +223,33 @@ Log.d("wenti","daozhe");
             case 0:
                 break;
             case 1:
-                b1 = 39.967113916777636;
-                b2 = 116.36479162025452;
+                b1 = Double.parseDouble(latitude.get(0));
+                b2 = Double.parseDouble(longitude.get(0));
+                initRoutePlan(b1, b2);
+                break;
+            case 2:
+                b1 = Double.parseDouble(latitude.get(1));
+                b2 = Double.parseDouble(longitude.get(1));
+                initRoutePlan(b1, b2);
+                break;
+            case 3:
+                b1 = Double.parseDouble(latitude.get(2));
+                b2 = Double.parseDouble(longitude.get(2));
+                initRoutePlan(b1, b2);
+                break;
+            case 4:
+                b1 = Double.parseDouble(latitude.get(3));
+                b2 = Double.parseDouble(longitude.get(3));
+                initRoutePlan(b1, b2);
+                break;
+            case 5:
+                b1 = Double.parseDouble(latitude.get(4));
+                b2 = Double.parseDouble(longitude.get(4));
+                initRoutePlan(b1, b2);
+                break;
+            case 6:
+                b1 = Double.parseDouble(latitude.get(5));
+                b2 = Double.parseDouble(longitude.get(5));
                 initRoutePlan(b1, b2);
                 break;
         }
@@ -271,12 +344,61 @@ Log.d("wenti","daozhe");
                 break;
             case R.id.flush_button:
                 if (IsStudent) {
-                    MyDetailFragment myDetailFragment = new MyDetailFragment();
-                    Bundle bundleDetail = new Bundle();
-                    bundleDetail.putInt("order",order);
-                    myDetailFragment.setArguments(bundleDetail);
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
-                    bottomSheetLayout.showWithSheetView(fragView);
+                    switch (order){
+                        case 100:
+                            MyFragment myFragment = new MyFragment();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                        case 1:
+                            MyDetailFragment myDetailFragment = new MyDetailFragment();
+                            Bundle bundleDetail = new Bundle();
+                            bundleDetail.putInt("order",order);
+                            myDetailFragment.setArguments(bundleDetail);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                        case 2:
+                            MyDetailFragment myDetailFragment2 = new MyDetailFragment();
+                            Bundle bundleDetail2 = new Bundle();
+                            bundleDetail2.putInt("order",order);
+                            myDetailFragment2.setArguments(bundleDetail2);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment2).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                        case 3:
+                            MyDetailFragment myDetailFragment3 = new MyDetailFragment();
+                            Bundle bundleDetail3 = new Bundle();
+                            bundleDetail3.putInt("order",order);
+                            myDetailFragment3.setArguments(bundleDetail3);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment3).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                        case 4:
+                            MyDetailFragment myDetailFragment4 = new MyDetailFragment();
+                            Bundle bundleDetail4 = new Bundle();
+                            bundleDetail4.putInt("order",order);
+                            myDetailFragment4.setArguments(bundleDetail4);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment4).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                        case 5:
+                            MyDetailFragment myDetailFragment5 = new MyDetailFragment();
+                            Bundle bundleDetail5 = new Bundle();
+                            bundleDetail5.putInt("order",order);
+                            myDetailFragment5.setArguments(bundleDetail5);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment5).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                        case 6:
+                            MyDetailFragment myDetailFragment6 = new MyDetailFragment();
+                            Bundle bundleDetail6 = new Bundle();
+                            bundleDetail6.putInt("order",order);
+                            myDetailFragment6.setArguments(bundleDetail6);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment6).addToBackStack(null).commit();
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            break;
+                    }
                 } else {
                     bottomSheetLayout.showWithSheetView(fragViewLogin);
                 }
@@ -328,7 +450,7 @@ Log.d("wenti","daozhe");
                             Site_num site_num = GsonTools.getPerson(responsedata, Site_num.class);
                             if (site_num.getCode().equals("0")) {
                                 number=site_num.getNumber();
-                                int[] num={0,0,0,0,0};
+                                int[] num={0,0,0,0,0,0};
                                 for(int i=0;i<number.size();i++){
                                     num[i]=Integer.parseInt(number.get(i));
                                 }
@@ -390,6 +512,7 @@ Log.d("wenti","daozhe");
                 List<WalkingRouteLine.WalkingStep> steps = line.getAllStep();
                 size0=steps.size();
                 for(int i=0;i<size0;i++){
+                    Log.d("wenti12",""+steps.get(i).getWayPoints().get(0));
                     points1.add(steps.get(i).getWayPoints().get(0));
                     int size2=steps.get(i).getWayPoints().size();
                     points2.add(steps.get(i).getWayPoints().get(size2-1));
@@ -407,10 +530,7 @@ Log.d("wenti","daozhe");
                     .width(10)
                     .dottedLine(true);
             mBaiduMap.addOverlay(ooPolyline);
-//            Log.d("wenti","è·¯çº¿");
-//
-//            initSite();
-//            initMarket(site);
+
         }
 
         @Override

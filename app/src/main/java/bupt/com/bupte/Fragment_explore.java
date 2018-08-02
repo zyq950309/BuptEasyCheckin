@@ -1,5 +1,6 @@
 package bupt.com.bupte;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Process;
@@ -17,20 +18,36 @@ public class Fragment_explore extends Fragment{//下面三个按钮的“探索�
 
     private Button toUnity;
     private int Tag=0;
+    private OnMyFragmentExpListener mListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(Tag==0) {
-            Intent intent = new Intent(getActivity(), UnityPlayerActivity.class);
-            startActivity(intent);
-            Tag = 1;
-        }
+        Intent intent = new Intent(getActivity(), UnityPlayerActivity.class);
+        startActivity(intent);
+        mListener.myFragmentExpInteraction();
         View view = inflater.inflate(R.layout.fragment_exp, container, false);
-
-        toUnity=(Button)view.findViewById(R.id.toUnity);
-//        toUnity.setOnClickListener(this);
-        toUnity.setVisibility(View.INVISIBLE);
         return view;
+    }
+
+    public interface OnMyFragmentExpListener{
+        void myFragmentExpInteraction();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Fragment_explore.OnMyFragmentExpListener) {
+            mListener = (Fragment_explore.OnMyFragmentExpListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnMyFragmentExpListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     @Override

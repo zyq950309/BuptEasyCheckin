@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Spannable;
@@ -20,13 +21,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.flipboard.bottomsheet.commons.BottomSheetFragment;
 
-import static bupt.com.bupte.MainActivity.JiaoSan;
-import static bupt.com.bupte.MainActivity.KeYan;
+public class ExploreFragment extends BottomSheetDialogFragment {
+    public ExploreFragment() {
+        // Required empty public constructor
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-
-public class ExploreFragment extends BottomSheetFragment {
     private View view;
     private TextView nametext;
     private TextView notetext;
@@ -59,13 +63,12 @@ public class ExploreFragment extends BottomSheetFragment {
         arbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),ARrouteActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(),WalkNavActivity.class);
+//                startActivity(intent);
             }
         });
         Bundle bundle = getArguments();
         int order = bundle.getInt("order_explore");
-        Log.i(TAG, "onCreateView: "+order);
         initView(order);
         return view;
     }
@@ -76,8 +79,7 @@ public class ExploreFragment extends BottomSheetFragment {
     private void initView(int order){
 //        将实例化控件部分放在initView中仍然没有效果
         switch(order){
-            case JiaoSan:
-                Log.i(TAG, "initView: 教三");
+            case 1:
                 nametext.setText("教三楼");
                 notetext.setText("沙河校区彩蛋一");
                 detailtext.setText("建筑物说明。。。。。。。。。。。。");
@@ -90,8 +92,8 @@ public class ExploreFragment extends BottomSheetFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(),ARrouteActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(getActivity(),WalkNavActivity.class);
+//                        startActivity(intent);
                     }
                 });
 
@@ -100,8 +102,7 @@ public class ExploreFragment extends BottomSheetFragment {
                 img3.setImageResource(R.drawable.timg1);
                 manyttext.setText("具体流程如下");
                 break;
-            case KeYan:
-                Log.i(TAG, "initView: 科研");
+            case 2:
                 nametext.setText("科研楼");
                 notetext.setText("沙河校区彩蛋二");
                 detailtext.setText("建筑物说明。。。。。。。。。。。。");
@@ -114,8 +115,8 @@ public class ExploreFragment extends BottomSheetFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(),ARrouteActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(getActivity(),WalkNavActivity.class);
+//                        startActivity(intent);
                     }
                 });
 

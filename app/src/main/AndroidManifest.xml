@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bupt.com.bupte">
+    <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
 
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,21 +16,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature android:glEsVersion="0x00020000" />
-    <uses-feature
-        android:name="android.hardware.vulkan"
-        android:required="false" />
-
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
-
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.touchscreen.multitouch"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.touchscreen.multitouch.distinct"
-        android:required="false" />
+    <uses-feature android:name="android.hardware.vulkan" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -61,20 +51,19 @@
         <activity
             android:name=".MainpageActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".UnityPlayerActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-            android:label="@string/app_name"
+        <activity android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="fullSensor"
-            android:process=":unity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <!--android:launchMode="singleTask"-->
-
-            <meta-data
-                android:name="unityplayer.UnityActivity"
-                android:value="true" />
-
+            android:launchMode="singleTask"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+            android:name=".UnityPlayerActivity">
+            <meta-data android:name="unity.build-id" android:value="e2c9ae6a-e909-4156-af1b-26548dd76ad0" />
+            <meta-data android:name="unity.splash-mode" android:value="0" />
+            <meta-data android:name="unity.splash-enable" android:value="True" />
+            <meta-data android:name="android.max_aspect" android:value="2.1" />
+            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
+
     </application>
 
 </manifest>

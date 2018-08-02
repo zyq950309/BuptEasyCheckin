@@ -7,7 +7,7 @@ public class MyToolClass {
     private static String name="默认姓名";
     private static int distance;
     private static int time;
-    private static int[] num={0,0,0,0,0};
+    private static int[] num={0,0,0,0,0,0};
     // order指定地点
     // 获取当前到指定地点的距离
     public static int getDistance(int order){
@@ -22,8 +22,8 @@ public class MyToolClass {
     // 获取指定地点的排队人数
     public static String getInLineNumbers(int order){
 //        int number = (int)(Math.random()*100);
-//        int number=num[order-1];
-        int number=num[0];
+        int number=num[order-1];
+//        int number=num[0];
         String inline = number+""+"人排队";
         return inline;
     }
