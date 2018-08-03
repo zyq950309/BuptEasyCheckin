@@ -73,24 +73,14 @@ public class MyFragment extends BottomSheetFragment {
     private void initPlaces() {
 //        for (int i = 0; i < 2; i++) {
         String inline_gym = MyToolClass.getInLineNumbers(1);
-        Place gym = new Place(1, "体育馆", "资料提交", inline_gym, "需：身份证复印件(1份) 录取通知书复印件(1份)");
+        Place gym = new Place(1, "报到大厅(图书馆一层/马路上)", inline_gym, "参照通知书带齐所需证件");
         placeList.add(gym);
         String inline_hospital = MyToolClass.getInLineNumbers(2);
-        Place hospital = new Place(2, "校医院", "提交缴费", inline_hospital, "需：身份证复印件(1份) 录取通知书复印件(1份)");
+        Place hospital = new Place(2, "宿舍", inline_hospital,"提交缴费入住");
         placeList.add(hospital);
         String inline_office = MyToolClass.getInLineNumbers(3);
-        Place office = new Place(3, "行政楼", "资料提交", inline_office, "需：身份证复印件(1份) 录取通知书复印件(1份)");
+        Place office = new Place(3, "体检车", inline_office, "体检");
         placeList.add(office);
-        String inline_educate = MyToolClass.getInLineNumbers(4);
-        Place educate = new Place(4, "教学楼", "资料提交", inline_educate, "需：身份证复印件(1份) 录取通知书复印件(1份)");
-        placeList.add(educate);
-        String inline_apartment = MyToolClass.getInLineNumbers(5);
-        Place apartment = new Place(5, "宿舍楼", "资料提交", inline_apartment, "需：身份证复印件(1份) 录取通知书复印件(1份)");
-        placeList.add(apartment);
-        String inline_office1 = MyToolClass.getInLineNumbers(6);
-        Place office1 = new Place(6, "行政楼", "资料提交", inline_office1, "需：身份证复印件(1份) 录取通知书复印件(1份)");
-        placeList.add(office1);
-
 //        }
     }
 }

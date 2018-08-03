@@ -5,12 +5,17 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:id="@+id/fragment">
-    <ImageView
-        android:src="@drawable/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginTop="20px"
+        android:layout_gravity="center"
+        android:layout_width="84px"
+        android:layout_height="8px"
+        android:background="@drawable/bar_style"
+        android:layout_marginBottom="33px"/>
+
     <TextView
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="32px"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:id="@+id/head"
@@ -22,6 +27,6 @@
     </ListView>
     <View
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="150px"
         />
 </LinearLayout>

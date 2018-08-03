@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:layout_margin="3dp" >
+    android:layout_height="108px">
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="108px"
+        android:layout_marginLeft="35px"
+        android:background="@drawable/number_ring"
         android:id = "@+id/text_order"
         android:gravity="center"
-        android:textSize="35sp"
+        android:textSize="36px"
         android:layout_gravity="left|top"
-        app:layout_widthPercent="20%"
-        android:layout_height="60dp"
         android:textColor="#000000"/>
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50px"
+        android:layout_marginLeft="25px"
+        android:layout_marginTop="21px"
         android:id = "@+id/text_name"
-        android:textSize="20sp"
+        android:textSize="36px"
         android:layout_toRightOf="@id/text_order"
-        app:layout_widthPercent="20%"
-        android:layout_height="30dp"
         android:textColor="#000000"/>
     <TextView
-        android:id = "@+id/text_note"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
-        android:layout_toRightOf="@id/text_name"
-        app:layout_widthPercent="40%"
-        android:layout_height="30dp"
-        android:textColor="#000000"/>
-    <TextView
-        android:id = "@+id/text_inLine"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
-        android:layout_gravity="right|top"
-        android:layout_toRightOf="@id/text_note"
-        app:layout_widthPercent="20%"
-        android:layout_height="30dp"
-        android:textColor="#000000"/>
-    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="25px"
         android:id = "@+id/text_detail"
         android:layout_below="@id/text_name"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
         android:layout_toRightOf="@id/text_order"
-        app:layout_widthPercent="80%"
-        android:layout_height="30dp"
-        android:textColor="#000000"/>
+        android:gravity="center_vertical"
+        android:textSize="24px"
+        android:textColor="#4A4A4A"/>
+    <TextView
+        android:layout_height="50px"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="21px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45px"
+        android:id = "@+id/text_inLine"
+        android:gravity="center_vertical"
+        android:textSize="24px"
+        android:layout_gravity="right|top"
+        android:layout_toRightOf="@id/text_name"
+        android:textColor="#F5A623"/>
     <View
         android:id = "@+id/view_line"
-        android:background="#000000"
+        android:background="#9B9B9B"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_height="1dp" />
-</android.support.percent.PercentRelativeLayout>
+        android:layout_marginLeft="32px"
+        android:layout_height="1px" />
+</RelativeLayout>

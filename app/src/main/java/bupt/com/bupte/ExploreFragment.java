@@ -35,6 +35,7 @@ public class ExploreFragment extends BottomSheetDialogFragment {
     private TextView nametext;
     private TextView notetext;
     private TextView detailtext;
+    private TextView inlinetext;
     private Button walknavbtn;
     private Button arbtn;
     private ImageView img1;

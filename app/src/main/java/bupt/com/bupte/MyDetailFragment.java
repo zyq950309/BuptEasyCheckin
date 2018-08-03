@@ -39,7 +39,6 @@ public class MyDetailFragment extends BottomSheetFragment {
     private ImageView closebtn;
     private TextView ordertext;
     private TextView nametext;
-    private TextView notetext;
     private TextView detailtext;
     private TextView inlinetext;
     private Button walknavbtn;
@@ -48,7 +47,6 @@ public class MyDetailFragment extends BottomSheetFragment {
     private ImageView img2;
     private ImageView img3;
     private TextView manyttext;
-    private ImageView flowchart;
     private OnDetailFragmentListener mdListener;
 
     private double a1 = 0;//当前位置坐标
@@ -74,7 +72,6 @@ public class MyDetailFragment extends BottomSheetFragment {
         });
         ordertext = (TextView)view.findViewById(R.id.text_order1);
         nametext = (TextView)view.findViewById(R.id.text_name1);
-        notetext = (TextView)view.findViewById(R.id.text_note1);
         detailtext = (TextView)view.findViewById(R.id.text_detail1);
         inlinetext = (TextView)view.findViewById(R.id.text_inLine1);
         walknavbtn = (Button)view.findViewById(R.id.btn_walknav);
@@ -83,7 +80,6 @@ public class MyDetailFragment extends BottomSheetFragment {
         img2 = (ImageView)view.findViewById(R.id.image_2);
         img3 = (ImageView)view.findViewById(R.id.image_3);
         manyttext =(TextView)view.findViewById(R.id.text_many);
-        flowchart =(ImageView)view.findViewById(R.id.img_flowchart);
 
         Bundle bundle = getArguments();
         int order = bundle.getInt("order");
@@ -187,10 +183,8 @@ public class MyDetailFragment extends BottomSheetFragment {
         switch(order){
             case 1:
                 ordertext.setText("1");
-                nametext.setText("体育馆");
-                notetext.setText("资料提交");
-                detailtext.setText("需：身份证复印件(1份) 录取通知书复印件(1份)");
-
+                nametext.setText("报到大厅(图书馆一层/马路上)");
+                detailtext.setText("参照通知书带齐所需证件");
                 SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
                 int length = strNav.length();
                 strNav.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -228,14 +222,16 @@ public class MyDetailFragment extends BottomSheetFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                flowchart.setImageResource(R.drawable.flow);
-                manyttext.setText("具体流程如下");
+                manyttext.setText("报到大厅内手续办理：\n" +
+                        "1. 学院报到\n" +
+                        "2. 缴纳学费\n" +
+                        "3. 办理贷款\n" +
+                        "4. 转组织关系");
                 break;
             case 2:
                 ordertext.setText("2");
-                nametext.setText("校医院");
-                notetext.setText("提交缴费");
-                detailtext.setText("需：身份证复印件(1份) 录取通知书复印件(1份)");
+                nametext.setText("宿舍");
+                detailtext.setText("提交缴费入住");
 
                 SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
                 int length2 = strNav2.length();
@@ -273,14 +269,16 @@ public class MyDetailFragment extends BottomSheetFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                flowchart.setImageResource(R.drawable.flow);
-                manyttext.setText("具体流程如下");
+                manyttext.setText("报到大厅内手续办理：\n" +
+                        "1. 学院报到\n" +
+                        "2. 缴纳学费\n" +
+                        "3. 办理贷款\n" +
+                        "4. 转组织关系");
                 break;
             case 3:
                 ordertext.setText("3");
-                nametext.setText("行政楼");
-                notetext.setText("资料提交");
-                detailtext.setText("需：身份证复印件(1份) 录取通知书复印件(1份)");
+                nametext.setText("体检车");
+                detailtext.setText("体检");
 
                 SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
                 int length3 = strNav3.length();
@@ -318,143 +316,11 @@ public class MyDetailFragment extends BottomSheetFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                flowchart.setImageResource(R.drawable.flow);
-                manyttext.setText("具体流程如下");
-                break;
-            case 4:
-                ordertext.setText("4");
-                nametext.setText("教学楼");
-                notetext.setText("资料提交");
-                detailtext.setText("需：身份证复印件(1份) 录取通知书复印件(1份)");
-
-                SpannableString strNav4 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-                int length4 = strNav4.length();
-                strNav4.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strNav4.setSpan(new RelativeSizeSpan(0.8f), 5, length4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                walknavbtn.setText(strNav4);
-                walknavbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        b1 = 39.967113916777636;
-                        b2 = 116.36479162025452;
-                        startPt = new LatLng(a1, a2);
-                        endPt = new LatLng(b1, b2);
-                        walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                        try {
-                            mNaviHelper = WalkNavigateHelper.getInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        startWalkNavi();
-                    }
-                });
-
-                SpannableString strAr4 = new SpannableString("室内AR指引\n5处手续办理");
-                strAr4.setSpan(new RelativeSizeSpan(1.2f), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strAr4.setSpan(new RelativeSizeSpan(0.8f), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                arbtn.setText(strAr4);
-                arbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        Intent intent = new Intent(getActivity(),MaprouteActivity.class);
-//                        startActivity(intent);
-                    }
-                });
-                img1.setImageResource(R.drawable.timg3);
-                img2.setImageResource(R.drawable.timg2);
-                img3.setImageResource(R.drawable.timg1);
-                flowchart.setImageResource(R.drawable.flow);
-                manyttext.setText("具体流程如下");
-                break;
-            case 5:
-                ordertext.setText("5");
-                nametext.setText("宿舍楼");
-                notetext.setText("资料提交");
-                detailtext.setText("需：身份证复印件(1份) 录取通知书复印件(1份)");
-
-                SpannableString strNav5 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-                int length5 = strNav5.length();
-                strNav5.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strNav5.setSpan(new RelativeSizeSpan(0.8f), 5, length5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                walknavbtn.setText(strNav5);
-                walknavbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        b1 = 39.967113916777636;
-                        b2 = 116.36479162025452;
-                        startPt = new LatLng(a1, a2);
-                        endPt = new LatLng(b1, b2);
-                        walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                        try {
-                            mNaviHelper = WalkNavigateHelper.getInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        startWalkNavi();
-                    }
-                });
-
-                SpannableString strAr5 = new SpannableString("室内AR指引\n5处手续办理");
-                strAr5.setSpan(new RelativeSizeSpan(1.2f), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strAr5.setSpan(new RelativeSizeSpan(0.8f), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                arbtn.setText(strAr5);
-                arbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        Intent intent = new Intent(getActivity(),MaprouteActivity.class);
-//                        startActivity(intent);
-                    }
-                });
-                img1.setImageResource(R.drawable.timg3);
-                img2.setImageResource(R.drawable.timg2);
-                img3.setImageResource(R.drawable.timg1);
-                flowchart.setImageResource(R.drawable.flow);
-                manyttext.setText("具体流程如下");
-                break;
-            case 6:
-                ordertext.setText("6");
-                nametext.setText("行政楼");
-                notetext.setText("资料提交");
-                detailtext.setText("需：身份证复印件(1份) 录取通知书复印件(1份)");
-
-                SpannableString strNav6 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-                int length6 = strNav6.length();
-                strNav6.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strNav6.setSpan(new RelativeSizeSpan(0.8f), 5, length6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                walknavbtn.setText(strNav6);
-                walknavbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        b1 = 39.967113916777636;
-                        b2 = 116.36479162025452;
-                        startPt = new LatLng(a1, a2);
-                        endPt = new LatLng(b1, b2);
-                        walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                        try {
-                            mNaviHelper = WalkNavigateHelper.getInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        startWalkNavi();
-                    }
-                });
-
-                SpannableString strAr6 = new SpannableString("室内AR指引\n5处手续办理");
-                strAr6.setSpan(new RelativeSizeSpan(1.2f), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strAr6.setSpan(new RelativeSizeSpan(0.8f), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                arbtn.setText(strAr6);
-                arbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        Intent intent = new Intent(getActivity(),MaprouteActivity.class);
-//                        startActivity(intent);
-                    }
-                });
-                img1.setImageResource(R.drawable.timg3);
-                img2.setImageResource(R.drawable.timg2);
-                img3.setImageResource(R.drawable.timg1);
-                flowchart.setImageResource(R.drawable.flow);
-                manyttext.setText("具体流程如下");
+                manyttext.setText("报到大厅内手续办理：\n" +
+                        "1. 学院报到\n" +
+                        "2. 缴纳学费\n" +
+                        "3. 办理贷款\n" +
+                        "4. 转组织关系");
                 break;
             default:
                 break;

@@ -34,7 +34,6 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
             viewHolder = new ViewHolder();
             viewHolder.order = (TextView) view.findViewById(R.id.text_order);
             viewHolder.name = (TextView) view.findViewById(R.id.text_name);
-            viewHolder.note = (TextView) view.findViewById(R.id.text_note);
             viewHolder.detail = (TextView) view.findViewById(R.id.text_detail);
             viewHolder.inLine = (TextView) view.findViewById(R.id.text_inLine);
             view.setTag(viewHolder);
@@ -44,7 +43,6 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         }
         viewHolder.order.setText(place.getOrder()+"");
         viewHolder.name.setText(place.getName());
-        viewHolder.note.setText(place.getNote());
         viewHolder.inLine.setText(place.getInLine());
         viewHolder.detail.setText(place.getDetail());
         return view;
@@ -53,7 +51,6 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
     class ViewHolder{
         TextView order;
         TextView name;
-        TextView note;
         TextView detail;
         TextView inLine;
     }

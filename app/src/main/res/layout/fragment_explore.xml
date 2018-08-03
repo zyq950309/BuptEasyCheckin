@@ -7,12 +7,14 @@
     android:background="#ffffff"
     android:id="@+id/explorefragment"
     android:layout_margin="3dp" >
-    <ImageView
-        android:src="@drawable/bar"
+    <View
+        android:layout_marginTop="20px"
         android:id="@+id/img_bar1"
+        android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="84px"
+        android:layout_height="8px"
+        android:background="@drawable/bar_style"/>
     <TextView
         android:textColor="#000000"
         android:id = "@+id/text_name_explore"

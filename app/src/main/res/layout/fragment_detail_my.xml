@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,93 +7,95 @@
     android:background="#ffffff"
     android:id="@+id/detailfragment"
     android:layout_margin="3dp" >
-    <ImageView
-        android:src="@drawable/bar"
+    <View
+        android:layout_marginTop="20px"
         android:id="@+id/img_bar"
+        android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="84px"
+        android:layout_height="8px"
+        android:background="@drawable/bar_style"/>
     <ImageView
         android:id="@+id/close_btn"
         android:src="@drawable/close"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="35px"
+        android:layout_height="35px"
         android:layout_below="@id/img_bar"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="34px" />
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="108px"
+        android:layout_marginLeft="35px"
+        android:background="@drawable/number_ring"
         android:id = "@+id/text_order1"
         android:gravity="center"
-        android:textSize="35sp"
+        android:textSize="36px"
         android:layout_below="@id/close_btn"
-        app:layout_widthPercent="20%"
-        android:layout_height="60dp"
+        android:layout_gravity="left|top"
         android:textColor="#000000"/>
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50px"
+        android:layout_marginLeft="25px"
+        android:layout_marginTop="21px"
         android:id = "@+id/text_name1"
-        android:textSize="20sp"
+        android:textSize="36px"
         android:layout_below="@id/close_btn"
         android:layout_toRightOf="@id/text_order1"
-        app:layout_widthPercent="20%"
-        android:layout_height="30dp"
         android:textColor="#000000"/>
     <TextView
-        android:id = "@+id/text_note1"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
-        android:layout_below="@id/close_btn"
-        android:layout_toRightOf="@id/text_name1"
-        app:layout_widthPercent="40%"
-        android:layout_height="30dp"
-        android:textColor="#000000"/>
-    <TextView
-        android:id = "@+id/text_inLine1"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
-        android:layout_gravity="right|top"
-        android:layout_below="@id/close_btn"
-        android:layout_toRightOf="@id/text_note1"
-        app:layout_widthPercent="20%"
-        android:layout_height="30dp"
-        android:textColor="#000000"/>
-    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="25px"
         android:id = "@+id/text_detail1"
         android:layout_below="@id/text_name1"
-        android:gravity="center_vertical"
-        android:textSize="12sp"
         android:layout_toRightOf="@id/text_order1"
-        app:layout_widthPercent="80%"
-        android:layout_height="30dp"
-        android:textColor="#000000"/>
+        android:gravity="center_vertical"
+        android:textSize="24px"
+        android:textColor="#4A4A4A"/>
+    <TextView
+        android:layout_height="50px"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="21px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45px"
+        android:id = "@+id/text_inLine1"
+        android:gravity="center_vertical"
+        android:textSize="24px"
+        android:layout_gravity="right|top"
+        android:layout_below="@id/close_btn"
+        android:layout_toRightOf="@id/text_name1"
+        android:textColor="#F5A623"/>
     <Button
         android:id="@+id/btn_walknav"
-        android:background="#4b4d5c"
+        android:background="@drawable/darkbutton_style"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="5dp"
-        app:layout_widthPercent="42%"
-        android:layout_height="50dp"
+        android:layout_marginTop="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/text_detail1"
-        app:layout_marginStartPercent="6%"
-        app:layout_marginEndPercent="2%"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35px"
         android:textAllCaps="false" />
     <Button
         android:id="@+id/btn_ar"
-        android:background="#4b4d5c"
+        android:background="@drawable/darkbutton_style"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="5dp"
-        app:layout_widthPercent="42%"
-        android:layout_height="50dp"
+        android:layout_marginTop="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/text_detail1"
         android:layout_toRightOf="@id/btn_walknav"
-        app:layout_marginStartPercent="2%"
-        app:layout_marginEndPercent="6%"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="35px"
         android:textAllCaps="false" />
     <HorizontalScrollView
         android:id="@+id/scrollView_img"
-        app:layout_widthPercent="88%"
-        app:layout_marginStartPercent="6%"
-        app:layout_marginEndPercent="6%"
-        android:layout_marginTop="5dp"
-        android:layout_height="80dp"
+        android:layout_marginLeft="35px"
+        android:layout_width="match_parent"
+        android:layout_marginTop="35px"
+        android:layout_height="160px"
         android:layout_below="@id/btn_ar">
         <LinearLayout
             android:orientation="horizontal"
@@ -103,9 +105,9 @@
                 android:id="@+id/image_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:maxHeight="80dp"
-                android:maxWidth="160dp"
+                android:layout_marginRight="20px"
+                android:maxHeight="161px"
+                android:maxWidth="292px"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="centerInside" />
@@ -113,9 +115,9 @@
                 android:id="@+id/image_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:maxHeight="80dp"
-                android:maxWidth="160dp"
+                android:layout_marginRight="20px"
+                android:maxHeight="161px"
+                android:maxWidth="292px"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="centerInside" />
@@ -123,9 +125,9 @@
                 android:id="@+id/image_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:maxHeight="80dp"
-                android:maxWidth="160dp"
+                android:layout_marginRight="20px"
+                android:maxHeight="161px"
+                android:maxWidth="292px"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="centerInside" />
@@ -133,22 +135,11 @@
     </HorizontalScrollView>
     <TextView
         android:id="@+id/text_many"
-        android:layout_marginTop="5dp"
-        android:textSize="12sp"
-        android:layout_height="100dp"
-        app:layout_widthPercent="100%"
+        android:layout_marginTop="21px"
+        android:layout_marginLeft="43px"
+        android:textSize="24px"
+        android:layout_height="200px"
+        android:layout_width="match_parent"
         android:layout_below="@id/scrollView_img"
         android:textColor="#000000"/>
-    <ImageView
-        android:layout_centerHorizontal="true"
-        android:id="@+id/img_flowchart"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxHeight="500dp"
-        android:maxWidth="160dp"
-        android:adjustViewBounds="true"
-        android:padding="0dp"
-        android:scaleType="centerInside"
-        android:layout_below="@id/text_many"/>
-</android.support.percent.PercentRelativeLayout>
+</RelativeLayout>
