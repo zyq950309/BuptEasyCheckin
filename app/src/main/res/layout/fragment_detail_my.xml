@@ -8,95 +8,84 @@
     android:id="@+id/detailfragment"
     android:layout_margin="3dp" >
     <View
-        android:layout_marginTop="20px"
+        android:layout_marginTop="9.82dp"
         android:id="@+id/img_bar"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_width="84px"
-        android:layout_height="8px"
+        android:layout_width="41.23dp"
+        android:layout_height="3.93dp"
         android:background="@drawable/bar_style"/>
     <ImageView
         android:id="@+id/close_btn"
         android:src="@drawable/close"
-        android:layout_width="35px"
-        android:layout_height="35px"
+        android:layout_width="17.18dp"
+        android:layout_height="17.18dp"
         android:layout_below="@id/img_bar"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="34px" />
+        android:layout_marginRight="16.69dp" />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="108px"
-        android:layout_marginLeft="35px"
+        android:layout_height="53dp"
+        android:layout_marginLeft="17.18dp"
         android:background="@drawable/number_ring"
         android:id = "@+id/text_order1"
         android:gravity="center"
-        android:textSize="36px"
+        android:textSize="17.67sp"
         android:layout_below="@id/close_btn"
         android:layout_gravity="left|top"
         android:textColor="#000000"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50px"
-        android:layout_marginLeft="25px"
-        android:layout_marginTop="21px"
+        android:layout_height="24.54dp"
+        android:layout_marginLeft="9.82dp"
+        android:layout_marginTop="10.31dp"
         android:id = "@+id/text_name1"
-        android:textSize="36px"
+        android:textSize="17.67sp"
         android:layout_below="@id/close_btn"
         android:layout_toRightOf="@id/text_order1"
         android:textColor="#000000"/>
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="25px"
+        android:layout_marginLeft="12.27dp"
         android:id = "@+id/text_detail1"
         android:layout_below="@id/text_name1"
         android:layout_toRightOf="@id/text_order1"
         android:gravity="center_vertical"
-        android:textSize="24px"
+        android:textSize="11.78sp"
         android:textColor="#4A4A4A"/>
     <TextView
-        android:layout_height="50px"
+        android:layout_height="24.54dp"
         android:layout_width="wrap_content"
-        android:layout_marginTop="21px"
+        android:layout_marginTop="10.31dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="45px"
+        android:layout_marginRight="17.18dp"
         android:id = "@+id/text_inLine1"
         android:gravity="center_vertical"
-        android:textSize="24px"
-        android:layout_gravity="right|top"
+        android:textSize="11.78sp"
+
         android:layout_below="@id/close_btn"
-        android:layout_toRightOf="@id/text_name1"
+
         android:textColor="#F5A623"/>
     <Button
         android:id="@+id/btn_walknav"
         android:background="@drawable/darkbutton_style"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="25px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="12.27dp"
+        android:layout_width="150dp"
+        android:layout_height="44.17dp"
         android:layout_below="@id/text_detail1"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="35px"
+        android:layout_marginLeft="17.18dp"
         android:textAllCaps="false" />
-    <Button
-        android:id="@+id/btn_ar"
-        android:background="@drawable/darkbutton_style"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="25px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_detail1"
-        android:layout_toRightOf="@id/btn_walknav"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="35px"
-        android:textAllCaps="false" />
+
     <HorizontalScrollView
         android:id="@+id/scrollView_img"
-        android:layout_marginLeft="35px"
+        android:layout_marginLeft="17.18dp"
         android:layout_width="match_parent"
-        android:layout_marginTop="35px"
-        android:layout_height="160px"
-        android:layout_below="@id/btn_ar">
+        android:layout_marginTop="11.78dp"
+        android:layout_height="78.53dp"
+        android:layout_below="@id/btn_walknav">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -105,9 +94,9 @@
                 android:id="@+id/image_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20px"
-                android:maxHeight="161px"
-                android:maxWidth="292px"
+                android:layout_marginRight="9.82dp"
+                android:maxHeight="78.63dp"
+                android:maxWidth="143.31dp"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="centerInside" />
@@ -115,9 +104,9 @@
                 android:id="@+id/image_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20px"
-                android:maxHeight="161px"
-                android:maxWidth="292px"
+                android:layout_marginRight="9.82dp"
+                android:maxHeight="78.63dp"
+                android:maxWidth="143.31dp"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="centerInside" />
@@ -125,20 +114,33 @@
                 android:id="@+id/image_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20px"
-                android:maxHeight="161px"
-                android:maxWidth="292px"
+                android:layout_marginRight="17.18dp"
+                android:maxHeight="78.63dp"
+                android:maxWidth="143.31dp"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="centerInside" />
         </LinearLayout>
     </HorizontalScrollView>
+    <Button
+        android:id="@+id/btn_ar"
+        android:background="@drawable/darkbutton_style"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="12.27dp"
+        android:layout_width="150dp"
+        android:layout_height="44.17dp"
+        android:layout_below="@id/text_detail1"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/scrollView_img"
+        android:layout_marginRight="17.18dp"
+        android:textAllCaps="false"
+        android:layout_marginEnd="17.18dp" />
     <TextView
         android:id="@+id/text_many"
-        android:layout_marginTop="21px"
-        android:layout_marginLeft="43px"
-        android:textSize="24px"
-        android:layout_height="200px"
+        android:layout_marginTop="10.31dp"
+        android:layout_marginLeft="21.1dp"
+        android:textSize="11.78sp"
+        android:layout_height="98.16dp"
         android:layout_width="match_parent"
         android:layout_below="@id/scrollView_img"
         android:textColor="#000000"/>

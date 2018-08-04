@@ -35,13 +35,11 @@ public class ExploreFragment extends BottomSheetDialogFragment {
     private TextView nametext;
     private TextView notetext;
     private TextView detailtext;
-    private TextView inlinetext;
     private Button walknavbtn;
     private Button arbtn;
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
-    private TextView manyttext;
     private static final String TAG = "ExploreFragment";
 
     @Nullable
@@ -56,7 +54,6 @@ public class ExploreFragment extends BottomSheetDialogFragment {
         img1 = (ImageView)view.findViewById(R.id.image_explore1);
         img2 = (ImageView)view.findViewById(R.id.image_explore2);
         img3 = (ImageView)view.findViewById(R.id.image_explore3);
-        manyttext =(TextView)view.findViewById(R.id.text_many_explore);
         SpannableString strAr = new SpannableString("AR看彩蛋\n扫一扫");
         strAr.setSpan(new RelativeSizeSpan(1.2f), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         strAr.setSpan(new RelativeSizeSpan(0.8f), 6, 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -101,7 +98,6 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("具体流程如下");
                 break;
             case 2:
                 nametext.setText("科研楼");
@@ -124,7 +120,6 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("具体流程如下");
                 break;
             default:
                 break;

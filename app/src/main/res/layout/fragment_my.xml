@@ -7,17 +7,17 @@
     android:id="@+id/fragment">
 
     <View
-        android:layout_marginTop="20px"
+        android:layout_marginTop="9.82dp"
         android:layout_gravity="center"
-        android:layout_width="84px"
-        android:layout_height="8px"
+        android:layout_width="41.23dp"
+        android:layout_height="3.93dp"
         android:background="@drawable/bar_style"
-        android:layout_marginBottom="33px"/>
+        android:layout_marginBottom="16.2dp"/>
 
     <TextView
-        android:layout_marginLeft="32px"
+        android:layout_marginLeft="15.7dp"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="19.63dp"
         android:id="@+id/head"
         android:textColor="#000000"/>
     <ListView
@@ -27,6 +27,6 @@
     </ListView>
     <View
         android:layout_width="match_parent"
-        android:layout_height="150px"
+        android:layout_height="101.6dp"
         />
 </LinearLayout>
