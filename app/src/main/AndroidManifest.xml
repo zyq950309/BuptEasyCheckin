@@ -32,7 +32,7 @@
             <!--android:value="4A3vjBsSXwr5bNqu00gsxoevjB1885VF" />-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="XOh9EfZ2aYEXYKClCLbvyw7X7dZ52Xlk" />
+            android:value="4A3vjBsSXwr5bNqu00gsxoevjB1885VF" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
