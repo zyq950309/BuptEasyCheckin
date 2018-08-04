@@ -53,7 +53,10 @@ import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.flipboard.bottomsheet.commons.BottomSheetFragment;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.FormBody;
@@ -95,7 +98,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     private View fragViewLogin;
     private Boolean IsStudent;
     private List<String> number;
-    private Boolean Tag1=true;
+    private boolean Tag1=true;
+//    private boolean Tag2=false;
 
     private Handler handler=new Handler(){
         @Override
@@ -225,6 +229,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             case 1:
                 b1 = Double.parseDouble(latitude.get(0));
                 b2 = Double.parseDouble(longitude.get(0));
+                Log.d("wentis",""+a1);
+                Log.d("wentis",""+b1);
                 initRoutePlan(b1, b2);
                 break;
             case 2:
@@ -278,7 +284,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         option.setCoorType("bd09ll");
-        option.setScanSpan(1000);
+        option.setScanSpan(200000);
         mLocationClient.setLocOption(option);
     }
 
@@ -287,7 +293,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         try {
             mLocationClient.start();//开启定位器
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "GPS Locate 失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "定位失败", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -313,22 +319,116 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     public void initMarket(List<LatLng> site) {
         int size = site.size();
         for (int i = 0; i < size; i++) {
-            LatLng point = site.get(i);
-            BitmapDescriptor bitmap = BitmapDescriptorFactory
-                    .fromResource(R.drawable.use_icon);
+            switch (i){
+                case 0:
+                    LatLng point1 = site.get(i);
+                    BitmapDescriptor bitmap1 = BitmapDescriptorFactory
+                            .fromResource(R.drawable.use_icon);
 
-            OverlayOptions option = new MarkerOptions()
-                    .position(point)
-                    .icon(bitmap);
+                    OverlayOptions option1 = new MarkerOptions()
+                            .position(point1)
+                            .icon(bitmap1);
 
-            OverlayOptions textOption = new TextOptions()
-                    .bgColor(0x00E0EFF1)
-                    .fontSize(60)
-                    .fontColor(0xFF000000)
-                    .text("百度地图SDK")
-                    .position(point);
-            mBaiduMap.addOverlay(option);
-            mBaiduMap.addOverlay(textOption);
+                    OverlayOptions textOption1 = new TextOptions()
+                            .bgColor(0x00E0EFF1)
+                            .fontSize(60)
+                            .fontColor(0xFF000000)
+                            .text("教三")
+                            .position(point1);
+                    mBaiduMap.addOverlay(option1);
+                    mBaiduMap.addOverlay(textOption1);
+                    break;
+                case 1:
+                    LatLng point2 = site.get(i);
+                    BitmapDescriptor bitmap2 = BitmapDescriptorFactory
+                            .fromResource(R.drawable.use_icon);
+
+                    OverlayOptions option2 = new MarkerOptions()
+                            .position(point2)
+                            .icon(bitmap2);
+
+                    OverlayOptions textOption2 = new TextOptions()
+                            .bgColor(0x00E0EFF1)
+                            .fontSize(60)
+                            .fontColor(0xFF000000)
+                            .text("北门")
+                            .position(point2);
+                    mBaiduMap.addOverlay(option2);
+                    mBaiduMap.addOverlay(textOption2);
+                    break;
+                case 2:
+                    LatLng point3 = site.get(i);
+                    BitmapDescriptor bitmap3 = BitmapDescriptorFactory
+                            .fromResource(R.drawable.use_icon);
+
+                    OverlayOptions option3 = new MarkerOptions()
+                            .position(point3)
+                            .icon(bitmap3);
+
+                    OverlayOptions textOption3 = new TextOptions()
+                            .bgColor(0x00E0EFF1)
+                            .fontSize(60)
+                            .fontColor(0xFF000000)
+                            .text("明光楼")
+                            .position(point3);
+                    mBaiduMap.addOverlay(option3);
+                    mBaiduMap.addOverlay(textOption3);
+                    break;
+                case 3:
+                    LatLng point4 = site.get(i);
+                    BitmapDescriptor bitmap4 = BitmapDescriptorFactory
+                            .fromResource(R.drawable.use_icon);
+
+                    OverlayOptions option4 = new MarkerOptions()
+                            .position(point4)
+                            .icon(bitmap4);
+
+                    OverlayOptions textOption4 = new TextOptions()
+                            .bgColor(0x00E0EFF1)
+                            .fontSize(60)
+                            .fontColor(0xFF000000)
+                            .text("枫蓝")
+                            .position(point4);
+                    mBaiduMap.addOverlay(option4);
+                    mBaiduMap.addOverlay(textOption4);
+                    break;
+                case 4:
+                    LatLng point5 = site.get(i);
+                    BitmapDescriptor bitmap5 = BitmapDescriptorFactory
+                            .fromResource(R.drawable.use_icon);
+
+                    OverlayOptions option5 = new MarkerOptions()
+                            .position(point5)
+                            .icon(bitmap5);
+
+                    OverlayOptions textOption5 = new TextOptions()
+                            .bgColor(0x00E0EFF1)
+                            .fontSize(60)
+                            .fontColor(0xFF000000)
+                            .text("主楼")
+                            .position(point5);
+                    mBaiduMap.addOverlay(option5);
+                    mBaiduMap.addOverlay(textOption5);
+                    break;
+                case 5:
+                    LatLng point6 = site.get(i);
+                    BitmapDescriptor bitmap6 = BitmapDescriptorFactory
+                            .fromResource(R.drawable.use_icon);
+
+                    OverlayOptions option6 = new MarkerOptions()
+                            .position(point6)
+                            .icon(bitmap6);
+
+                    OverlayOptions textOption6 = new TextOptions()
+                            .bgColor(0x00E0EFF1)
+                            .fontSize(60)
+                            .fontColor(0xFF000000)
+                            .text("图书馆")
+                            .position(point6);
+                    mBaiduMap.addOverlay(option6);
+                    mBaiduMap.addOverlay(textOption6);
+                    break;
+            }
         }
     }
 
@@ -434,7 +534,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         }).start();
     }
 
-    private void search_sitenum() {//查询数据库，报道节点经纬度信息
+    private void search_sitenum() {//查询数据库，报道节点人数信息
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -466,7 +566,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     }
 
                     try{
-                        Thread.sleep(1000);
+                        Thread.sleep(3000);
                     }catch (InterruptedException e){
                         e.printStackTrace();
                     }
@@ -488,13 +588,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            a1=location.getLatitude();
-            a2=location.getLongitude();
-            if(Tag==0){
-                Message msg = new Message();
-                msg.what = 1;
-                handler.sendMessage(msg);
-            }
+                a1 = location.getLatitude();
+                a2 = location.getLongitude();
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                Date date = new Date(System.currentTimeMillis());
+                Log.d("wenti", "Date获取当前日期时间" + simpleDateFormat.format(date));
+//            if(Tag==0){
+//                Message msg = new Message();
+//                msg.what = 1;
+//                handler.sendMessage(msg);
+//            }
         }
     }
 
@@ -530,7 +634,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     .width(10)
                     .dottedLine(true);
             mBaiduMap.addOverlay(ooPolyline);
-
+//            Tag2=true;
         }
 
         @Override

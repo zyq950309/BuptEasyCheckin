@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -58,6 +61,37 @@ public class MyDetailFragment extends BottomSheetFragment {
     private WalkNaviLaunchParam walkParam;
     public LocationClient mLocationClient;//定位器
     private BDLocationListener mylistener = new MyDetailFragment.MyLocationListener();//定位监听器
+    private boolean Tag1=false;
+    private int order=0;
+
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case 1:
+                    SpannableString strNav1 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                    int length1 = strNav1.length();
+                    strNav1.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    strNav1.setSpan(new RelativeSizeSpan(0.8f), 5, length1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    walknavbtn.setText(strNav1);
+                    break;
+                case 2:
+                    SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                    int length2 = strNav2.length();
+                    strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    walknavbtn.setText(strNav2);
+                    break;
+                case 3:
+                    SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                    int length3 = strNav3.length();
+                    strNav3.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    strNav3.setSpan(new RelativeSizeSpan(0.8f), 5, length3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    walknavbtn.setText(strNav3);
+                    break;
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -82,8 +116,7 @@ public class MyDetailFragment extends BottomSheetFragment {
         manyttext =(TextView)view.findViewById(R.id.text_many);
 
         Bundle bundle = getArguments();
-        int order = bundle.getInt("order");
-
+        order = bundle.getInt("order");
         initView(order);
         requestLocation();
         return view;
@@ -102,6 +135,13 @@ public class MyDetailFragment extends BottomSheetFragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnDetailFragmentListener");
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Tag1=true;
+        search_ifo(order);
     }
 
     @Override
@@ -182,14 +222,15 @@ public class MyDetailFragment extends BottomSheetFragment {
         inlinetext.setText(MyToolClass.getInLineNumbers(order));
         switch(order){
             case 1:
+                search_ifo(order);
                 ordertext.setText("1");
                 nametext.setText("报到大厅(图书馆一层/马路上)");
                 detailtext.setText("参照通知书带齐所需证件");
-                SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-                int length = strNav.length();
-                strNav.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strNav.setSpan(new RelativeSizeSpan(0.8f), 5, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                walknavbtn.setText(strNav);
+//                SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+//                int length = strNav.length();
+//                strNav.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                strNav.setSpan(new RelativeSizeSpan(0.8f), 5, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                walknavbtn.setText(strNav);
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -229,15 +270,16 @@ public class MyDetailFragment extends BottomSheetFragment {
                         "4. 转组织关系");
                 break;
             case 2:
+                search_ifo(order);
                 ordertext.setText("2");
                 nametext.setText("宿舍");
                 detailtext.setText("提交缴费入住");
 
-                SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-                int length2 = strNav2.length();
-                strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                walknavbtn.setText(strNav2);
+//                SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+//                int length2 = strNav2.length();
+//                strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                walknavbtn.setText(strNav2);
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -276,15 +318,16 @@ public class MyDetailFragment extends BottomSheetFragment {
                         "4. 转组织关系");
                 break;
             case 3:
+                search_ifo(order);
                 ordertext.setText("3");
                 nametext.setText("体检车");
                 detailtext.setText("体检");
-
-                SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-                int length3 = strNav3.length();
-                strNav3.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strNav3.setSpan(new RelativeSizeSpan(0.8f), 5, length3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                walknavbtn.setText(strNav3);
+//
+//                SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+//                int length3 = strNav3.length();
+//                strNav3.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                strNav3.setSpan(new RelativeSizeSpan(0.8f), 5, length3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                walknavbtn.setText(strNav3);
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -327,9 +370,36 @@ public class MyDetailFragment extends BottomSheetFragment {
         }
     }
 
+    private void search_ifo(int i) {
+        final int orderi=i;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (Tag1){
+                    Message msg=new Message();
+                    msg.what=orderi;
+                    handler.sendMessage(msg);
+
+                    try{
+                        Thread.sleep(3000);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+//        Log.d("wenti","stop detail");
+        Tag1=false;
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        Log.d("wemti","destroy detail");
+//        Log.d("wenti","destroy detail");
     }
 }

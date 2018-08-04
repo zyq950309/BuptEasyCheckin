@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -31,7 +34,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LoginActivity extends Activity implements View.OnClickListener{//登录页面
+public class LoginActivity extends Activity implements View.OnClickListener,EditText.OnTouchListener{//登录页面
 
     private boolean IsLoginOk=false;//学生身份验证是否成功
     private boolean IsStudent=false;//是否学生身份
@@ -40,10 +43,41 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
 
     private String name_in;
     private int id_in;
-    private boolean Tag=true,Tag1=false;
+//    private boolean Tag=true,Tag1=false;
     private int sid,depmt,prof,building,room;
     private EditText nameInput,idInput;
     private Button nameclear_button,idclear_button,login_button,tour_button;
+    private ImageView icon_school;
+
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    if(IsLoginOk) {
+                        IsStudent = true;
+                        Intent intent = new Intent(LoginActivity.this, MainpageActivity.class);
+                        Student student = stu;
+                        //游客跳转到主页，传递bool型"IsStudent"是否学生true
+                        //传递学生类student
+                        intent.putExtra("IsStudent", IsStudent);
+                        intent.putExtra("student", student);
+                        startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        closeActivity();
+                    }else {
+                        Toast.makeText(LoginActivity.this, "姓名与身份证不一致", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case 2:
+                    Toast.makeText(LoginActivity.this, "数据库连接失败", Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    Toast.makeText(LoginActivity.this, "网络状况不佳，连接失败", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +90,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
         idclear_button=(Button)findViewById(R.id.idclear_button);
         login_button=(Button)findViewById(R.id.login_button);
         tour_button=(Button)findViewById(R.id.tour_button);
+        icon_school=(ImageView)findViewById(R.id.school_icon);
 
         nameclear_button.setOnClickListener(this);
         idclear_button.setOnClickListener(this);
@@ -147,6 +182,9 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
             }
         });//填写id显示清除按钮
 
+        nameInput.setOnTouchListener(this);
+        idInput.setOnTouchListener(this);
+
         nameclear_button.setVisibility(View.INVISIBLE);
         idclear_button.setVisibility(View.INVISIBLE);
 
@@ -157,6 +195,18 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
         //（函数）身份信息错误Toast显示
         //（函数）学生登录跳转至MainpageActivity,游客模式登录跳转至MainpagetourActivity
         //（变量）跳转时传入学生学号（或数据库序号）
+    }
+
+    private void closeActivity(){
+        this.finish();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            icon_school.setVisibility(View.GONE);
+        }
+        return false;
     }
 
     @Override
@@ -174,23 +224,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
                 if(!nameInput.getText().toString().isEmpty()&&!idInput.getText().toString().isEmpty()) {
                     String name_input = nameInput.getText().toString();
                     int id_input = Integer.parseInt(idInput.getText().toString());
-                    if (search(name_input, id_input)) {
-                        IsStudent=true;
-                        Intent intent = new Intent(LoginActivity.this, MainpageActivity.class);
-                        Student student=stu;
-                        //游客跳转到主页，传递bool型"IsStudent"是否学生true
-                        //传递学生类student
-                        intent.putExtra("IsStudent",IsStudent);
-                        intent.putExtra("student",student);
-                        startActivity(intent);
-                        this.finish();
-                    } else {
-                        if(Tag) {
-                            Toast.makeText(LoginActivity.this, "姓名与身份证不一致", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(LoginActivity.this, "数据库连接失败", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                    search(name_input, id_input);
                 }else {
                     Toast.makeText(LoginActivity.this, "输入不能为空", Toast.LENGTH_SHORT).show();
                 }
@@ -213,7 +247,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
 //        button.setVisibility(View.VISIBLE);
 //    }
 
-    private boolean search(String name, int id){//查询数据库，验证登录成功,返回学生信息
+    private void search(String name, int id){//查询数据库，验证登录成功,返回学生信息
         name_in=name;
         id_in=id;
         new Thread(new Runnable() {
@@ -230,10 +264,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
                         .build();
                 try {
                     Response response = okHttpClient.newCall(request).execute();
-//                    Log.d("wenti",""+response.code());
                     if (response.isSuccessful()) {
                         String responsedata=response.body().string();
-//                        Log.d("wenti",responsedata);
                         Student_info student_info=GsonTools.getPerson(responsedata,Student_info.class);
                         if(student_info.getCode()==0) {
                             if (student_info.getIsLoginOk() == 1) {
@@ -247,25 +279,24 @@ public class LoginActivity extends Activity implements View.OnClickListener{//�
                             } else {
                                 IsLoginOk = false;
                             }
-                            Tag=true;
+                            Message msg=new Message();
+                            msg.what=1;
+                            handler.sendMessage(msg);
                         }else {
                             IsLoginOk = false;
-                            Tag=false;
+                            Message msg=new Message();
+                            msg.what=2;
+                            handler.sendMessage(msg);
                         }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                    IsLoginOk = false;
+                    Message msg=new Message();
+                    msg.what=3;
+                    handler.sendMessage(msg);
                 }
-                Tag1=true;
             }
         }).start();
-
-        try {
-            Thread.sleep(800);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-
-        return IsLoginOk;
     }
 }
