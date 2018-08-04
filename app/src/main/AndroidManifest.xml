@@ -33,7 +33,8 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="XOh9EfZ2aYEXYKClCLbvyw7X7dZ52Xlk" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
