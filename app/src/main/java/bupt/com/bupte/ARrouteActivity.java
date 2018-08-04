@@ -106,11 +106,11 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         accelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         if(accelerometer==null){
-            Toast.makeText(ARrouteActivity.this,"没有加速传感器",Toast.LENGTH_SHORT).show();
+            MyToast.makeText(ARrouteActivity.this,"没有加速传感器",Toast.LENGTH_SHORT).show();
         }
         magnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         if(magnetic==null){
-            Toast.makeText(ARrouteActivity.this,"没有磁电传感器",Toast.LENGTH_SHORT).show();
+            MyToast.makeText(ARrouteActivity.this,"没有磁电传感器",Toast.LENGTH_SHORT).show();
         }
 
         if (!CommonLY.checkPermission(this, Manifest.permission.CAMERA)) {
@@ -241,7 +241,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
             mLocationClient.start();
         }catch (Exception e)
         {
-            Toast.makeText(ARrouteActivity.this,"GPS Locate 失败",Toast.LENGTH_SHORT).show();
+            MyToast.makeText(ARrouteActivity.this,"GPS Locate 失败",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -334,14 +334,14 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
             a2=location.getLongitude();
             if(location.getLocType()==BDLocation.TypeGpsLocation) {
                 if(TAG==0) {
-                    Toast.makeText(ARrouteActivity.this, "GPS Locate OK", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(ARrouteActivity.this, "GPS Locate OK", Toast.LENGTH_SHORT).show();
                     TAG = 1;
                 }else{
                     Log.d("do","do nothing");
                 }
             }else{
                 if(TAG1==0) {
-                    Toast.makeText(ARrouteActivity.this, "GPS Locate NO,请前往开阔地", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(ARrouteActivity.this, "GPS Locate NO,请前往开阔地", Toast.LENGTH_SHORT).show();
                     TAG1 = 1;
                 }else{
                     Log.d("do","do nothing");

@@ -110,7 +110,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     Tag=1;
                     break;
                 case 2:
-                    Toast.makeText(getActivity(), "数据库连接错误", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(getActivity(), "数据库连接错误", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -293,7 +293,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         try {
             mLocationClient.start();//开启定位器
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "定位失败", Toast.LENGTH_SHORT).show();
+            MyToast.makeText(getActivity(), "定位失败", Toast.LENGTH_SHORT).show();
         }
     }
 

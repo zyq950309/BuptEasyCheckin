@@ -63,17 +63,17 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                         intent.putExtra("IsStudent", IsStudent);
                         intent.putExtra("student", student);
                         startActivity(intent);
-                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        MyToast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                         closeActivity();
                     }else {
-                        Toast.makeText(LoginActivity.this, "姓名与身份证不一致", Toast.LENGTH_SHORT).show();
+                        MyToast.makeText(LoginActivity.this, "姓名与身份证不一致", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 case 2:
-                    Toast.makeText(LoginActivity.this, "数据库连接失败", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(LoginActivity.this, "数据库连接失败", Toast.LENGTH_SHORT).show();
                     break;
                 case 3:
-                    Toast.makeText(LoginActivity.this, "网络状况不佳，连接失败", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(LoginActivity.this, "网络状况不佳，连接失败", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -226,7 +226,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                     int id_input = Integer.parseInt(idInput.getText().toString());
                     search(name_input, id_input);
                 }else {
-                    Toast.makeText(LoginActivity.this, "输入不能为空", Toast.LENGTH_SHORT).show();
+                    MyToast.makeText(LoginActivity.this, "输入不能为空", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.tour_button://点击游客登录按钮
@@ -239,7 +239,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                 intent.putExtra("student",student);
                 startActivity(intent);
                 this.finish();
-                Toast.makeText(LoginActivity.this, "游客模式", Toast.LENGTH_SHORT).show();
+                MyToast.makeText(LoginActivity.this, "游客模式", Toast.LENGTH_SHORT).show();
         }
     }
 

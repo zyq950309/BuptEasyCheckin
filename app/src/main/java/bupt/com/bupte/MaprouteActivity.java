@@ -208,7 +208,7 @@ public class MaprouteActivity extends Activity implements View.OnClickListener{/
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == ArCameraView.WALK_AR_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                Toast.makeText(MaprouteActivity.this, "没有相机权限,请打开后重试", Toast.LENGTH_SHORT).show();
+                MyToast.makeText(MaprouteActivity.this, "没有相机权限,请打开后重试", Toast.LENGTH_SHORT).show();
             } else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 mNaviHelper.startCameraAndSetMapView(MaprouteActivity.this);
             }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -12,35 +13,26 @@ import android.widget.Toast;
 
 public class MyToast {
     private Toast mToast;
-    private MyToast(Context context, CharSequence text, int duration){
-        View v = LayoutInflater.from(context)
+    private MyToast(Context context, CharSequence text, int duration) {
+        View v = LayoutInflater.from(context).inflate(R.layout.my_toast, null);
+        TextView textView = (TextView) v.findViewById(R.id.toast_text);
+        textView.setText(text);
+        mToast = new Toast(context);
+        mToast.setDuration(duration);
+        mToast.setView(v);
     }
 
-
-    private static void show(String massage, int show_length) {
-        Context context = Application.getGlobalContext();
-        //使用布局加载器，将编写的toast_layout布局加载进来
-        View view = LayoutInflater.from(context).inflate(R.layout.toast_layout, null);
-        //获取ImageView
-        ImageView image = (ImageView) view.findViewById(R.id.toast_iv);
-        //设置图片
-        image.setImageResource(R.mipmap.cofe);
-        //获取TextView
-        TextView title = (TextView) view.findViewById(R.id.toast_tv);
-        //设置显示的内容
-        title.setText(massage);
-        Toast toast = new Toast(context);
-        //设置Toast要显示的位置，水平居中并在底部，X轴偏移0个单位，Y轴偏移70个单位，
-        toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 70);
-        //设置显示时间
-        toast.setDuration(show_length);
-
-        toast.setView(view);
-        toast.show();
+    public static MyToast makeText(Context context, CharSequence text, int duration) {
+        return new MyToast(context, text, duration);
     }
-
-    作者：uncochen
-    链接：https://www.jianshu.com/p/3ab597e84470
-    來源：简书
-    简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+    public void show() {
+        if (mToast != null) {
+            mToast.show();
+        }
+    }
+    public void setGravity(int gravity, int xOffset, int yOffset) {
+        if (mToast != null) {
+            mToast.setGravity(gravity, xOffset, yOffset);
+        }
+    }
 }

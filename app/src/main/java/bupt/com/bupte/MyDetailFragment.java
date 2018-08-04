@@ -205,7 +205,7 @@ public class MyDetailFragment extends BottomSheetFragment {
         try {
             mLocationClient.start();//开启定位器
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "GPS Locate 失败", Toast.LENGTH_SHORT).show();
+            MyToast.makeText(getActivity(), "GPS Locate 失败", Toast.LENGTH_SHORT).show();
         }
     }
 
