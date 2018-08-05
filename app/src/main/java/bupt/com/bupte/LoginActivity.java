@@ -114,7 +114,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                 if(nameInput.getText().toString().isEmpty()){
                     nameclear_button.setVisibility(View.INVISIBLE);
                     if(!idInput.getText().toString().isEmpty()){
-                        login_button.setTextColor(Color.parseColor("#999999"));
+                        login_button.setTextColor(Color.parseColor("#9fa0a9"));
                     }
                 }else {
                     nameclear_button.setVisibility(View.VISIBLE);
@@ -141,7 +141,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                 if(idInput.getText().toString().isEmpty()){
                     idclear_button.setVisibility(View.INVISIBLE);
                     if(!nameInput.getText().toString().isEmpty()){
-                        login_button.setTextColor(Color.parseColor("#999999"));
+                        login_button.setTextColor(Color.parseColor("#9fa0a9"));
                     }
                 }else {
                     idclear_button.setVisibility(View.VISIBLE);
