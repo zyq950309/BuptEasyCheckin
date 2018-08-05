@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -33,6 +35,8 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import static android.R.attr.button;
 
 public class LoginActivity extends Activity implements View.OnClickListener,EditText.OnTouchListener{//登录页面
 
@@ -47,6 +51,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
     private int sid,depmt,prof,building,room;
     private EditText nameInput,idInput;
     private Button nameclear_button,idclear_button,login_button,tour_button;
+    private TextView textView_name;
     private ImageView icon_school;
 
     private Handler handler=new Handler(){
@@ -91,6 +96,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
         login_button=(Button)findViewById(R.id.login_button);
         tour_button=(Button)findViewById(R.id.tour_button);
         icon_school=(ImageView)findViewById(R.id.school_icon);
+        textView_name = (TextView)findViewById(R.id.textView);
 
         nameclear_button.setOnClickListener(this);
         idclear_button.setOnClickListener(this);
@@ -205,6 +211,9 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             icon_school.setVisibility(View.GONE);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)textView_name.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            textView_name.setLayoutParams(params); //使layout更新
         }
         return false;
     }
