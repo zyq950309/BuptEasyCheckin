@@ -122,7 +122,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
 
         bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
 //        Log.d("wenti6",""+bottomSheetLayout.getState());
-        bottomSheetLayout.setPeekSheetTranslation(600);
+        bottomSheetLayout.setPeekSheetTranslation(400);
 //        View fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
         Bundle bundle=getArguments();
         order=bundle.getInt("order");

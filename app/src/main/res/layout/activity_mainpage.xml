@@ -20,43 +20,47 @@
         android:id="@+id/navigation_btn"
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="55dp">
+        android:background="#FFFFFF"
+        android:layout_height="45.15dp">
 
         <RadioButton
             android:id="@+id/check_button"
-            android:text="报道"
+            android:text="报到"
+            android:textSize="11.78sp"
             android:gravity="center"
             android:button="@null"
             android:checked="true"
-            android:background="@drawable/button_style"
             android:textColor="@color/radiobutton_textcolor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:drawableTop="@drawable/check_style"
+            android:background="#FFFFFF"
+            android:drawableTop="@drawable/radio_checkin_style"
             android:layout_weight="1"/>
 
         <RadioButton
             android:id="@+id/explore_button"
             android:text="探索"
+            android:textSize="11.78sp"
             android:gravity="center"
             android:button="@null"
-            android:background="@drawable/button_style"
             android:textColor="@color/radiobutton_textcolor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:drawableTop="@drawable/explore_style"
+            android:background="#FFFFFF"
+            android:drawableTop="@drawable/radio_explore_style"
             android:layout_weight="1"/>
 
         <RadioButton
             android:id="@+id/mine_button"
             android:text="我的"
+            android:textSize="11.78sp"
             android:gravity="center"
             android:button="@null"
-            android:layout_width="0dp"
-            android:background="@drawable/button_style"
             android:textColor="@color/radiobutton_textcolor"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:drawableTop="@drawable/mine_style"
+            android:background="#FFFFFF"
+            android:drawableTop="@drawable/radio_mine_style"
             android:layout_weight="1"/>
 
     </RadioGroup>

@@ -3,25 +3,17 @@ package bupt.com.bupte;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.provider.SyncStateContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.baidu.mapapi.SDKInitializer;
-import com.unity3d.player.UnityPlayer;
 
 import java.util.ArrayList;
 
@@ -60,6 +52,16 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
         button_explore = (RadioButton) findViewById(R.id.explore_button);
         button_mine = (RadioButton) findViewById(R.id.mine_button);
         navigationBar.setOnCheckedChangeListener(this);
+
+        Drawable drawable2 = getResources().getDrawable(R.drawable.radio_explore_style);
+        drawable2.setBounds(0, 0, 100, 78);//左上右下
+        button_explore.setCompoundDrawables(null, drawable2, null, null);
+        Drawable drawable3 = getResources().getDrawable(R.drawable.radio_mine_style);
+        drawable3.setBounds(0, 0, 100, 78);//左上右下
+        button_mine.setCompoundDrawables(null, drawable3, null, null);
+        Drawable drawable1 = getResources().getDrawable(R.drawable.radio_checkin_style);
+        drawable1.setBounds(0, 0, 100, 78);//左上右下
+        button_check.setCompoundDrawables(null, drawable1, null, null);
 
         fragment_check = new Fragment_check();
         Bundle bundle_check=new Bundle();
