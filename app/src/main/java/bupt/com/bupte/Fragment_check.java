@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
@@ -66,7 +67,7 @@ import okhttp3.Response;
 
 public class Fragment_check extends Fragment implements View.OnClickListener{//下面三个按钮的“报道”功能
 
-    private Button locate_button, check_button,flush_button;//定位按钮和报道按钮
+    private ImageButton locate_button, check_button,flush_button;//定位按钮和报道按钮
     private MapView mMapView;//地图显示控件
     private BaiduMap mBaiduMap;//地图控件
     private double s1 = 39.967113916777636;//地图中心点坐标
@@ -207,9 +208,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         }
 
         mMapView = (MapView) view.findViewById(R.id.mapview);
-        locate_button = (Button) view.findViewById(R.id.locate_button);
-        check_button = (Button) view.findViewById(R.id.check_button);
-        flush_button = (Button) view.findViewById(R.id.flush_button);
+        locate_button = (ImageButton) view.findViewById(R.id.locate_button);
+        check_button = (ImageButton) view.findViewById(R.id.check_button);
+        flush_button = (ImageButton) view.findViewById(R.id.flush_button);
 
         locate_button.setOnClickListener(this);
         check_button.setOnClickListener(this);
