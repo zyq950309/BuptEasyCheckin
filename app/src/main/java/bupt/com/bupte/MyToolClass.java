@@ -10,12 +10,12 @@ public class MyToolClass {
     private static int[] num={0,0,0,0,0,0};
     // order指定地点
     // 获取当前到指定地点的距离
-    public static int getDistance(int order){
+    public static int getDistance(){
 //        distance = (int)(Math.random()*400);
         return distance;
     }
     // 获取当前到指定地点的时间
-    public static int getTime(int order){
+    public static int getTime(){
 //        time = (int)(Math.random()*20);
         return time;
     }

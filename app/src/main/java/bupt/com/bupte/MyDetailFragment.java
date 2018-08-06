@@ -69,21 +69,21 @@ public class MyDetailFragment extends BottomSheetFragment {
         public void handleMessage(Message msg){
             switch (msg.what){
                 case 1:
-                    SpannableString strNav1 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                    SpannableString strNav1 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance()+"米 "+MyToolClass.getTime()+"分钟");
                     int length1 = strNav1.length();
                     strNav1.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     strNav1.setSpan(new RelativeSizeSpan(0.8f), 5, length1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     walknavbtn.setText(strNav1);
                     break;
                 case 2:
-                    SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                    SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance()+"米 "+MyToolClass.getTime()+"分钟");
                     int length2 = strNav2.length();
                     strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     walknavbtn.setText(strNav2);
                     break;
                 case 3:
-                    SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                    SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance()+"米 "+MyToolClass.getTime()+"分钟");
                     int length3 = strNav3.length();
                     strNav3.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     strNav3.setSpan(new RelativeSizeSpan(0.8f), 5, length3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -234,18 +234,22 @@ public class MyDetailFragment extends BottomSheetFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        b1 = 39.967113916777636;
-                        b2 = 116.36479162025452;
-                        startPt = new LatLng(a1, a2);
-                        endPt = new LatLng(b1, b2);
-                        walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                        try {
-                            mNaviHelper = WalkNavigateHelper.getInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        Log.d("wentirrr",""+MyToolClass.getDistance());
+                        if(MyToolClass.getDistance()<30) {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            b1 = 39.967113916777636;
+                            b2 = 116.36479162025452;
+                            startPt = new LatLng(a1, a2);
+                            endPt = new LatLng(b1, b2);
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
                         }
-                        startWalkNavi();
                     }
                 });
 
@@ -283,17 +287,21 @@ public class MyDetailFragment extends BottomSheetFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        b1 = 39.967113916777636;
-                        b2 = 116.36479162025452;
-                        startPt = new LatLng(a1, a2);
-                        endPt = new LatLng(b1, b2);
-                        walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                        try {
-                            mNaviHelper = WalkNavigateHelper.getInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        if(MyToolClass.getDistance()<30) {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            b1 = 39.967113916777636;
+                            b2 = 116.36479162025452;
+                            startPt = new LatLng(a1, a2);
+                            endPt = new LatLng(b1, b2);
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
                         }
-                        startWalkNavi();
                     }
                 });
 
@@ -331,17 +339,21 @@ public class MyDetailFragment extends BottomSheetFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        b1 = 39.967113916777636;
-                        b2 = 116.36479162025452;
-                        startPt = new LatLng(a1, a2);
-                        endPt = new LatLng(b1, b2);
-                        walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                        try {
-                            mNaviHelper = WalkNavigateHelper.getInstance();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        if(MyToolClass.getDistance()<30) {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            b1 = 39.967113916777636;
+                            b2 = 116.36479162025452;
+                            startPt = new LatLng(a1, a2);
+                            endPt = new LatLng(b1, b2);
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
                         }
-                        startWalkNavi();
                     }
                 });
 

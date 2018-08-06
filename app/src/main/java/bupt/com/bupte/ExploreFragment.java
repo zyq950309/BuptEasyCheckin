@@ -82,7 +82,7 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 notetext.setText("沙河校区彩蛋一");
                 detailtext.setText("建筑物说明。。。。。。。。。。。。");
 
-                SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance()+"米 "+MyToolClass.getTime()+"分钟");
                 int length = strNav.length();
                 strNav.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 strNav.setSpan(new RelativeSizeSpan(0.8f), 5, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -104,7 +104,7 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 notetext.setText("沙河校区彩蛋二");
                 detailtext.setText("建筑物说明。。。。。。。。。。。。");
 
-                SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
+                SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance()+"米 "+MyToolClass.getTime()+"分钟");
                 int length2 = strNav2.length();
                 strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

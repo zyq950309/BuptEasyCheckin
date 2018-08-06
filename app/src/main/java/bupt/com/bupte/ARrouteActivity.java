@@ -94,27 +94,32 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         Intent intent=getIntent();
         b1=intent.getDoubleExtra("b1",39.967113916777636);
         b2=intent.getDoubleExtra("b2",116.36479162025452);
+
         initView();
-
         myview=(MyView)findViewById(R.id.myview) ;
-
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(new ARrouteActivity.MyLocationListener());
-        initPlan();
 
+        initPlan();
+        initSensor();
+        requestPermission();
+    }
+
+    private void requestPermission(){
+        if (!CommonLY.checkPermission(this, Manifest.permission.CAMERA)) {
+            CommonLY.applyPermission(this, Manifest.permission.CAMERA, 0);
+        }
+    }
+
+    private void initSensor(){
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        accelerometer = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        accelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         if(accelerometer==null){
             MyToast.makeText(ARrouteActivity.this,"没有加速传感器",Toast.LENGTH_SHORT).show();
         }
         magnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         if(magnetic==null){
             MyToast.makeText(ARrouteActivity.this,"没有磁电传感器",Toast.LENGTH_SHORT).show();
-        }
-
-        if (!CommonLY.checkPermission(this, Manifest.permission.CAMERA)) {
-            CommonLY.applyPermission(this, Manifest.permission.CAMERA, 0);
         }
     }
 
@@ -207,7 +212,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
             }
             while (TAG2) {
                 if (Num < size0 - 1) {
-                    if (GetJuLi(a1, a2, points2.get(Num).latitude, points2.get(Num).longitude) > 15) {
+                    if (GetJuLi(a1, a2, points2.get(Num).latitude, points2.get(Num).longitude) > 20) {
                         dis = GetJuLi(a1, a2, points2.get(Num).latitude, points2.get(Num).longitude);
                         angles = dirc.get(Num);
                     } else {
@@ -216,7 +221,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
                         Num += 1;
                     }
                 } else if (Num == size0 - 1) {
-                    if (GetJuLi(a1, a2, b1, b2) > 15) {
+                    if (GetJuLi(a1, a2, b1, b2) > 20) {
                         dis = GetJuLi(a1, a2, b1, b2);
                         angles = dirc.get(Num);
                     } else {
@@ -225,7 +230,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
                     }
                 }
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                     myview.setangle(angle, angles);
                     myview.postInvalidate();
                 } catch (InterruptedException e) {
@@ -268,18 +273,18 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         return d * 1000;
     }
 
-    private  double GetJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b) {
-
-        double y = Math.sin(lng_b-lng_a) * Math.cos(lat_b);
-        double x = Math.cos(lat_a)*Math.sin(lat_b) - Math.sin(lat_a)*Math.cos(lat_b)*Math.cos(lng_b-lng_a);
-        double brng = Math.atan2(y, x);
-
-        brng = Math.toDegrees(brng);
-        if(brng < 0)
-            brng = brng +360;
-        return brng;
-
-    }
+//    private  double GetJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b) {
+//
+//        double y = Math.sin(lng_b-lng_a) * Math.cos(lat_b);
+//        double x = Math.cos(lat_a)*Math.sin(lat_b) - Math.sin(lat_a)*Math.cos(lat_b)*Math.cos(lng_b-lng_a);
+//        double brng = Math.atan2(y, x);
+//
+//        brng = Math.toDegrees(brng);
+//        if(brng < 0)
+//            brng = brng +360;
+//        return brng;
+//
+//    }
 
     private void initLocation(){
         LocationClientOption option =new LocationClientOption();

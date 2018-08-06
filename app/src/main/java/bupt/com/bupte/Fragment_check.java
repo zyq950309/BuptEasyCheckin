@@ -1,9 +1,14 @@
 package bupt.com.bupte;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,6 +33,7 @@ import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
@@ -95,12 +101,19 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     private int order;
     BottomSheetLayout bottomSheetLayout;
     private int Tag;
+    private boolean Tag2=true;
     private View fragView;
     private View fragViewLogin;
     private Boolean IsStudent;
     private List<String> number;
     private boolean Tag1=true;
-//    private boolean Tag2=false;
+
+    private SensorManager mSensorManager;
+    private Sensor accelerometer; // 加速度传感器
+    private Sensor magnetic; // 地磁场传感器
+    private float angle;
+    private float[] accelerometerValues = new float[3];
+    private float[] magneticFieldValues = new float[3];
 
     private Handler handler=new Handler(){
         @Override
@@ -120,6 +133,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check, container, false);
+
+        mSensorManager = (SensorManager)getActivity(). getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        if(accelerometer==null){
+            MyToast.makeText(getActivity(),"没有加速传感器",Toast.LENGTH_SHORT).show();
+        }
+        magnetic = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        if(magnetic==null){
+            MyToast.makeText(getActivity(),"没有磁电传感器",Toast.LENGTH_SHORT).show();
+        }
 
         bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
 //        Log.d("wenti6",""+bottomSheetLayout.getState());
@@ -299,6 +323,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     }
 
     public void initRoutePlan(double b1, double b2) {//根据目的地开启定位，并规划线路
+        mBaiduMap.clear();
+        direction_face();
         RoutePlanSearch newInstance = RoutePlanSearch.newInstance();
         newInstance.setOnGetRoutePlanResultListener(new MyRouteListener());
 
@@ -437,9 +463,13 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     public void onClick(View v) {//点击事件
         switch (v.getId()) {
             case R.id.locate_button://显示当前位置
-                navigateTo(a1, a2);
+//                navigateTo(a1, a2);
+                mBaiduMap.clear();
+                direction_face();
                 break;
             case R.id.check_button:
+                mBaiduMap.clear();
+                direction_face();
                 initSite();
                 initMarket(site);
                 break;
@@ -522,6 +552,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                         if (site_ll.getCode().equals("0")) {
                             latitude=site_ll.getLatitude();
                             longitude=site_ll.getLongitude();
+                            for (int i=0;i<latitude.size();i++){
+                                Log.d("wentisss",""+latitude.get(i));
+                            }
                         }else{
                             Message msg = new Message();
                             msg.what = 2;
@@ -530,6 +563,22 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void direction_face() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (Tag2) {
+                    navigateTo(a1, a2);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }).start();
@@ -577,29 +626,32 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     }
 
     private void navigateTo(double a1,double a2){//地图上显示当前位置点
-        mBaiduMap.clear();
+//        mBaiduMap.clear();
         MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
         locationBuilder.latitude(a1);
         locationBuilder.longitude(a2);
+        locationBuilder.direction(angle);
         MyLocationData locationData = locationBuilder.build();
         mBaiduMap.setMyLocationData(locationData);
+
+        BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+                .fromResource(R.drawable.direction);
+        MyLocationConfiguration config = new MyLocationConfiguration(
+                MyLocationConfiguration.LocationMode.NORMAL, true, mCurrentMarker);
+        mBaiduMap.setMyLocationConfigeration(config);
     }
 
     public class MyLocationListener implements BDLocationListener {//定位监听
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-                a1 = location.getLatitude();
-                a2 = location.getLongitude();
-
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-                Date date = new Date(System.currentTimeMillis());
-                Log.d("wenti", "Date获取当前日期时间" + simpleDateFormat.format(date));
-//            if(Tag==0){
-//                Message msg = new Message();
-//                msg.what = 1;
-//                handler.sendMessage(msg);
-//            }
+            a1 = location.getLatitude();
+            a2 = location.getLongitude();
+            if(Tag==0){
+                Message msg = new Message();
+                msg.what = 1;
+                handler.sendMessage(msg);
+            }
         }
     }
 
@@ -608,7 +660,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         @Override
         public void onGetWalkingRouteResult(WalkingRouteResult walkingRouteResult) {//根据目的地画出路线
             List<WalkingRouteLine> routeLines = walkingRouteResult.getRouteLines();
-            mBaiduMap.clear();
+//            mBaiduMap.clear();
             points.clear();
             if (routeLines != null) {
                 WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
@@ -635,7 +687,13 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     .width(10)
                     .dottedLine(true);
             mBaiduMap.addOverlay(ooPolyline);
-//            Tag2=true;
+
+            BitmapDescriptor bitmap = BitmapDescriptorFactory
+                    .fromResource(R.drawable.icon_marka);
+            OverlayOptions option = new MarkerOptions()
+                    .position(new LatLng(b1, b2))
+                    .icon(bitmap);
+            mBaiduMap.addOverlay(option);
         }
 
         @Override
@@ -670,4 +728,55 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         mLocationClient.stop();
         Tag1=false;
     }
+
+    @Override
+    public void onResume() {
+        mSensorManager.registerListener(new MySensorEventListener(),
+                accelerometer, Sensor.TYPE_ACCELEROMETER);
+        mSensorManager.registerListener(new MySensorEventListener(), magnetic,
+                Sensor.TYPE_MAGNETIC_FIELD);
+        Tag2=true;
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mSensorManager.unregisterListener(new MySensorEventListener());
+        Tag2=false;
+        super.onPause();
+    }
+
+    private void calculateOrientation() {
+        float[] values = new float[3];
+        float[] R = new float[9];
+        SensorManager.getRotationMatrix(R, null, accelerometerValues,
+                magneticFieldValues);
+        SensorManager.getOrientation(R, values);
+        values[0] = (float) Math.toDegrees(values[0]);
+        if(values[0]<0){
+            angle=360+values[0];
+        }else {
+            angle=values[0];
+        }
+    }
+
+    class MySensorEventListener implements SensorEventListener {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                accelerometerValues = event.values;
+            }
+            if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+                magneticFieldValues = event.values;
+            }
+            calculateOrientation();
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            // TODO Auto-generated method stub
+
+        }
+    }
+
 }
