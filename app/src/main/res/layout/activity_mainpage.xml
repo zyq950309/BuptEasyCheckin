@@ -4,6 +4,7 @@
     android:id="@+id/activity_mainpage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context="bupt.com.bupte.MainpageActivity">
 
@@ -15,7 +16,10 @@
 
     </FrameLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/line_shadow_bg"/>
     <RadioGroup
         android:id="@+id/navigation_btn"
         android:layout_width="match_parent"
@@ -33,7 +37,6 @@
             android:textColor="@color/radiobutton_textcolor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
             android:drawableTop="@drawable/radio_checkin_style"
             android:layout_weight="1"/>
 
@@ -46,7 +49,6 @@
             android:textColor="@color/radiobutton_textcolor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
             android:drawableTop="@drawable/radio_explore_style"
             android:layout_weight="1"/>
 
@@ -59,7 +61,6 @@
             android:textColor="@color/radiobutton_textcolor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
             android:drawableTop="@drawable/radio_mine_style"
             android:layout_weight="1"/>
 

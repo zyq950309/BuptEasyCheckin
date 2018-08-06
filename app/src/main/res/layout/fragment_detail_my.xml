@@ -139,9 +139,16 @@
         android:id="@+id/text_many"
         android:layout_marginTop="10.31dp"
         android:layout_marginLeft="21.1dp"
+        android:lineSpacingMultiplier="1.5"
         android:textSize="11.78sp"
         android:layout_height="98.16dp"
         android:layout_width="match_parent"
         android:layout_below="@id/scrollView_img"
         android:textColor="#000000"/>
+    <View
+        android:layout_below="@id/text_many"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        />
 </RelativeLayout>
