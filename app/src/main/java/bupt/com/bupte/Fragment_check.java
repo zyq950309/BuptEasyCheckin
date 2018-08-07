@@ -89,7 +89,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     private List<LatLng> points1 = new ArrayList<LatLng>();//每一小段路的初始点集合
     private List<LatLng> points2 = new ArrayList<LatLng>();//每一小段路的终点集合
     private List<LatLng> points_site = new ArrayList<LatLng>();//用于保存报道节点的集合
-//    private List<String> latitude=new ArrayList<String>();//保存纬度
+    //    private List<String> latitude=new ArrayList<String>();//保存纬度
 //    private List<String> longitude=new ArrayList<String>();//保存经度
     private int size0 = 0;//points1和points2的size
     private List<LatLng> points = new ArrayList<LatLng>();//总的路线的所有点集合
@@ -133,7 +133,34 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check, container, false);
+        initSensor();
 
+        bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
+        bottomSheetLayout.setPeekSheetTranslation(400);
+
+        Bundle bundle=getArguments();
+        order=bundle.getInt("order");
+        IsStudent=bundle.getBoolean("IsStudent");
+
+
+        choosePeo();
+        switchOrder();
+
+        mMapView = (MapView) view.findViewById(R.id.mapview);
+        locate_button = (ImageButton) view.findViewById(R.id.locate_button);
+        check_button = (ImageButton) view.findViewById(R.id.check_button);
+        flush_button = (ImageButton) view.findViewById(R.id.flush_button);
+        locate_button.setOnClickListener(this);
+        check_button.setOnClickListener(this);
+        flush_button.setOnClickListener(this);
+
+        search_sitenum();
+        initMapStatus();
+        requestLocation();
+        return view;
+    }
+
+    public void initSensor(){
         mSensorManager = (SensorManager)getActivity(). getSystemService(Context.SENSOR_SERVICE);
         accelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -144,12 +171,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         if(magnetic==null){
             MyToast.makeText(getActivity(),"没有磁电传感器",Toast.LENGTH_SHORT).show();
         }
+    }
 
-        bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
-        bottomSheetLayout.setPeekSheetTranslation(400);
-        Bundle bundle=getArguments();
-        order=bundle.getInt("order");
-        IsStudent=bundle.getBoolean("IsStudent");
+    public void choosePeo(){
         if(IsStudent){
             fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
             bottomSheetLayout.showWithSheetView(fragView);
@@ -162,7 +186,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             LoginFragment myLoginFragment = new LoginFragment();
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, myLoginFragment).addToBackStack(null).commit();
         }
+    }
 
+    public void switchOrder(){
         switch (order){
             case 1:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -222,20 +248,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             case 100:
                 break;
         }
-
-        mMapView = (MapView) view.findViewById(R.id.mapview);
-        locate_button = (ImageButton) view.findViewById(R.id.locate_button);
-        check_button = (ImageButton) view.findViewById(R.id.check_button);
-        flush_button = (ImageButton) view.findViewById(R.id.flush_button);
-
-        locate_button.setOnClickListener(this);
-        check_button.setOnClickListener(this);
-        flush_button.setOnClickListener(this);
-
-        search_sitenum();
-        initMapStatus();
-        requestLocation();
-        return view;
     }
 
     public void firstRefresh(){
