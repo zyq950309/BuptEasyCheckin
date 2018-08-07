@@ -1,5 +1,6 @@
 package bupt.com.bupte;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyToolClass {
@@ -8,6 +9,9 @@ public class MyToolClass {
     private static int distance;
     private static int time;
     private static int[] num={0,0,0,0,0,0};
+    private static List<String> latitude=new ArrayList<String>();//保存纬度
+    private static List<String> longitude=new ArrayList<String>();//保存经度
+
     // order指定地点
     // 获取当前到指定地点的距离
     public static int getDistance(){
@@ -30,6 +34,19 @@ public class MyToolClass {
     //    获取姓名
     public static String getName(){
         return name;
+    }
+
+    public static void setLL(List<String> latitude_in,List<String> longitude_in){
+        latitude=latitude_in;
+        longitude=longitude_in;
+    }
+
+    public static List<String> getLatitude(){
+        return latitude;
+    }
+
+    public static List<String> getLongitude(){
+        return longitude;
     }
 
     public static void setName(String name_in){

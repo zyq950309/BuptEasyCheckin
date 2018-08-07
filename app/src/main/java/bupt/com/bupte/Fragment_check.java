@@ -89,8 +89,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     private List<LatLng> points1 = new ArrayList<LatLng>();//每一小段路的初始点集合
     private List<LatLng> points2 = new ArrayList<LatLng>();//每一小段路的终点集合
     private List<LatLng> points_site = new ArrayList<LatLng>();//用于保存报道节点的集合
-    private List<String> latitude=new ArrayList<String>();//保存纬度
-    private List<String> longitude=new ArrayList<String>();//保存经度
+//    private List<String> latitude=new ArrayList<String>();//保存纬度
+//    private List<String> longitude=new ArrayList<String>();//保存经度
     private int size0 = 0;//points1和points2的size
     private List<LatLng> points = new ArrayList<LatLng>();//总的路线的所有点集合
     private BDLocationListener mylistener = new MyLocationListener();//定位监听器
@@ -146,9 +146,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         }
 
         bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
-//        Log.d("wenti6",""+bottomSheetLayout.getState());
         bottomSheetLayout.setPeekSheetTranslation(400);
-//        View fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
         Bundle bundle=getArguments();
         order=bundle.getInt("order");
         IsStudent=bundle.getBoolean("IsStudent");
@@ -174,7 +172,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 bundleDetail1.putInt("order",order);
                 myDetailFragment1.setArguments(bundleDetail1);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment1).addToBackStack(null).commit();
-//                fragView=myFragment;
                 break;
             case 2:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -184,7 +181,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 bundleDetail2.putInt("order",order);
                 myDetailFragment2.setArguments(bundleDetail2);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment2).addToBackStack(null).commit();
-//                fragView=myFragment;
                 break;
             case 3:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -194,7 +190,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 bundleDetail3.putInt("order",order);
                 myDetailFragment3.setArguments(bundleDetail3);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment3).addToBackStack(null).commit();
-//                fragView=myFragment;
                 break;
             case 4:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -204,7 +199,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 bundleDetail4.putInt("order",order);
                 myDetailFragment4.setArguments(bundleDetail4);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment4).addToBackStack(null).commit();
-//                fragView=myFragment;
                 break;
             case 5:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -214,7 +208,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 bundleDetail5.putInt("order",order);
                 myDetailFragment5.setArguments(bundleDetail5);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment5).addToBackStack(null).commit();
-//                fragView=myFragment;
                 break;
             case 6:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -224,7 +217,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 bundleDetail6.putInt("order",order);
                 myDetailFragment6.setArguments(bundleDetail6);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment6).addToBackStack(null).commit();
-//                fragView=myFragment;
                 break;
 
             case 100:
@@ -240,7 +232,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         check_button.setOnClickListener(this);
         flush_button.setOnClickListener(this);
 
-        search_site();
         search_sitenum();
         initMapStatus();
         requestLocation();
@@ -252,35 +243,33 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             case 0:
                 break;
             case 1:
-                b1 = Double.parseDouble(latitude.get(0));
-                b2 = Double.parseDouble(longitude.get(0));
-                Log.d("wentis",""+a1);
-                Log.d("wentis",""+b1);
+                b1 = Double.parseDouble(MyToolClass.getLatitude().get(0));
+                b2 = Double.parseDouble(MyToolClass.getLongitude().get(0));
                 initRoutePlan(b1, b2);
                 break;
             case 2:
-                b1 = Double.parseDouble(latitude.get(1));
-                b2 = Double.parseDouble(longitude.get(1));
+                b1 = Double.parseDouble(MyToolClass.getLatitude().get(1));
+                b2 = Double.parseDouble(MyToolClass.getLongitude().get(1));
                 initRoutePlan(b1, b2);
                 break;
             case 3:
-                b1 = Double.parseDouble(latitude.get(2));
-                b2 = Double.parseDouble(longitude.get(2));
+                b1 = Double.parseDouble(MyToolClass.getLatitude().get(2));
+                b2 = Double.parseDouble(MyToolClass.getLongitude().get(2));
                 initRoutePlan(b1, b2);
                 break;
             case 4:
-                b1 = Double.parseDouble(latitude.get(3));
-                b2 = Double.parseDouble(longitude.get(3));
+                b1 = Double.parseDouble(MyToolClass.getLatitude().get(3));
+                b2 = Double.parseDouble(MyToolClass.getLongitude().get(3));
                 initRoutePlan(b1, b2);
                 break;
             case 5:
-                b1 = Double.parseDouble(latitude.get(4));
-                b2 = Double.parseDouble(longitude.get(4));
+                b1 = Double.parseDouble(MyToolClass.getLatitude().get(4));
+                b2 = Double.parseDouble(MyToolClass.getLongitude().get(4));
                 initRoutePlan(b1, b2);
                 break;
             case 6:
-                b1 = Double.parseDouble(latitude.get(5));
-                b2 = Double.parseDouble(longitude.get(5));
+                b1 = Double.parseDouble(MyToolClass.getLatitude().get(5));
+                b2 = Double.parseDouble(MyToolClass.getLongitude().get(5));
                 initRoutePlan(b1, b2);
                 break;
         }
@@ -337,9 +326,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
 
     public void initSite() {
         site.clear();
-        int size_site=latitude.size();
+        int size_site=MyToolClass.getLatitude().size();
         for(int i=0;i<size_site;i++) {
-            site.add(new LatLng(Double.valueOf(latitude.get(i)), Double.valueOf(longitude.get(i))));
+            site.add(new LatLng(Double.valueOf(MyToolClass.getLatitude().get(i)), Double.valueOf(MyToolClass.getLongitude().get(i))));
         }
     }
 
@@ -534,38 +523,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     bottomSheetLayout.showWithSheetView(fragViewLogin);
                 }
         }
-    }
-
-    private void search_site() {//查询数据库，报道节点经纬度信息
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                OkHttpClient okHttpClient = new OkHttpClient();
-                Request request = new Request.Builder()
-                        .url("http://123.206.90.229/v1/searchll.php")
-                        .build();
-                try {
-                    Response response = okHttpClient.newCall(request).execute();
-                    if (response.isSuccessful()) {
-                        String responsedata = response.body().string();
-                        Site_ll site_ll = GsonTools.getPerson(responsedata, Site_ll.class);
-                        if (site_ll.getCode().equals("0")) {
-                            latitude=site_ll.getLatitude();
-                            longitude=site_ll.getLongitude();
-                            for (int i=0;i<latitude.size();i++){
-                                Log.d("wentisss",""+latitude.get(i));
-                            }
-                        }else{
-                            Message msg = new Message();
-                            msg.what = 2;
-                            handler.sendMessage(msg);
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
     }
 
     private void direction_face() {

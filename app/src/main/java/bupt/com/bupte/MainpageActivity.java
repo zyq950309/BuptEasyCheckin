@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,12 @@ import android.widget.RadioGroup;
 
 import com.baidu.mapapi.SDKInitializer;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainpageActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,MyDetailFragment.OnDetailFragmentListener,MyFragment.OnMyFragmentListener,Fragment_explore.OnMyFragmentExpListener{//登录后的主页
 
@@ -40,10 +46,35 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
         MyToolClass.setName(student.getName());
         requestPermission();
         initViews();
+        search_site();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.main_fragment,fragment_check).commit();
         mFragment = fragment_check;
+    }
+
+    private void search_site() {//查询数据库，报道节点经纬度信息
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://123.206.90.229/v1/searchll.php")
+                        .build();
+                try {
+                    Response response = okHttpClient.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        String responsedata = response.body().string();
+                        Site_ll site_ll = GsonTools.getPerson(responsedata, Site_ll.class);
+                        if (site_ll.getCode().equals("0")) {
+                            MyToolClass.setLL(site_ll.getLatitude(),site_ll.getLongitude());
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     private void initViews() {
