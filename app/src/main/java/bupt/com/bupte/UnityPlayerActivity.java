@@ -2,6 +2,8 @@ package bupt.com.bupte;
 
 import com.unity3d.player.*;
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
@@ -21,9 +23,6 @@ public class UnityPlayerActivity extends AppCompatActivity
 {
     private static final String TAG = "UnityPlayerActivity";
     protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
-    private LinearLayout linearLayout;
-    private LinearLayout layoutBottomSheet;
-    BottomSheetBehavior sheetBehavior;
     // Setup activity layout
     @Override protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,6 +34,9 @@ public class UnityPlayerActivity extends AppCompatActivity
 
         setContentView(mUnityPlayer);
         mUnityPlayer.requestFocus();
+
+        UserGuideDialog userGuideDialog = new UserGuideDialog();
+        userGuideDialog.show(getFragmentManager(),"");
     }
     public void showKeyanNavi(){
         ExploreFragment exploreFragment = new ExploreFragment();
