@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,20 @@ public class UserGuideDialog extends DialogFragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL,R.style.Mdialog);
+    }
+
+    @Override
+    public void onStart() {
+        getDialog().getWindow().getAttributes().width=getResources().getDisplayMetrics().widthPixels;
+        getDialog().getWindow().getAttributes().height=getResources().getDisplayMetrics().heightPixels;
+        getDialog().getWindow().setGravity(Gravity.BOTTOM);//对齐方式
+        super.onStart();
     }
 
 }

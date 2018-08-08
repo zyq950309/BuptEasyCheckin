@@ -122,24 +122,29 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="61.84dp"
-            android:text="彩蛋开关"
-            android:textColor="#FFFFFF"
-            android:textSize="13.74dp"
-            android:layout_below="@id/unity_relative2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
     </RelativeLayout>
     <ImageView
         android:layout_width="33.37dp"
         android:layout_height="33.37dp"
         android:src="@drawable/arrow_orange"
-        android:layout_below="@id/unity_relative_images"
+        android:id="@+id/egg_image_unity"
         android:scaleType="centerInside"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="67dp"
         android:layout_marginRight="48.83dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/egg_image_unity"
+        android:layout_marginBottom="0dp"
+        android:text="彩蛋开关"
+        android:textColor="#FFFFFF"
+        android:textSize="13.74dp"
+        android:layout_marginRight="75.15dp"
+        android:layout_below="@id/unity_relative_images"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
 </RelativeLayout>

@@ -19,5 +19,14 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
-
+    <style name="Mdialog" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground"> @drawable/bg</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <drawable name="bg">#801E1E1E</drawable>
 </resources>

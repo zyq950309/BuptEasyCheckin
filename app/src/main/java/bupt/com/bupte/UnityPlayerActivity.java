@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -21,6 +22,9 @@ import android.widget.LinearLayout;
 
 public class UnityPlayerActivity extends AppCompatActivity
 {
+    private static final String FIRST = "first";
+    private static final String FIRST_FLAG = "flag";
+    private boolean isFirst ;
     private static final String TAG = "UnityPlayerActivity";
     protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
     // Setup activity layout
@@ -34,9 +38,32 @@ public class UnityPlayerActivity extends AppCompatActivity
 
         setContentView(mUnityPlayer);
         mUnityPlayer.requestFocus();
+       class MyThread implements Runnable{
+           @Override
+           public void run() {
+               try {
+                   Thread.sleep(5000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+               UserGuideDialog userGuideDialog = new UserGuideDialog();
+               userGuideDialog.show(getFragmentManager(),"");
+           }
+       }
+        SharedPreferences sp = getSharedPreferences(FIRST,0);
+        isFirst = sp.getBoolean(FIRST_FLAG,true);
+        if(isFirst){
+            MyThread myThread = new MyThread();
+            new Thread(myThread).start();
+        }
+        SharedPreferences settings = getSharedPreferences(FIRST,0);
+        SharedPreferences.Editor editor = settings.edit();
+        if(isFirst){
+            editor.putBoolean(FIRST_FLAG,false);
+        }
+        editor.apply();
 
-        UserGuideDialog userGuideDialog = new UserGuideDialog();
-        userGuideDialog.show(getFragmentManager(),"");
+
     }
     public void showKeyanNavi(){
         ExploreFragment exploreFragment = new ExploreFragment();
