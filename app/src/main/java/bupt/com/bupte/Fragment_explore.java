@@ -53,6 +53,7 @@ public class Fragment_explore extends Fragment{//下面三个按钮的“探索�
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("wentiexp","destroy");
     }
 
     @Override

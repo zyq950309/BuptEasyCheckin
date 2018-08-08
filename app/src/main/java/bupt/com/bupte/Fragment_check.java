@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,6 +108,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
     private Boolean IsStudent;
     private List<String> number;
     private boolean Tag1=true;
+    private Fragment myFragment,myLoginFragment,myDetailFragment,mFragment;
 
     private SensorManager mSensorManager;
     private Sensor accelerometer; // åŠ é€Ÿåº¦ä¼ æ„Ÿå™¨
@@ -137,6 +139,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
 
         bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
         bottomSheetLayout.setPeekSheetTranslation(400);
+//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//        fragmentManager.beginTransaction().add(R.id.main_fragment,myFragment).commit();
+//        mFragment = myFragment;
 
         Bundle bundle=getArguments();
         order=bundle.getInt("order");
@@ -177,14 +182,18 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
         if(IsStudent){
             fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
             bottomSheetLayout.showWithSheetView(fragView);
-            MyFragment myFragment = new MyFragment();
+//            MyFragment myFragment = new MyFragment();
+            myFragment = new MyFragment();
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, myFragment).addToBackStack(null).commit();
+            mFragment=myFragment;
         }else {
             fragViewLogin = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
             bottomSheetLayout.showWithSheetView(fragViewLogin);
 
-            LoginFragment myLoginFragment = new LoginFragment();
+//            LoginFragment myLoginFragment = new LoginFragment();
+            myLoginFragment = new LoginFragment();
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, myLoginFragment).addToBackStack(null).commit();
+            mFragment=myLoginFragment;
         }
     }
 
@@ -193,29 +202,50 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
             case 1:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
                 bottomSheetLayout.showWithSheetView(fragView);
-                MyDetailFragment myDetailFragment1 = new MyDetailFragment();
+                if(myFragment!=null){
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                }
+                if(myDetailFragment!=null){
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                }
+                myDetailFragment = new MyDetailFragment();
                 Bundle bundleDetail1 = new Bundle();
                 bundleDetail1.putInt("order",order);
-                myDetailFragment1.setArguments(bundleDetail1);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment1).addToBackStack(null).commit();
+                myDetailFragment.setArguments(bundleDetail1);
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
+                switchFragment(myDetailFragment);
                 break;
             case 2:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
                 bottomSheetLayout.showWithSheetView(fragView);
-                MyDetailFragment myDetailFragment2 = new MyDetailFragment();
+                if(myFragment!=null){
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                }
+                if(myDetailFragment!=null){
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                }
+                myDetailFragment = new MyDetailFragment();
                 Bundle bundleDetail2 = new Bundle();
                 bundleDetail2.putInt("order",order);
-                myDetailFragment2.setArguments(bundleDetail2);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment2).addToBackStack(null).commit();
+                myDetailFragment.setArguments(bundleDetail2);
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment2).addToBackStack(null).commit();
+                switchFragment(myDetailFragment);
                 break;
             case 3:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
                 bottomSheetLayout.showWithSheetView(fragView);
-                MyDetailFragment myDetailFragment3 = new MyDetailFragment();
+                if(myFragment!=null){
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                }
+                if(myDetailFragment!=null){
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                }
+                myDetailFragment = new MyDetailFragment();
                 Bundle bundleDetail3 = new Bundle();
                 bundleDetail3.putInt("order",order);
-                myDetailFragment3.setArguments(bundleDetail3);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment3).addToBackStack(null).commit();
+                myDetailFragment.setArguments(bundleDetail3);
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment3).addToBackStack(null).commit();
+                switchFragment(myDetailFragment);
                 break;
             case 4:
                 fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
@@ -247,6 +277,18 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
 
             case 100:
                 break;
+        }
+    }
+
+    private void switchFragment(Fragment fragment) {
+        if(mFragment != fragment) {
+            if (!fragment.isAdded()) {
+                getActivity().getSupportFragmentManager().beginTransaction().hide(mFragment)
+                        .add(R.id.container, fragment).commit();
+            } else {
+                getActivity().getSupportFragmentManager().beginTransaction().hide(mFragment).show(fragment).commit();
+            }
+            mFragment = fragment;
         }
     }
 
@@ -478,33 +520,61 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
                 if (IsStudent) {
                     switch (order){
                         case 100:
-                            MyFragment myFragment = new MyFragment();
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
+                            fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
                             bottomSheetLayout.showWithSheetView(fragView);
+                            if(myFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                            }
+                            if(myDetailFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                            }
+                            myFragment = new MyFragment();
+                            switchFragment(myFragment);
                             break;
                         case 1:
-                            MyDetailFragment myDetailFragment = new MyDetailFragment();
+                            fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            if(myFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                            }
+                            if(myDetailFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                            }
+                            myDetailFragment = new MyDetailFragment();
                             Bundle bundleDetail = new Bundle();
                             bundleDetail.putInt("order",order);
                             myDetailFragment.setArguments(bundleDetail);
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment).addToBackStack(null).commit();
-                            bottomSheetLayout.showWithSheetView(fragView);
+                            switchFragment(myDetailFragment);
                             break;
                         case 2:
-                            MyDetailFragment myDetailFragment2 = new MyDetailFragment();
+                            fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            if(myFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                            }
+                            if(myDetailFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                            }
+                            myDetailFragment = new MyDetailFragment();
                             Bundle bundleDetail2 = new Bundle();
                             bundleDetail2.putInt("order",order);
-                            myDetailFragment2.setArguments(bundleDetail2);
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment2).addToBackStack(null).commit();
-                            bottomSheetLayout.showWithSheetView(fragView);
+                            myDetailFragment.setArguments(bundleDetail2);
+                            switchFragment(myDetailFragment);
                             break;
                         case 3:
-                            MyDetailFragment myDetailFragment3 = new MyDetailFragment();
+                            fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                            bottomSheetLayout.showWithSheetView(fragView);
+                            if(myFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
+                            }
+                            if(myDetailFragment!=null){
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(myDetailFragment).addToBackStack(null).commit();
+                            }
+                            myDetailFragment = new MyDetailFragment();
                             Bundle bundleDetail3 = new Bundle();
                             bundleDetail3.putInt("order",order);
-                            myDetailFragment3.setArguments(bundleDetail3);
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, myDetailFragment3).addToBackStack(null).commit();
-                            bottomSheetLayout.showWithSheetView(fragView);
+                            myDetailFragment.setArguments(bundleDetail3);
+                            switchFragment(myDetailFragment);
                             break;
                         case 4:
                             MyDetailFragment myDetailFragment4 = new MyDetailFragment();
@@ -532,7 +602,13 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
                             break;
                     }
                 } else {
-                    bottomSheetLayout.showWithSheetView(fragViewLogin);
+                    fragView = LayoutInflater.from(getActivity()).inflate(R.layout.empty, bottomSheetLayout, false);
+                    bottomSheetLayout.showWithSheetView(fragView);
+                    if(myLoginFragment!=null){
+                        getActivity().getSupportFragmentManager().beginTransaction().remove(myLoginFragment).addToBackStack(null).commit();
+                    }
+                    myLoginFragment=new LoginFragment();
+                    switchFragment(myLoginFragment);
                 }
         }
     }
@@ -694,6 +770,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("wenti","destroy");
         mLocationClient.stop();
         Tag1=false;
     }
@@ -706,6 +783,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
                 Sensor.TYPE_MAGNETIC_FIELD);
         Tag2=true;
         super.onResume();
+        Log.d("wenti","resume");
     }
 
     @Override
@@ -713,6 +791,13 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
         mSensorManager.unregisterListener(new MySensorEventListener());
         Tag2=false;
         super.onPause();
+        Log.d("wenti","pause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("wenti","stop");
     }
 
     private void calculateOrientation() {
