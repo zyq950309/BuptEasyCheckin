@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
 
@@ -123,6 +124,9 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
                 button_check.setChecked(true);
                 button_explore.setChecked(false);
                 button_mine.setChecked(false);
+                if (fragment_check!=null) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment_check).commit();
+                }
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("IsStudent", IsStudent);
                 bundle.putInt("order", order);
@@ -139,6 +143,9 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
                 button_mine.setChecked(false);
                 if (fragment_check!=null) {
                     getSupportFragmentManager().beginTransaction().remove(fragment_check).commit();
+                }
+                if (fragment_explore!=null) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment_explore).commit();
                 }
                 fragment_explore=new Fragment_explore();
                 switchFragment(fragment_explore);
@@ -219,26 +226,26 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
         switchFragment(fragment_check);
     }
 
-//    @Override
-//    public void myFragmentInteraction(int order) {
-//
-//        MyDetailFragment frag = new MyDetailFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("order",order);
-//        frag.setArguments(bundle);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag).addToBackStack(null)
-//                .commit();
-//    }
-
     @Override
     public void detailFragmentInteraction() {
-        MyFragment frag = new MyFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag).addToBackStack(null)
-                .commit();
+        this.order=100;
+        Bundle bundle1 = new Bundle();
+        bundle1.putBoolean("IsStudent",IsStudent);
+        bundle1.putInt("order",order);
+        getSupportFragmentManager().beginTransaction().remove(fragment_check).commit();
+        fragment_check=new Fragment_check();
+        fragment_check.setArguments(bundle1);
+        switchFragment(fragment_check);
     }
 
     @Override
     public void myFragmentExpInteraction() {
         button_check.performClick();
+    }
+
+    @Override
+    public void onBackPressed() {
+        MyToast.makeText(MainpageActivity.this, "正在退出程序", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 }

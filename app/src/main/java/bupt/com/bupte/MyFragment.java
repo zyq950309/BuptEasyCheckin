@@ -83,4 +83,16 @@ public class MyFragment extends BottomSheetFragment {
         placeList.add(office);
 //        }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("wenti","mypause");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("wenti","mydestroy");
+    }
 }
