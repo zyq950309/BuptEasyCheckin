@@ -136,9 +136,10 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check, container, false);
         initSensor();
-
+        final float scale = getActivity().getResources().getDisplayMetrics().density;
+        int dp2px = (int)(213 * scale +0.5f);
         bottomSheetLayout = (BottomSheetLayout)view.findViewById(R.id.bottomsheet);
-        bottomSheetLayout.setPeekSheetTranslation(400);
+        bottomSheetLayout.setPeekSheetTranslation(dp2px);
 //        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 //        fragmentManager.beginTransaction().add(R.id.main_fragment,myFragment).commit();
 //        mFragment = myFragment;

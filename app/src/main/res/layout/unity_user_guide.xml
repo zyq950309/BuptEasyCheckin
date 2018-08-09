@@ -123,28 +123,36 @@
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
     </RelativeLayout>
-    <ImageView
-        android:layout_width="33.37dp"
-        android:layout_height="33.37dp"
-        android:src="@drawable/arrow_orange"
-        android:id="@+id/egg_image_unity"
-        android:scaleType="centerInside"
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="67dp"
-        android:layout_marginRight="48.83dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/egg_image_unity"
-        android:layout_marginBottom="0dp"
-        android:text="彩蛋开关"
-        android:textColor="#FFFFFF"
-        android:textSize="13.74dp"
-        android:layout_marginRight="75.15dp"
-        android:layout_below="@id/unity_relative_images"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:id="@+id/egg_text_unity"
+            android:layout_marginBottom="0dp"
+            android:text="彩蛋开关"
+            android:textColor="#FFFFFF"
+            android:textSize="13.74dp"
+            />
+        <ImageView
+            android:layout_width="33.37dp"
+            android:layout_height="33.37dp"
+            android:src="@drawable/arrow_orange"
+            android:layout_below="@id/egg_text_unity"
+            android:layout_toRightOf="@id/egg_text_unity"
+            android:layout_toEndOf="@id/egg_text_unity"
+            android:id="@+id/egg_image_unity"
+            android:scaleType="centerInside"
+            />
+    </RelativeLayout>
+
 
 </RelativeLayout>
