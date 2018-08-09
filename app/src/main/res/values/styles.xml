@@ -29,4 +29,8 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
     <drawable name="bg">#801E1E1E</drawable>
+    <style name="specifiedFonts" parent="AppTheme">
+        <item name="android:typeface">monospace</item>
+    </style>
+
 </resources>
