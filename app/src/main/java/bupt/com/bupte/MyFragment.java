@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import com.flipboard.bottomsheet.commons.BottomSheetFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFragment extends BottomSheetFragment {
+public class MyFragment extends BottomSheetFragment{
 
     private View view;
     private ListView lv;
@@ -88,6 +89,20 @@ public class MyFragment extends BottomSheetFragment {
     public void onPause() {
         super.onPause();
         Log.d("wenti","mypause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("wenti","mystop");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        Log.d("wenti","myresume");
     }
 
     @Override

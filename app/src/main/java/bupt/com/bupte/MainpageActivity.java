@@ -11,11 +11,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.flipboard.bottomsheet.BottomSheetLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,16 +28,22 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainpageActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,MyDetailFragment.OnDetailFragmentListener,MyFragment.OnMyFragmentListener,Fragment_explore.OnMyFragmentExpListener{//登录后的主页
+public class MainpageActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,
+        MyDetailFragment.OnDetailFragmentListener,MyFragment.OnMyFragmentListener,
+        Fragment_explore.OnMyFragmentExpListener{//登录后的主页
 
     private RadioGroup navigationBar;
     private RadioButton button_check, button_explore, button_mine;
-    private Fragment fragment_check, fragment_explore, fragment_mine,fragment_minetour;
+    private Fragment fragment_check, fragment_explore, fragment_mine,fragment_minetour,myFragment;
     private Fragment mFragment;
     private boolean IsStudent=false;
     private Student student=null;
     private static boolean isPermissionRequested = false;
     private int order=100;
+
+    private long mExitTime;
+    private View fragView;
+    BottomSheetLayout bottomSheetLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,8 +225,8 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
 
     @Override
     public void myFragmentInteraction(int order) {
+        this.onBackPressed();
         this.order=order;
-        Log.d("wenti1",""+order);
         Bundle bundle1 = new Bundle();
         bundle1.putBoolean("IsStudent",IsStudent);
         bundle1.putInt("order",order);
@@ -228,6 +238,7 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
 
     @Override
     public void detailFragmentInteraction() {
+        this.onBackPressed();
         this.order=100;
         Bundle bundle1 = new Bundle();
         bundle1.putBoolean("IsStudent",IsStudent);
@@ -243,9 +254,24 @@ public class MainpageActivity extends AppCompatActivity implements RadioGroup.On
         button_check.performClick();
     }
 
+//    @Override
+//    public void onBackPressed() {
+//        MyToast.makeText(MainpageActivity.this, "正在退出程序", Toast.LENGTH_SHORT).show();
+//        this.finish();
+//    }
+
     @Override
-    public void onBackPressed() {
-        MyToast.makeText(MainpageActivity.this, "正在退出程序", Toast.LENGTH_SHORT).show();
-        this.finish();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                MyToast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                System.exit(0);
+            }
+            return true;
+        }
+        return true;
+//        return super.onKeyDown(keyCode, event);
     }
 }

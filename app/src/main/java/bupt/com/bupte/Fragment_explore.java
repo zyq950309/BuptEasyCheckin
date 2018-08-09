@@ -59,10 +59,12 @@ public class Fragment_explore extends Fragment{//下面三个按钮的“探索�
     @Override
     public void onStop() {
         super.onStop();
+        Log.d("wentiexp","stop");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("wentiexp","resume");
     }
 }

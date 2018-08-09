@@ -234,7 +234,6 @@ public class MyDetailFragment extends BottomSheetFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("wentirrr",""+MyToolClass.getDistance());
                         if(MyToolClass.getDistance()<30) {
                             MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
                         }else {
@@ -400,6 +399,13 @@ public class MyDetailFragment extends BottomSheetFragment {
                 }
             }
         }).start();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
     }
 
     @Override
