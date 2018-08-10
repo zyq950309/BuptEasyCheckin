@@ -30,6 +30,7 @@ import org.json.JSONArray;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -47,12 +48,13 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
 
     private String name_in;
     private int id_in;
-//    private boolean Tag=true,Tag1=false;
+    //    private boolean Tag=true,Tag1=false;
     private int sid,depmt,prof,building,room;
     private EditText nameInput,idInput;
     private Button nameclear_button,idclear_button,login_button,tour_button;
     private TextView textView_name;
     private ImageView icon_school;
+    private List<String> number;
 
     private Handler handler=new Handler(){
         @Override
@@ -79,6 +81,9 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                     break;
                 case 3:
                     MyToast.makeText(LoginActivity.this, "网络状况不佳，连接失败", Toast.LENGTH_SHORT).show();
+                    break;
+                case 4:
+                    MyToast.makeText(LoginActivity.this, "数据库连接错误", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -207,6 +212,43 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
         this.finish();
     }
 
+    private void search_sitenum() {//查询数据库，报道节点人数信息
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://123.206.90.229/v1/search.php")
+                        .build();
+                try {
+                    Response response = okHttpClient.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        String responsedata = response.body().string();
+                        Site_num site_num = GsonTools.getPerson(responsedata, Site_num.class);
+                        if (site_num.getCode().equals("0")) {
+                            number=site_num.getNumber();
+                            int[] num={0,0,0,0,0,0};
+                            for(int i=0;i<number.size();i++){
+                                num[i]=Integer.parseInt(number.get(i));
+                            }
+                            MyToolClass.setNum(num);
+
+                            Message msg = new Message();
+                            msg.what = 1;
+                            handler.sendMessage(msg);
+                        }else{
+                            Message msg = new Message();
+                            msg.what = 4;
+                            handler.sendMessage(msg);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -288,9 +330,7 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                             } else {
                                 IsLoginOk = false;
                             }
-                            Message msg=new Message();
-                            msg.what=1;
-                            handler.sendMessage(msg);
+                            search_sitenum();
                         }else {
                             IsLoginOk = false;
                             Message msg=new Message();
