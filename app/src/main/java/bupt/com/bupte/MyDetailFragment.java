@@ -236,9 +236,13 @@ public class MyDetailFragment extends BottomSheetFragment {
                     public void onClick(View v) {
                         if(MyToolClass.getDistance()<30) {
                             MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
-                        }else {
-                            b1 = 39.967113916777636;
-                            b2 = 116.36479162025452;
+                        }else if(MyToolClass.getDistance()>10000) {
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        } else {
+//                            b1 = 39.967113916777636;
+//                            b2 = 116.36479162025452;
+                            b1=Double.parseDouble(MyToolClass.getLatitude().get(0));
+                            b2=Double.parseDouble(MyToolClass.getLongitude().get(0));
                             startPt = new LatLng(a1, a2);
                             endPt = new LatLng(b1, b2);
                             walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
@@ -288,9 +292,13 @@ public class MyDetailFragment extends BottomSheetFragment {
                     public void onClick(View v) {
                         if(MyToolClass.getDistance()<30) {
                             MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
-                        }else {
-                            b1 = 39.967113916777636;
-                            b2 = 116.36479162025452;
+                        }else if(MyToolClass.getDistance()>10000) {
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        } else {
+//                            b1 = 39.967113916777636;
+//                            b2 = 116.36479162025452;
+                            b1=Double.parseDouble(MyToolClass.getLatitude().get(1));
+                            b2=Double.parseDouble(MyToolClass.getLongitude().get(1));
                             startPt = new LatLng(a1, a2);
                             endPt = new LatLng(b1, b2);
                             walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
@@ -340,9 +348,13 @@ public class MyDetailFragment extends BottomSheetFragment {
                     public void onClick(View v) {
                         if(MyToolClass.getDistance()<30) {
                             MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
-                        }else {
-                            b1 = 39.967113916777636;
-                            b2 = 116.36479162025452;
+                        }else if(MyToolClass.getDistance()>10000) {
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        } else {
+//                            b1 = 39.967113916777636;
+//                            b2 = 116.36479162025452;
+                            b1=Double.parseDouble(MyToolClass.getLatitude().get(2));
+                            b2=Double.parseDouble(MyToolClass.getLongitude().get(2));
                             startPt = new LatLng(a1, a2);
                             endPt = new LatLng(b1, b2);
                             walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);

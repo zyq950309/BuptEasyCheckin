@@ -76,6 +76,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case msg_okl:
+//                    initPlan();
                     stNode = PlanNode.withLocation(new LatLng(a1,a2));
                     enNode = PlanNode.withLocation(new LatLng(b1,b2));
                     routeSearch.walkingSearch((new WalkingRoutePlanOption())
@@ -92,6 +93,8 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         setContentView(R.layout.activity_arroute);
 
         Intent intent=getIntent();
+//        b1=intent.getDoubleExtra("b1",39.967113916777636);
+//        b2=intent.getDoubleExtra("b2",116.36479162025452);
         b1=intent.getDoubleExtra("b1",39.967113916777636);
         b2=intent.getDoubleExtra("b2",116.36479162025452);
 
@@ -206,7 +209,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         @Override
         public void run() {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -250,19 +253,6 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         }
     }
 
-//    private  double GetJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b) {
-//
-//        double y = Math.sin(lng_b-lng_a) * Math.cos(lat_b);
-//        double x = Math.cos(lat_a)*Math.sin(lat_b) - Math.sin(lat_a)*Math.cos(lat_b)*Math.cos(lng_b-lng_a);
-//        double brng = Math.atan2(y, x);
-//
-//        brng = Math.toDegrees(brng);
-//        if(brng < 0)
-//            brng = brng +360;
-//        return brng;
-//
-//    }
-
     private double GetJuLi(double lat_a, double lng_a, double lat_b, double lng_b){
         double lat1 = (Math.PI / 180) * lat_a;
         double lat2 = (Math.PI / 180) * lat_b;
@@ -272,19 +262,6 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         double d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * R;
         return d * 1000;
     }
-
-//    private  double GetJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b) {
-//
-//        double y = Math.sin(lng_b-lng_a) * Math.cos(lat_b);
-//        double x = Math.cos(lat_a)*Math.sin(lat_b) - Math.sin(lat_a)*Math.cos(lat_b)*Math.cos(lng_b-lng_a);
-//        double brng = Math.atan2(y, x);
-//
-//        brng = Math.toDegrees(brng);
-//        if(brng < 0)
-//            brng = brng +360;
-//        return brng;
-//
-//    }
 
     private void initLocation(){
         LocationClientOption option =new LocationClientOption();
@@ -323,10 +300,9 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            // TODO Auto-generated method stub
-
         }
     }
+
     private void initView() {
         mySurfaceView = (MySurfaceView) findViewById(R.id.mysurfaceview);
     }

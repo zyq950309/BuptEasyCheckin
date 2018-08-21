@@ -77,10 +77,10 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     private ImageButton locate_button, check_button,flush_button;//定位按钮和报道按钮
     private MapView mMapView;//地图显示控件
     private BaiduMap mBaiduMap;//地图控件
-    private double s1 = 39.967113916777636;//地图中心点坐标
-    private double s2 = 116.36479162025452;
-    //    private double s1 = 40.163271;//地图中心点坐标
-//    private double s2 = 116.294819;
+    //    private double s1 = 39.967113916777636;//地图中心点坐标
+//    private double s2 = 116.36479162025452;
+    private double s1 = 40.163271;//地图中心点坐标
+    private double s2 = 116.294819;
     private double a1 = 0;//当前位置坐标
     private double a2 = 0;
     private double b1 = 0;//目的地坐标
@@ -353,8 +353,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         mMapView.removeViewAt(1);
         mMapView.showZoomControls(false);
         MapStatus.Builder builder = new MapStatus.Builder();
-//        builder.target(new LatLng(s1, s2)).zoom(18);
-        builder.target(new LatLng(s1, s2)).zoom(17);
+        builder.target(new LatLng(s1, s2)).zoom(18);
+//        builder.target(new LatLng(s1, s2)).zoom(17);
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
         mBaiduMap.setMyLocationEnabled(true);
     }
@@ -794,9 +794,6 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         mSensorManager.registerListener(new MySensorEventListener(), magnetic,
                 Sensor.TYPE_MAGNETIC_FIELD);
         Tag2=true;
-//        if(Tag3==1){
-//            myFragment=new MyFragment();
-//        }
         super.onResume();
         Log.d("wenti","resume");
     }
@@ -805,19 +802,13 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     public void onPause() {
         mSensorManager.unregisterListener(new MySensorEventListener());
         Tag2=false;
-//        if(myFragment!=null){
-//            getActivity().getSupportFragmentManager().beginTransaction().remove(myFragment).addToBackStack(null).commit();
-//            myFragment.onDestroy();
-//        }
         super.onPause();
-//        Tag3=1;
         Log.d("wenti","pause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-//        Log.d("wenti","stop");
     }
 
     private void calculateOrientation() {
