@@ -23,17 +23,31 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/specifiedFonts">
-        <!--<meta-data-->
-        <!--android:name="com.baidu.lbsapi.API_KEY"-->
-        <!--android:value="4A3vjBsSXwr5bNqu00gsxoevjB1885VF" />-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="XOh9EfZ2aYEXYKClCLbvyw7X7dZ52Xlk" />
+            android:value="4A3vjBsSXwr5bNqu00gsxoevjB1885VF" />
+        <!--<meta-data-->
+        <!--android:name="com.baidu.lbsapi.API_KEY"-->
+        <!--android:value="XOh9EfZ2aYEXYKClCLbvyw7X7dZ52Xlk" />-->
         <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,14 +56,9 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" />
-
-        <activity android:name=".MainActivity" />
         <activity android:name=".MaprouteActivity" />
-        <activity android:name=".ARrouteActivity" />
+        <activity android:name=".ARrouteActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".ARrouteindoorActivity" />
         <activity
             android:name=".MainpageActivity"
@@ -60,8 +69,8 @@
             android:launchMode="singleTask"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
             android:name=".UnityPlayerActivity">
-            <meta-data android:name="unity.build-id" android:value="2d42c50e-3202-4978-864e-df4c59d9697d" />
-            <meta-data android:name="unity.splash-mode" android:value="2" />
+            <meta-data android:name="unity.build-id" android:value="e2c9ae6a-e909-4156-af1b-26548dd76ad0" />
+            <meta-data android:name="unity.splash-mode" android:value="0" />
             <meta-data android:name="unity.splash-enable" android:value="True" />
             <meta-data android:name="android.max_aspect" android:value="2.1" />
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
