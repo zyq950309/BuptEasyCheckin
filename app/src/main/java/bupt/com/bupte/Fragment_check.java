@@ -81,6 +81,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
 //    private double s2 = 116.36479162025452;
     private double s1 = 40.163271;//地图中心点坐标
     private double s2 = 116.294819;
+//    private double s1 = 28.422703;//地图中心点坐标
+//    private double s2 = 117.607194;
     private double a1 = 0;//当前位置坐标
     private double a2 = 0;
     private double b1 = 0;//目的地坐标
@@ -313,16 +315,19 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 b1 = Double.parseDouble(MyToolClass.getLatitude().get(0));
                 b2 = Double.parseDouble(MyToolClass.getLongitude().get(0));
                 initRoutePlan(b1, b2);
+//                initRoutePlan(28.421957,117.608362);
                 break;
             case 2:
                 b1 = Double.parseDouble(MyToolClass.getLatitude().get(1));
                 b2 = Double.parseDouble(MyToolClass.getLongitude().get(1));
                 initRoutePlan(b1, b2);
+//                initRoutePlan(28.423545,117.608362);
                 break;
             case 3:
                 b1 = Double.parseDouble(MyToolClass.getLatitude().get(2));
                 b2 = Double.parseDouble(MyToolClass.getLongitude().get(2));
                 initRoutePlan(b1, b2);
+//                initRoutePlan(28.424173,117.606044);
                 break;
             case 4:
                 b1 = Double.parseDouble(MyToolClass.getLatitude().get(3));
@@ -723,7 +728,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             if (routeLines != null) {
                 WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
                 MyToolClass.setDistance(line.getDistance());
-                MyToolClass.setTime(line.getDuration());
+                MyToolClass.setTime(line.getDuration()/60);
                 List<WalkingRouteLine.WalkingStep> steps = line.getAllStep();
                 size0=steps.size();
                 for(int i=0;i<size0;i++){

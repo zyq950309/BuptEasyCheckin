@@ -224,7 +224,7 @@ public class MyDetailFragment extends BottomSheetFragment {
             case 1:
                 search_ifo(order);
                 ordertext.setText("1");
-                nametext.setText("报到大厅(图书馆一层/马路上)");
+                nametext.setText("报道大厅(图书馆一层/马路上)");
                 detailtext.setText("参照通知书带齐所需证件");
 //                SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
 //                int length = strNav.length();
@@ -243,6 +243,8 @@ public class MyDetailFragment extends BottomSheetFragment {
 //                            b2 = 116.36479162025452;
                             b1=Double.parseDouble(MyToolClass.getLatitude().get(0));
                             b2=Double.parseDouble(MyToolClass.getLongitude().get(0));
+//                            b1=28.421957;
+//                            b2=117.608362;
                             startPt = new LatLng(a1, a2);
                             endPt = new LatLng(b1, b2);
                             walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
@@ -270,8 +272,8 @@ public class MyDetailFragment extends BottomSheetFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("报到大厅内手续办理：\n" +
-                        "1. 学院报到\n" +
+                manyttext.setText("报道大厅内手续办理：\n" +
+                        "1. 学院报道\n" +
                         "2. 缴纳学费\n" +
                         "3. 办理贷款\n" +
                         "4. 转组织关系");
@@ -299,6 +301,8 @@ public class MyDetailFragment extends BottomSheetFragment {
 //                            b2 = 116.36479162025452;
                             b1=Double.parseDouble(MyToolClass.getLatitude().get(1));
                             b2=Double.parseDouble(MyToolClass.getLongitude().get(1));
+//                            b1=28.423545;
+//                            b2=117.608362;
                             startPt = new LatLng(a1, a2);
                             endPt = new LatLng(b1, b2);
                             walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
@@ -326,8 +330,8 @@ public class MyDetailFragment extends BottomSheetFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("报到大厅内手续办理：\n" +
-                        "1. 学院报到\n" +
+                manyttext.setText("报道大厅内手续办理：\n" +
+                        "1. 学院报道\n" +
                         "2. 缴纳学费\n" +
                         "3. 办理贷款\n" +
                         "4. 转组织关系");
@@ -355,6 +359,8 @@ public class MyDetailFragment extends BottomSheetFragment {
 //                            b2 = 116.36479162025452;
                             b1=Double.parseDouble(MyToolClass.getLatitude().get(2));
                             b2=Double.parseDouble(MyToolClass.getLongitude().get(2));
+//                            b1=28.424173;
+//                            b2=117.606044;
                             startPt = new LatLng(a1, a2);
                             endPt = new LatLng(b1, b2);
                             walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
@@ -382,8 +388,8 @@ public class MyDetailFragment extends BottomSheetFragment {
                 img1.setImageResource(R.drawable.timg3);
                 img2.setImageResource(R.drawable.timg2);
                 img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("报到大厅内手续办理：\n" +
-                        "1. 学院报到\n" +
+                manyttext.setText("报道大厅内手续办理：\n" +
+                        "1. 学院报道\n" +
                         "2. 缴纳学费\n" +
                         "3. 办理贷款\n" +
                         "4. 转组织关系");

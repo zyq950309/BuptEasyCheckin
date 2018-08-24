@@ -12,6 +12,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,12 +73,12 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
     private boolean TAG2=true;
     private int size0=0;
     private final int msg_okl=2;
+    private long mExitTime;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case msg_okl:
-//                    initPlan();
                     stNode = PlanNode.withLocation(new LatLng(a1,a2));
                     enNode = PlanNode.withLocation(new LatLng(b1,b2));
                     routeSearch.walkingSearch((new WalkingRoutePlanOption())
@@ -91,7 +93,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arroute);
-
+        requestPermission();
         Intent intent=getIntent();
 //        b1=intent.getDoubleExtra("b1",39.967113916777636);
 //        b2=intent.getDoubleExtra("b2",116.36479162025452);
@@ -105,7 +107,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
 
         initPlan();
         initSensor();
-        requestPermission();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void requestPermission(){
@@ -132,6 +134,8 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
             @Override
             public void onGetWalkingRouteResult(WalkingRouteResult walkingRouteResult) {
                 List<WalkingRouteLine> routeLines = walkingRouteResult.getRouteLines();
+                MyToast.makeText(ARrouteActivity.this, "定位成功", Toast.LENGTH_SHORT).show();
+//                Log.d("wentis","zheli");
                 if (routeLines != null) {
                     WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
                     List<WalkingRouteLine.WalkingStep> steps = line.getAllStep();
@@ -209,7 +213,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         @Override
         public void run() {
             try {
-                Thread.sleep(4000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -228,6 +232,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
                         dis = GetJuLi(a1, a2, b1, b2);
                         angles = dirc.get(Num);
                     } else {
+                        MyToast.makeText(ARrouteActivity.this, "到达目的地", Toast.LENGTH_SHORT).show();
                         angles = dirc.get(Num);
                         Num += 1;
                     }
@@ -249,7 +254,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
             mLocationClient.start();
         }catch (Exception e)
         {
-            MyToast.makeText(ARrouteActivity.this,"GPS Locate 失败",Toast.LENGTH_SHORT).show();
+            MyToast.makeText(ARrouteActivity.this,"定位失败",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -313,24 +318,29 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         public void onReceiveLocation(BDLocation location) {
             a1=location.getLatitude();
             a2=location.getLongitude();
-            if(location.getLocType()==BDLocation.TypeGpsLocation) {
-                if(TAG==0) {
-                    MyToast.makeText(ARrouteActivity.this, "GPS Locate OK", Toast.LENGTH_SHORT).show();
-                    TAG = 1;
-                }else{
-                    Log.d("do","do nothing");
-                }
-            }else{
-                if(TAG1==0) {
-                    MyToast.makeText(ARrouteActivity.this, "GPS Locate NO,请前往开阔地", Toast.LENGTH_SHORT).show();
-                    TAG1 = 1;
-                }else{
-                    Log.d("do","do nothing");
-                }
+            if(TAG==0) {
+                MyToast.makeText(ARrouteActivity.this, "正在定位中", Toast.LENGTH_LONG).show();
+                TAG = 1;
+                Message msg2=new Message();
+                msg2.what=msg_okl;
+                mHandler.sendMessage(msg2);
             }
-            Message msg2=new Message();
-            msg2.what=msg_okl;
-            mHandler.sendMessage(msg2);
+//            Message msg2=new Message();
+//            msg2.what=msg_okl;
+//            mHandler.sendMessage(msg2);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                MyToast.makeText(this, "确认退出？", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                return super.onKeyDown(keyCode, event);
+            }
+        }
+        return true;
     }
 }

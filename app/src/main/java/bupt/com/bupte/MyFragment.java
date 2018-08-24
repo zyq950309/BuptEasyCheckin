@@ -74,7 +74,7 @@ public class MyFragment extends BottomSheetFragment{
     private void initPlaces() {
 //        for (int i = 0; i < 2; i++) {
         String inline_gym = MyToolClass.getInLineNumbers(1);
-        Place gym = new Place(1, "报到大厅(图书馆一层/马路上)", inline_gym, "参照通知书带齐所需证件");
+        Place gym = new Place(1, "报道大厅(图书馆一层/马路上)", inline_gym, "参照通知书带齐所需证件");
         placeList.add(gym);
         String inline_hospital = MyToolClass.getInLineNumbers(2);
         Place hospital = new Place(2, "宿舍", inline_hospital,"提交缴费入住");
