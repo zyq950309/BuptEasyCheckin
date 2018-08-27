@@ -43,12 +43,9 @@ public class MyDetailFragment extends BottomSheetFragment {
     private TextView ordertext;
     private TextView nametext;
     private TextView detailtext;
-    private TextView inlinetext;
+//    private TextView inlinetext;
     private Button walknavbtn;
     private Button arbtn;
-    private ImageView img1;
-    private ImageView img2;
-    private ImageView img3;
     private TextView manyttext;
     private OnDetailFragmentListener mdListener;
 
@@ -107,12 +104,9 @@ public class MyDetailFragment extends BottomSheetFragment {
         ordertext = (TextView)view.findViewById(R.id.text_order1);
         nametext = (TextView)view.findViewById(R.id.text_name1);
         detailtext = (TextView)view.findViewById(R.id.text_detail1);
-        inlinetext = (TextView)view.findViewById(R.id.text_inLine1);
+//        inlinetext = (TextView)view.findViewById(R.id.text_inLine1);
         walknavbtn = (Button)view.findViewById(R.id.btn_walknav);
         arbtn = (Button)view.findViewById(R.id.btn_ar);
-        img1 = (ImageView)view.findViewById(R.id.image_1);
-        img2 = (ImageView)view.findViewById(R.id.image_2);
-        img3 = (ImageView)view.findViewById(R.id.image_3);
         manyttext =(TextView)view.findViewById(R.id.text_many);
 
         Bundle bundle = getArguments();
@@ -219,18 +213,13 @@ public class MyDetailFragment extends BottomSheetFragment {
     }
 
     private void initView(int order){
-        inlinetext.setText(MyToolClass.getInLineNumbers(order));
+//        inlinetext.setText(MyToolClass.getInLineNumbers(order));
         switch(order){
             case 1:
                 search_ifo(order);
                 ordertext.setText("1");
-                nametext.setText("报道大厅(图书馆一层/马路上)");
+                nametext.setText("新生报到处(图书馆一层小广场)");
                 detailtext.setText("参照通知书带齐所需证件");
-//                SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-//                int length = strNav.length();
-//                strNav.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                strNav.setSpan(new RelativeSizeSpan(0.8f), 5, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                walknavbtn.setText(strNav);
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -258,7 +247,7 @@ public class MyDetailFragment extends BottomSheetFragment {
                     }
                 });
 
-                SpannableString strAr = new SpannableString("室内AR指引\n5处手续办理");
+                SpannableString strAr = new SpannableString("室内AR指引\n4处手续办理");
                 strAr.setSpan(new RelativeSizeSpan(1.2f), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 strAr.setSpan(new RelativeSizeSpan(0.8f), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 arbtn.setText(strAr);
@@ -269,9 +258,6 @@ public class MyDetailFragment extends BottomSheetFragment {
 //                        startActivity(intent);
                     }
                 });
-                img1.setImageResource(R.drawable.timg3);
-                img2.setImageResource(R.drawable.timg2);
-                img3.setImageResource(R.drawable.timg1);
                 manyttext.setText("报道大厅内手续办理：\n" +
                         "1. 学院报道\n" +
                         "2. 缴纳学费\n" +
@@ -282,117 +268,22 @@ public class MyDetailFragment extends BottomSheetFragment {
                 search_ifo(order);
                 ordertext.setText("2");
                 nametext.setText("宿舍");
-                detailtext.setText("提交缴费入住");
-
-//                SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-//                int length2 = strNav2.length();
-//                strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                walknavbtn.setText(strNav2);
-                walknavbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(MyToolClass.getDistance()<30) {
-                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
-                        }else if(MyToolClass.getDistance()>10000) {
-                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
-                        } else {
-//                            b1 = 39.967113916777636;
-//                            b2 = 116.36479162025452;
-                            b1=Double.parseDouble(MyToolClass.getLatitude().get(1));
-                            b2=Double.parseDouble(MyToolClass.getLongitude().get(1));
-//                            b1=28.423545;
-//                            b2=117.608362;
-                            startPt = new LatLng(a1, a2);
-                            endPt = new LatLng(b1, b2);
-                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                            try {
-                                mNaviHelper = WalkNavigateHelper.getInstance();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            startWalkNavi();
-                        }
-                    }
-                });
-
-                SpannableString strAr2 = new SpannableString("室内AR指引\n5处手续办理");
-                strAr2.setSpan(new RelativeSizeSpan(1.2f), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strAr2.setSpan(new RelativeSizeSpan(0.8f), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                arbtn.setText(strAr2);
-                arbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        Intent intent = new Intent(getActivity(),MaprouteActivity.class);
-//                        startActivity(intent);
-                    }
-                });
-                img1.setImageResource(R.drawable.timg3);
-                img2.setImageResource(R.drawable.timg2);
-                img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("报道大厅内手续办理：\n" +
-                        "1. 学院报道\n" +
-                        "2. 缴纳学费\n" +
-                        "3. 办理贷款\n" +
-                        "4. 转组织关系");
+                detailtext.setText("入住办理");
+                arbtn.setVisibility(View.GONE);
+                walknavbtn.setVisibility(View.GONE);
+                manyttext.setBackgroundResource(R.drawable.apartment);
                 break;
             case 3:
                 search_ifo(order);
                 ordertext.setText("3");
-                nametext.setText("体检车");
-                detailtext.setText("体检");
-//
-//                SpannableString strNav3 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance(1)+"米 "+MyToolClass.getTime(1)+"分钟");
-//                int length3 = strNav3.length();
-//                strNav3.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                strNav3.setSpan(new RelativeSizeSpan(0.8f), 5, length3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                walknavbtn.setText(strNav3);
-                walknavbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(MyToolClass.getDistance()<30) {
-                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
-                        }else if(MyToolClass.getDistance()>10000) {
-                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
-                        } else {
-//                            b1 = 39.967113916777636;
-//                            b2 = 116.36479162025452;
-                            b1=Double.parseDouble(MyToolClass.getLatitude().get(2));
-                            b2=Double.parseDouble(MyToolClass.getLongitude().get(2));
-//                            b1=28.424173;
-//                            b2=117.606044;
-                            startPt = new LatLng(a1, a2);
-                            endPt = new LatLng(b1, b2);
-                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                            try {
-                                mNaviHelper = WalkNavigateHelper.getInstance();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            startWalkNavi();
-                        }
-                    }
-                });
-
-                SpannableString strAr3 = new SpannableString("室内AR指引\n5处手续办理");
-                strAr3.setSpan(new RelativeSizeSpan(1.2f), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                strAr3.setSpan(new RelativeSizeSpan(0.8f), 7, 13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                arbtn.setText(strAr3);
-                arbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        Intent intent = new Intent(getActivity(),MaprouteActivity.class);
-//                        startActivity(intent);
-                    }
-                });
-                img1.setImageResource(R.drawable.timg3);
-                img2.setImageResource(R.drawable.timg2);
-                img3.setImageResource(R.drawable.timg1);
-                manyttext.setText("报道大厅内手续办理：\n" +
-                        "1. 学院报道\n" +
-                        "2. 缴纳学费\n" +
-                        "3. 办理贷款\n" +
-                        "4. 转组织关系");
+                nametext.setText("体检");
+                detailtext.setText("图书馆附近体检");
+                arbtn.setVisibility(View.GONE);
+                walknavbtn.setVisibility(View.GONE);
+                manyttext.setText("体检地点：\n" +
+                        "教学楼北楼(图书馆南边)一层、二层\n" +
+                        "胸部X线检查:\n" +
+                        "图书馆前,移动放射车处\n");
                 break;
             default:
                 break;

@@ -8,13 +8,13 @@ public class Place {
     private int order;
     private String name;
     private String detail;
-    private String inLine;
+//    private String inLine;
 
 
-    public Place(int order, String name, String inLine, String detail){
+    public Place(int order, String name, String detail){
         this.order = order;
         this.name = name;
-        this.inLine = inLine;
+//        this.inLine = inLine;
         this.detail = detail;
 
     }
@@ -31,7 +31,7 @@ public class Place {
         return detail;
     }
 
-    public String getInLine() {
-        return inLine;
-    }
+//    public String getInLine() {
+//        return inLine;
+//    }
 }

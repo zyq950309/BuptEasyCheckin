@@ -2,6 +2,7 @@ package bupt.com.bupte;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
             viewHolder.order = (TextView) view.findViewById(R.id.text_order);
             viewHolder.name = (TextView) view.findViewById(R.id.text_name);
             viewHolder.detail = (TextView) view.findViewById(R.id.text_detail);
-            viewHolder.inLine = (TextView) view.findViewById(R.id.text_inLine);
+//            viewHolder.inLine = (TextView) view.findViewById(R.id.text_inLine);
             view.setTag(viewHolder);
         }else {
             view = convertView;
@@ -43,8 +44,14 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         }
         viewHolder.order.setText(place.getOrder()+"");
         viewHolder.name.setText(place.getName());
-        viewHolder.inLine.setText(place.getInLine());
-        viewHolder.detail.setText(place.getDetail());
+//        viewHolder.inLine.setText(place.getInLine());
+        String detail = place.getDetail();
+        viewHolder.detail.setText(detail);
+//        if(detail.equals("")){
+//            viewHolder.detail.setVisibility(View.GONE);
+//            viewHolder.name.setHeight(viewHolder.order.getHeight());
+//            viewHolder.name.setGravity(Gravity.CENTER_VERTICAL);
+//        }
         return view;
     }
 
@@ -52,6 +59,6 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         TextView order;
         TextView name;
         TextView detail;
-        TextView inLine;
+//        TextView inLine;
     }
 }
