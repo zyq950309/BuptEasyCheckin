@@ -37,14 +37,14 @@ public class Fragment_mine extends Fragment implements View.OnClickListener{//�
         int depmt=getArguments().getInt("depmt");//根据int选择学院显示
         switch (depmt){
             case 2:
-                depmt_out="计算机学院";
+                depmt_out="未知";
                 break;
         }
 
         int prof=getArguments().getInt("prof");//根据int选择专业显示
         switch (prof){
-            case 1:
-                prof_out="计算机科学与技术";
+            case 2:
+                prof_out="未知";
                 break;
         }
 
@@ -52,7 +52,9 @@ public class Fragment_mine extends Fragment implements View.OnClickListener{//�
         sid_show.setText("学号："+getArguments().getInt("sid")+"");
         depmt_show.setText("院系："+depmt_out+"");
         prof_show.setText("专业："+prof_out+"");
-        room_show.setText("宿舍：学生公寓"+getArguments().getInt("building")+"号楼"+getArguments().getInt("room")+"");
+        //暂时改动
+//        room_show.setText("宿舍：学生公寓"+getArguments().getInt("building")+"号楼"+getArguments().getInt("room")+"");
+        room_show.setText("宿舍："+"未知");
 
         return view;
     }

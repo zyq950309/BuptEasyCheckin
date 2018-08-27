@@ -73,17 +73,17 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                         MyToast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                         closeActivity();
                     }else {
-                        MyToast.makeText(LoginActivity.this, "姓名与身份证不一致", Toast.LENGTH_SHORT).show();
+//                        MyToast.makeText(LoginActivity.this, "姓名与身份证不一致", Toast.LENGTH_SHORT).show();//暂时用不到
                     }
                     break;
                 case 2:
-                    MyToast.makeText(LoginActivity.this, "数据库连接失败", Toast.LENGTH_SHORT).show();
+//                    MyToast.makeText(LoginActivity.this, "数据库连接失败", Toast.LENGTH_SHORT).show();//暂时用不到
                     break;
                 case 3:
                     MyToast.makeText(LoginActivity.this, "网络状况不佳，连接失败", Toast.LENGTH_SHORT).show();
                     break;
                 case 4:
-                    MyToast.makeText(LoginActivity.this, "数据库连接错误", Toast.LENGTH_SHORT).show();
+//                    MyToast.makeText(LoginActivity.this, "数据库连接错误", Toast.LENGTH_SHORT).show();//暂时用不到
                     break;
             }
         }
@@ -275,7 +275,20 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                 if(!nameInput.getText().toString().isEmpty()&&!idInput.getText().toString().isEmpty()) {
                     String name_input = nameInput.getText().toString();
                     int id_input = Integer.parseInt(idInput.getText().toString());
-                    search(name_input, id_input);
+//                    search(name_input, id_input);//这个暂时用不到
+                    //下面的部分因数据不全暂作代替
+                    IsLoginOk = true;
+                    sid = id_input;
+                    id_in=2;//这里的2表示身份证信息未知
+                    depmt = 2;//以下的2都表示未知,1表示已知
+                    prof = 2;
+                    building = 2;
+                    room = 2;
+                    stu = new Student(name_input, id_in, sid, depmt, prof, building, room);
+
+                    Message msg = new Message();
+                    msg.what = 1;
+                    handler.sendMessage(msg);
                 }else {
                     MyToast.makeText(LoginActivity.this, "输入不能为空", Toast.LENGTH_SHORT).show();
                 }
