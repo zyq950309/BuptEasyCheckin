@@ -153,6 +153,7 @@ public class MyDetailFragment extends BottomSheetFragment {
 
             @Override
             public void onRoutePlanSuccess() {
+//                Log.d("wentid","?");
                 Intent intent = new Intent(getActivity(), MaprouteActivity.class);
                 intent.putExtra("b1",b1);
                 intent.putExtra("b2",b2);

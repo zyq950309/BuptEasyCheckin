@@ -14,7 +14,10 @@ import android.os.Bundle;
 import android.util.FloatProperty;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +78,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
     private int size0=0;
     private final int msg_okl=2;
     private long mExitTime;
+    private ImageView room_show;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -102,6 +106,15 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         b2=intent.getDoubleExtra("b2",116.36479162025452);
 
         initView();
+        room_show=(ImageView)findViewById(R.id.imageView5);
+        Button roomloc=(Button)findViewById(R.id.button_roomloc);
+        roomloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                room_show.setVisibility(View.VISIBLE);
+            }
+        });
+
         myview=(MyView)findViewById(R.id.myview) ;
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(new ARrouteActivity.MyLocationListener());
@@ -375,7 +388,9 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            if(room_show.getVisibility()==View.VISIBLE){
+                room_show.setVisibility(View.INVISIBLE);
+            }else if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 MyToast.makeText(this, "确认退出？", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
             } else {
