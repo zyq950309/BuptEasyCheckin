@@ -250,12 +250,12 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
                     if (GetJuLi(a1, a2, b1, b2) > 20) {
                         //以下改动
                         dis = GetJuLi(a1, a2, b1, b2);
-                        angles= (float)(GetJiaoDu(a1,a2,b1,b2));
+                        angles= (float)(getJiaoDu(a1,a2,b1,b2));
 //                        angles = dirc.get(Num);
                     } else {
                         //以下改动
                         MyToast.makeText(ARrouteActivity.this, "到达目的地", Toast.LENGTH_SHORT).show();
-                        angles= (float)(GetJiaoDu(a1,a2,b1,b2));
+                        angles= (float)(getJiaoDu(a1,a2,b1,b2));
 //                        angles = dirc.get(Num);
                         Num += 1;
                     }
@@ -291,40 +291,81 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         return d * 1000;
     }
 
-    private double GetJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b){
-        double x1 = lng_a;
-        double y1 = lat_a;
-        double x2 = lng_b;
-        double y2 = lat_b;
-        double pi = Math.PI;
-        double w1 = y1 / 180 * pi;
-        double j1 = x1 / 180 * pi;
-        double w2 = y2 / 180 * pi;
-        double j2 = x2 / 180 * pi;
-        double ret;
-        if (j1 == j2) {
-            if (w1 > w2)
-                return 270; // 北半球的情况，南半球忽略
-            else if (w1 < w2)
-                return 90;
-            else
-                return -1;// 位置完全相同
+//    private double GetJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b){
+//        double x1 = lng_a;
+//        double y1 = lat_a;
+//        double x2 = lng_b;
+//        double y2 = lat_b;
+//        double pi = Math.PI;
+//        double w1 = y1 / 180 * pi;
+//        double j1 = x1 / 180 * pi;
+//        double w2 = y2 / 180 * pi;
+//        double j2 = x2 / 180 * pi;
+//        double ret;
+//        if (j1 == j2) {
+//            if (w1 > w2)
+//                return 270; // 北半球的情况，南半球忽略
+//            else if (w1 < w2)
+//                return 90;
+//            else
+//                return -1;// 位置完全相同
+//        }
+//        ret = 4* Math.pow(Math.sin((w1 - w2) / 2), 2)- Math.pow(
+//                Math.sin((j1 - j2) / 2) * (Math.cos(w1) - Math.cos(w2)),2);
+//        ret = Math.sqrt(ret);
+//        double temp = (Math.sin(Math.abs(j1 - j2) / 2) * (Math.cos(w1) + Math
+//                .cos(w2)));
+//        ret = ret / temp;
+//        ret = Math.atan(ret) / pi * 180;
+//        if (j1 > j2){ // 1为参考点坐标
+//            if (w1 > w2)
+//                ret += 180;
+//            else
+//                ret = 180 - ret;
+//        } else if (w1 > w2)
+//            ret = 360 - ret;
+//        return ret;
+//    }
+
+    private double getJiaoDu(double lat_a, double lng_a, double lat_b, double lng_b){
+        double k1 = lng_b-lng_a;
+        double k2= lat_b-lat_a;
+        double str=0;
+        if( 0 == k1){
+            if(k2>0){
+                str=0;
+            }
+            else if( k2<0){
+                str =180;
+            }
+            else if( k2 == 0){
+                str=0;
+            }
+        }else if( 0 == k2){
+            if(k1>0){
+                str=90;
+            }
+            else if( k1<0){
+                str=270;
+            }
+        }else{
+            double k=k2/k1;
+            if(k2>0){
+                if(k1>0){
+                    str=45;
+                }else if(k1<0){
+                    str= 315;
+                }
+            }else if(k2<0){
+                if(k1<0){
+                    str = 225;
+                }
+                else if(k1>0){
+                    str=135;
+                }
+            }
         }
-        ret = 4* Math.pow(Math.sin((w1 - w2) / 2), 2)- Math.pow(
-                Math.sin((j1 - j2) / 2) * (Math.cos(w1) - Math.cos(w2)),2);
-        ret = Math.sqrt(ret);
-        double temp = (Math.sin(Math.abs(j1 - j2) / 2) * (Math.cos(w1) + Math
-                .cos(w2)));
-        ret = ret / temp;
-        ret = Math.atan(ret) / pi * 180;
-        if (j1 > j2){ // 1为参考点坐标
-            if (w1 > w2)
-                ret += 180;
-            else
-                ret = 180 - ret;
-        } else if (w1 > w2)
-            ret = 360 - ret;
-        return ret;
+        return str;
     }
 
     private void initLocation(){
