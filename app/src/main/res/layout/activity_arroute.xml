@@ -5,23 +5,24 @@
     android:id="@+id/activity_arroute"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context="bupt.com.bupte.ARrouteActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="550dp">
+        android:layout_height="500dp">
 
         <bupt.com.bupte.MySurfaceView
             android:id="@+id/mysurfaceview"
             android:layout_width="match_parent"
-            android:layout_height="550dp"/>
+            android:layout_height="500dp"/>
 
         <bupt.com.bupte.MyView
             android:id="@+id/myview"
             android:layout_width="match_parent"
-            android:layout_height="550dp" />
+            android:layout_height="500dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -31,19 +32,18 @@
             android:id="@+id/imageView5" />
 
     </FrameLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <Button
+        android:text="宿舍位置图"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/darkbutton_style"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal|bottom"
         android:layout_width="match_parent"
-        android:layout_gravity="bottom"
-        android:layout_height="match_parent">
-
-        <Button
-            android:text="宿舍位置图"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/button_roomloc"
-            android:layout_weight="1" />
-    </LinearLayout>
+        android:layout_height="50dp"
+        android:textSize="15.7sp"
+        android:id="@+id/button_roomloc"/>
 
 </LinearLayout>
