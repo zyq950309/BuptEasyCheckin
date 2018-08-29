@@ -25,42 +25,42 @@
                 android:id="@+id/btnA"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/a"
+                android:background="@drawable/ap"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnB"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/b"
+                android:background="@drawable/bp"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnC"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/c"
+                android:background="@drawable/cp"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnD1"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/d1"
+                android:background="@drawable/dp1"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnD2"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/d2"
+                android:background="@drawable/dp2"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnE"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/e"
+                android:background="@drawable/ep"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
         </LinearLayout>
@@ -89,28 +89,28 @@
                 android:id="@+id/btnS2"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/s2"
+                android:background="@drawable/sp2"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnS3"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/s3"
+                android:background="@drawable/sp3"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnS4"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/s4"
+                android:background="@drawable/sp4"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
             <ImageButton
                 android:id="@+id/btnS5"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/s5"
+                android:background="@drawable/sp5"
                 android:layout_width="32dp"
                 android:layout_height="32dp" />
         </LinearLayout>

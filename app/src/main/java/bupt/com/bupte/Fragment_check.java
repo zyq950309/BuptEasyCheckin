@@ -318,31 +318,31 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//ä
 //                initRoutePlan(28.421957,117.608362);
                 break;
             case 2:
-                b1 = Double.parseDouble(MyToolClass.getLatitude().get(1));
-                b2 = Double.parseDouble(MyToolClass.getLongitude().get(1));
-                initRoutePlan(b1, b2);
+//                b1 = Double.parseDouble(MyToolClass.getLatitude().get(1));
+//                b2 = Double.parseDouble(MyToolClass.getLongitude().get(1));
+//                initRoutePlan(b1, b2);
 //                initRoutePlan(28.423545,117.608362);
                 break;
             case 3:
-                b1 = Double.parseDouble(MyToolClass.getLatitude().get(2));
-                b2 = Double.parseDouble(MyToolClass.getLongitude().get(2));
-                initRoutePlan(b1, b2);
+//                b1 = Double.parseDouble(MyToolClass.getLatitude().get(2));
+//                b2 = Double.parseDouble(MyToolClass.getLongitude().get(2));
+//                initRoutePlan(b1, b2);
 //                initRoutePlan(28.424173,117.606044);
                 break;
             case 4:
-                b1 = Double.parseDouble(MyToolClass.getLatitude().get(3));
-                b2 = Double.parseDouble(MyToolClass.getLongitude().get(3));
-                initRoutePlan(b1, b2);
+//                b1 = Double.parseDouble(MyToolClass.getLatitude().get(3));
+//                b2 = Double.parseDouble(MyToolClass.getLongitude().get(3));
+//                initRoutePlan(b1, b2);
                 break;
             case 5:
-                b1 = Double.parseDouble(MyToolClass.getLatitude().get(4));
-                b2 = Double.parseDouble(MyToolClass.getLongitude().get(4));
-                initRoutePlan(b1, b2);
+//                b1 = Double.parseDouble(MyToolClass.getLatitude().get(4));
+//                b2 = Double.parseDouble(MyToolClass.getLongitude().get(4));
+//                initRoutePlan(b1, b2);
                 break;
             case 6:
-                b1 = Double.parseDouble(MyToolClass.getLatitude().get(5));
-                b2 = Double.parseDouble(MyToolClass.getLongitude().get(5));
-                initRoutePlan(b1, b2);
+//                b1 = Double.parseDouble(MyToolClass.getLatitude().get(5));
+//                b2 = Double.parseDouble(MyToolClass.getLongitude().get(5));
+//                initRoutePlan(b1, b2);
                 break;
         }
     }

@@ -150,8 +150,13 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
                 List<WalkingRouteLine> routeLines = walkingRouteResult.getRouteLines();
                 MyToast.makeText(ARrouteActivity.this, "定位成功", Toast.LENGTH_SHORT).show();
 //                Log.d("wentis","zheli");
+                Log.d("wentid",""+TAG2);
                 if (routeLines != null) {
                     WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
+                    if(line.getDistance()>10000){
+                        TAG2=false;
+                        MyToast.makeText(ARrouteActivity.this, "离目的地太远", Toast.LENGTH_SHORT).show();
+                    }
                     List<WalkingRouteLine.WalkingStep> steps = line.getAllStep();
                     size0=steps.size();
                     points1=new ArrayList<LatLng>();

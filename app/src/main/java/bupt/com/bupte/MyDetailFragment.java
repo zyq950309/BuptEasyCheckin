@@ -47,7 +47,7 @@ public class MyDetailFragment extends BottomSheetFragment {
     private TextView ordertext;
     private TextView nametext;
     private TextView detailtext;
-//    private TextView inlinetext;
+    //    private TextView inlinetext;
     private Button walknavbtn;
     private Button arbtn;
     private TextView manyttext;
@@ -64,6 +64,7 @@ public class MyDetailFragment extends BottomSheetFragment {
     private BDLocationListener mylistener = new MyDetailFragment.MyLocationListener();//定位监听器
     private boolean Tag1=false;
     private int order=0;
+    private int Tag3=1;
 
     private Handler handler=new Handler(){
         @Override
@@ -158,17 +159,34 @@ public class MyDetailFragment extends BottomSheetFragment {
             @Override
             public void onRoutePlanSuccess() {
 //                Log.d("wentid","?");
-                Intent intent = new Intent(getActivity(), MaprouteActivity.class);
-                intent.putExtra("b1",b1);
-                intent.putExtra("b2",b2);
-                startActivity(intent);
+                if(Tag3==1) {
+                    Intent intent = new Intent(getActivity(), MaprouteActivity.class);
+                    intent.putExtra("b1", b1);
+                    intent.putExtra("b2", b2);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getActivity(), ARrouteActivity.class);
+                    intent.putExtra("b1", b1);
+                    intent.putExtra("b2", b2);
+                    startActivity(intent);
+                }
             }
 
             @Override
             public void onRoutePlanFail(WalkRoutePlanError error) {
-
+//                Log.d("wentid",error.name());
             }
         });
+    }
+
+    private double GetJuLi(double lat_a, double lng_a, double lat_b, double lng_b){
+        double lat1 = (Math.PI / 180) * lat_a;
+        double lat2 = (Math.PI / 180) * lat_b;
+        double lon1 = (Math.PI / 180) * lng_a;
+        double lon2 = (Math.PI / 180) * lng_b;
+        double R = 6371;
+        double d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * R;
+        return d * 1000;
     }
 
     private void startWalkNavi() {
@@ -233,6 +251,7 @@ public class MyDetailFragment extends BottomSheetFragment {
                         }else if(MyToolClass.getDistance()>10000) {
                             MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
                         } else {
+                            Tag3=1;
 //                            b1 = 39.967113916777636;
 //                            b2 = 116.36479162025452;
                             b1=Double.parseDouble(MyToolClass.getLatitude().get(0));
@@ -288,70 +307,251 @@ public class MyDetailFragment extends BottomSheetFragment {
                 btnA.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked A!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked ap!",Toast.LENGTH_SHORT).show();
+                        Tag3 = 2;
+                        b1 = 40.164675;
+                        b2 = 116.294560;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnB = (ImageButton) view.findViewById(R.id.btnB);
                 btnB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked B!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked bp!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.164675;
+                        b2=116.294304;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnC = (ImageButton) view.findViewById(R.id.btnC);
                 btnC.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked C!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked cp!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.165281;
+                        b2=116.29492;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnD1 = (ImageButton) view.findViewById(R.id.btnD1);
                 btnD1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked D1!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked dp1!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.164719;
+                        b2=116.295167;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnD2 = (ImageButton) view.findViewById(R.id.btnD2);
                 btnD2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked D2!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked dp2!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.165774;
+                        b2=116.294812;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnE = (ImageButton) view.findViewById(R.id.btnE);
                 btnE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked E!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked ep!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.16545;
+                        b2=116.293891;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnS2 = (ImageButton) view.findViewById(R.id.btnS2);
                 btnS2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked S2!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked sp2!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.163982;
+                        b2=116.295699;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnS3 = (ImageButton) view.findViewById(R.id.btnS3);
                 btnS3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked S3!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked sp3!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.163492;
+                        b2=116.295968;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnS4 = (ImageButton) view.findViewById(R.id.btnS4);
                 btnS4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked S4!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked sp4!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.163251;
+                        b2=116.296238;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 ImageButton btnS5 = (ImageButton) view.findViewById(R.id.btnS5);
                 btnS5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(),"you clicked S5!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"you clicked sp5!",Toast.LENGTH_SHORT).show();
+                        Tag3=2;
+                        b1=40.162955;
+                        b2=116.296337;
+                        startPt = new LatLng(a1, a2);
+                        endPt = new LatLng(b1, b2);
+                        if (GetJuLi(a1, a2, b1, b2) < 10000 && GetJuLi(a1, a2, b1, b2)>20) {
+                            walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                            try {
+                                mNaviHelper = WalkNavigateHelper.getInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            startWalkNavi();
+                        } else if(GetJuLi(a1, a2, b1, b2)>=10000){
+                            MyToast.makeText(getActivity(), "距离太远，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }else {
+                            MyToast.makeText(getActivity(), "距离太近，无法发起导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 break;

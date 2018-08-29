@@ -44,19 +44,19 @@ public class MyView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_jiantou);
-        Matrix m = new Matrix();
-        m.preRotate(360-angle,bitmap.getWidth()/2, bitmap.getHeight()/2);
+//        Matrix m = new Matrix();
+//        m.preRotate(360-angle,bitmap.getWidth()/2, bitmap.getHeight()/2);
 //        m.preRotate(360,bitmap.getWidth()/2, bitmap.getHeight()/2);
-        m.preScale(0.3f,0.3f);
+//        m.preScale(0.3f,0.3f);
         Matrix m1 = new Matrix();
         m1.preRotate(360-angle+angle1,bitmap.getWidth()/2, bitmap.getHeight()/2);
 //        m1.preRotate(-angle,bitmap.getWidth()/2, bitmap.getHeight()/2);
         m1.preScale(0.8f,0.8f);
         Bitmap bitmap21 = Bitmap.createBitmap(bitmap, 0,0,bitmap.getWidth(), bitmap.getHeight(),m1,true);
-        Bitmap bitmap22 = Bitmap.createBitmap(bitmap, 0,0,bitmap.getWidth(), bitmap.getHeight(),m,true);
+//        Bitmap bitmap22 = Bitmap.createBitmap(bitmap, 0,0,bitmap.getWidth(), bitmap.getHeight(),m,true);
         int left=canvas.getWidth()/2-bitmap21.getWidth()/2;
         int top=canvas.getHeight()/2-bitmap21.getHeight()/2;
         canvas.drawBitmap(bitmap21,left,top,paint);
-        canvas.drawBitmap(bitmap22,0,0,paint);
+//        canvas.drawBitmap(bitmap22,0,0,paint);
     }
 }
