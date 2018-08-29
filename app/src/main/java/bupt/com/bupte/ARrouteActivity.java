@@ -116,10 +116,10 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         });
 
         myview=(MyView)findViewById(R.id.myview) ;
-//        mLocationClient = new LocationClient(getApplicationContext());
-//        mLocationClient.registerLocationListener(new ARrouteActivity.MyLocationListener());
+        mLocationClient = new LocationClient(getApplicationContext());
+        mLocationClient.registerLocationListener(new ARrouteActivity.MyLocationListener());
 
-//        initPlan();
+        initPlan();
         initSensor();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -202,30 +202,30 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         });
     }
 
-//    @Override
-//    protected void onResume() {
-//        mSensorManager.registerListener(new MySensorEventListener(),
-//                accelerometer, Sensor.TYPE_ACCELEROMETER);
-//        mSensorManager.registerListener(new MySensorEventListener(), magnetic,
-//                Sensor.TYPE_MAGNETIC_FIELD);
-//        super.onResume();
-//        requestLocation();
-//        ThreadTest newThread=new ThreadTest();
-//        newThread.start();
-//    }
+    @Override
+    protected void onResume() {
+        mSensorManager.registerListener(new MySensorEventListener(),
+                accelerometer, Sensor.TYPE_ACCELEROMETER);
+        mSensorManager.registerListener(new MySensorEventListener(), magnetic,
+                Sensor.TYPE_MAGNETIC_FIELD);
+        super.onResume();
+        requestLocation();
+        ThreadTest newThread=new ThreadTest();
+        newThread.start();
+    }
 
-//    @Override
-//    protected void onPause() {
-//        mSensorManager.unregisterListener(new MySensorEventListener());
-//        super.onPause();
-//        TAG2=false;
-//    }
+    @Override
+    protected void onPause() {
+        mSensorManager.unregisterListener(new MySensorEventListener());
+        super.onPause();
+        TAG2=false;
+    }
 
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mLocationClient.stop();
-//    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mLocationClient.stop();
+    }
 
     class ThreadTest extends Thread {
 

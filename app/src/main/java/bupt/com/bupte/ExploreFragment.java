@@ -183,10 +183,10 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        b1=40.163299;
-//                        b2=116.290664;
-                        b1=28.421957;
-                        b2=117.608362;
+                        b1=40.163299;
+                        b2=116.290664;
+//                        b1=28.421957;
+//                        b2=117.608362;
                         requestLocation();
                     }
                 });
@@ -207,10 +207,10 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        b1=40.164519;
-//                        b2=116.296436;
-                        b1=28.421957;
-                        b2=117.608362;
+                        b1=40.164519;
+                        b2=116.296436;
+//                        b1=28.421957;
+//                        b2=117.608362;
                         requestLocation();
                     }
                 });
