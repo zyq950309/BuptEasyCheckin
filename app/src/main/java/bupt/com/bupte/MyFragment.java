@@ -25,6 +25,8 @@ public class MyFragment extends BottomSheetFragment{
     private TextView headtext;
     private List<Place> placeList = new ArrayList<Place>();
     private OnMyFragmentListener mListener;
+    private final int WITH_DETAIL = 1;
+    private final int WITHOUT_DETAIL = 0;
 //    private int site_id;
 
     private static final String TAG = "MyFragment";
@@ -74,11 +76,11 @@ public class MyFragment extends BottomSheetFragment{
     private void initPlaces() {
 //        for (int i = 0; i < 2; i++) {
 //        String inline_gym = MyToolClass.getInLineNumbers(1);
-        Place gym = new Place(1, "新生报到处(图书馆一层小广场)", "参照通知书带齐所需证件");
+        Place gym = new Place(1, "新生报到处(图书馆一层小广场)", "参照通知书带齐所需证件",WITH_DETAIL);
         placeList.add(gym);
-        Place hospital = new Place(2, "宿舍", "");
+        Place hospital = new Place(2, "宿舍", "",WITHOUT_DETAIL);
         placeList.add(hospital);
-        Place office = new Place(3, "体检","");
+        Place office = new Place(3, "体检","",WITHOUT_DETAIL);
         placeList.add(office);
 //        }
     }

@@ -12,9 +12,10 @@ public class Place {
 //    private String inLine;
 
 
-    public Place(int order, String name, String detail){
+    public Place(int order, String name, String detail, int style_tag){
         this.order = order;
         this.name = name;
+        this.style_tag = style_tag;
 //        this.inLine = inLine;
         this.detail = detail;
 
@@ -30,6 +31,11 @@ public class Place {
 
     public String getDetail() {
         return detail;
+    }
+
+    public int getStyle_tag()
+    {
+        return style_tag;
     }
 
 //    public String getInLine() {

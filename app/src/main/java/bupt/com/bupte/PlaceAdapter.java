@@ -2,6 +2,7 @@ package bupt.com.bupte;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,11 +19,40 @@ import java.util.List;
 
 public class PlaceAdapter extends ArrayAdapter<Place> {
 
+    private final int WITH_DETAIL = 1;
+    private final int WITHOUT_DETAIL = 0;
     private int resourceId;
+    private  final int STYLE_TYPE_COUNT = 2;
 
     public PlaceAdapter(Context context, int id, List<Place> objects){
         super(context, id, objects);
         resourceId = id;
+    }
+
+//    @Override
+//    public int getCount() {
+//        return mList.size();
+//    }
+
+//    @Override
+//    public long getItemId(int position) {
+//        return position;
+//    }
+
+//    @Nullable
+//    @Override
+//    public Place getItem(int position) {
+//        return mList.get(position);
+//    }
+
+    @Override
+    public int getViewTypeCount() {
+        return STYLE_TYPE_COUNT;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return getItem(position).getStyle_tag();
     }
 
     @NonNull
@@ -29,48 +60,70 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Place place = getItem(position);
         View view;
-        ViewHolder viewHolder;
+        MyViewHolder viewHolder = null;
+        Another_ViewHolder anotherHolder = null;
+        int style_type = place.getStyle_tag();
         if(convertView==null){
-            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            viewHolder = new ViewHolder();
-            viewHolder.order = (TextView) view.findViewById(R.id.text_order);
-            viewHolder.name = (TextView) view.findViewById(R.id.text_name);
-            viewHolder.detail = (TextView) view.findViewById(R.id.text_detail);
-//            viewHolder.inLine = (TextView) view.findViewById(R.id.text_inLine);
-            view.setTag(viewHolder);
+            switch (style_type){
+                case WITH_DETAIL:
+                    viewHolder = new MyViewHolder();
+                    convertView = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+                    viewHolder.order = (TextView) convertView.findViewById(R.id.text_order);
+                    viewHolder.name = (TextView) convertView.findViewById(R.id.text_name);
+                    viewHolder.detail = (TextView) convertView.findViewById(R.id.text_detail);
+                    convertView.setTag(viewHolder);
+                    break;
+                case WITHOUT_DETAIL:
+                    anotherHolder = new Another_ViewHolder();
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.place_item1,parent,false);
+                    anotherHolder.order = (TextView) convertView.findViewById(R.id.text_order_no);
+                    anotherHolder.name = (TextView) convertView.findViewById(R.id.text_name_no);
+                    convertView.setTag(anotherHolder);
+                    break;
+                default:
+                    break;
+            }
+
         }else {
-            view = convertView;
-            viewHolder = (ViewHolder)view.getTag();
+            switch (style_type) {
+                case WITH_DETAIL:
+                    viewHolder = (MyViewHolder) convertView.getTag();
+                    break;
+                case WITHOUT_DETAIL:
+                    anotherHolder = (Another_ViewHolder) convertView.getTag();
+                    break;
+                default:
+                    break;
+            }
         }
-        viewHolder.order.setText(place.getOrder()+"");
-        viewHolder.name.setText(place.getName());
-//        viewHolder.inLine.setText(place.getInLine());
-        viewHolder.detail.setText(place.getDetail());
-//        if(detail.equals("")){
-//            viewHolder.detail.setVisibility(View.GONE);
-//            viewHolder.name.setHeight(viewHolder.order.getHeight());
-//            viewHolder.name.setGravity(Gravity.CENTER_VERTICAL);
-//        }
-//        switch (place.getOrder()){
-//            case 1:
-//                break;
-//            case 2:
-//                viewHolder.detail.setVisibility(View.GONE);
-//                viewHolder.name.setHeight(viewHolder.order.getHeight());
-//                viewHolder.name.setGravity(Gravity.CENTER_VERTICAL);
-//                break;
-//            case 3:
-//                break;
-//            default:
-//                break;
-//        }
-        return view;
+        if (style_type == WITHOUT_DETAIL) {
+            setItemValue(anotherHolder, position);
+        } else {
+            setItemValue(viewHolder, position);
+        }
+
+        return convertView;
     }
 
-    class ViewHolder{
+    private void setItemValue(ViewHolder viewHolder,int position){
+        viewHolder.order.setText(getItem(position).getOrder()+"");
+        viewHolder.name.setText(getItem(position).getName());
+        if(getItem(position).getStyle_tag()==1){
+            viewHolder.detail.setText(getItem(position).getDetail());
+        }
+    }
+
+
+    private class ViewHolder{
         TextView order;
         TextView name;
         TextView detail;
-//        TextView inLine;
     }
+    private class MyViewHolder extends ViewHolder{
+
+    }
+    private class Another_ViewHolder extends ViewHolder{
+
+    }
+
 }
