@@ -8,6 +8,7 @@ public class Place {
     private int order;
     private String name;
     private String detail;
+    private int style_tag;
 //    private String inLine;
 
 

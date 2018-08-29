@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -282,6 +284,76 @@ public class MyDetailFragment extends BottomSheetFragment {
                 lp.addRule(RelativeLayout.BELOW,R.id.text_detail1);
                 lp.setMargins(0,20,0,20);
                 relativeLayout.addView(ll,lp);
+                ImageButton btnA = (ImageButton) view.findViewById(R.id.btnA);
+                btnA.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked A!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnB = (ImageButton) view.findViewById(R.id.btnB);
+                btnB.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked B!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnC = (ImageButton) view.findViewById(R.id.btnC);
+                btnC.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked C!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnD1 = (ImageButton) view.findViewById(R.id.btnD1);
+                btnD1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked D1!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnD2 = (ImageButton) view.findViewById(R.id.btnD2);
+                btnD2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked D2!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnE = (ImageButton) view.findViewById(R.id.btnE);
+                btnE.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked E!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnS2 = (ImageButton) view.findViewById(R.id.btnS2);
+                btnS2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked S2!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnS3 = (ImageButton) view.findViewById(R.id.btnS3);
+                btnS3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked S3!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnS4 = (ImageButton) view.findViewById(R.id.btnS4);
+                btnS4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked S4!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton btnS5 = (ImageButton) view.findViewById(R.id.btnS5);
+                btnS5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"you clicked S5!",Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
             case 3:
                 search_ifo(order);
