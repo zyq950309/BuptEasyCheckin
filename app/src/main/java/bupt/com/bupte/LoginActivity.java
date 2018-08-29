@@ -295,15 +295,21 @@ public class LoginActivity extends Activity implements View.OnClickListener,Edit
                 break;
             case R.id.tour_button://点击游客登录按钮
                 IsStudent=false;
-                Intent intent = new Intent(LoginActivity.this, MainpageActivity.class);
-                Student student=new Student();
+//                Intent intent = new Intent(LoginActivity.this, MainpageActivity.class);
+
+                Intent intent = new Intent(LoginActivity.this, ARrouteActivity.class);
+
+
+//                Student student=new Student();
                 //游客跳转到主页，传递bool型"IsStudent"是否学生false
                 //传递默认的空学生信息
-                intent.putExtra("IsStudent",IsStudent);
-                intent.putExtra("student",student);
+//                intent.putExtra("IsStudent",IsStudent);
+//                intent.putExtra("student",student);
                 startActivity(intent);
-                this.finish();
-                MyToast.makeText(LoginActivity.this, "游客模式", Toast.LENGTH_SHORT).show();
+//                this.finish();
+//                MyToast.makeText(LoginActivity.this, "游客模式", Toast.LENGTH_SHORT).show();
+
+
         }
     }
 
