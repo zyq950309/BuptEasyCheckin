@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -269,10 +271,17 @@ public class MyDetailFragment extends BottomSheetFragment {
                 search_ifo(order);
                 ordertext.setText("2");
                 nametext.setText("宿舍");
-                detailtext.setText("入住办理");
+                detailtext.setText("点击对应楼号，发起导航");
                 arbtn.setVisibility(View.GONE);
                 walknavbtn.setVisibility(View.GONE);
-                manyttext.setBackgroundResource(R.drawable.apartment);
+                manyttext.setVisibility(View.GONE);
+                RelativeLayout relativeLayout = (RelativeLayout)view.findViewById(R.id.detailfragment);
+                LinearLayout ll = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.apartment1,null);
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp.addRule(RelativeLayout.RIGHT_OF,R.id.text_order1);
+                lp.addRule(RelativeLayout.BELOW,R.id.text_detail1);
+                lp.setMargins(0,20,0,20);
+                relativeLayout.addView(ll,lp);
                 break;
             case 3:
                 search_ifo(order);

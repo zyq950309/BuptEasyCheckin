@@ -45,12 +45,24 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
         viewHolder.order.setText(place.getOrder()+"");
         viewHolder.name.setText(place.getName());
 //        viewHolder.inLine.setText(place.getInLine());
-        String detail = place.getDetail();
-        viewHolder.detail.setText(detail);
+        viewHolder.detail.setText(place.getDetail());
 //        if(detail.equals("")){
 //            viewHolder.detail.setVisibility(View.GONE);
 //            viewHolder.name.setHeight(viewHolder.order.getHeight());
 //            viewHolder.name.setGravity(Gravity.CENTER_VERTICAL);
+//        }
+//        switch (place.getOrder()){
+//            case 1:
+//                break;
+//            case 2:
+//                viewHolder.detail.setVisibility(View.GONE);
+//                viewHolder.name.setHeight(viewHolder.order.getHeight());
+//                viewHolder.name.setGravity(Gravity.CENTER_VERTICAL);
+//                break;
+//            case 3:
+//                break;
+//            default:
+//                break;
 //        }
         return view;
     }

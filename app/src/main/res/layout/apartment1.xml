@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ececec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="雁北园"
+            android:layout_marginLeft="104dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#000000" />
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnA"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/a"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnB"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/b"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnC"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/c"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnD1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/d1"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnD2"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/d2"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnE"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/e"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:background="#ececec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="雁南园"
+            android:layout_marginLeft="104dp"
+            android:layout_marginTop="4dp"
+            android:textColor="#000000" />
+        <LinearLayout
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnS2"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/s2"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnS3"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/s3"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnS4"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/s4"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+            <ImageButton
+                android:id="@+id/btnS5"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/s5"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
