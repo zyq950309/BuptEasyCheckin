@@ -312,10 +312,10 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
             case 0:
                 break;
             case 1:
-                b1 = Double.parseDouble(MyToolClass.getLatitude().get(0));
-                b2 = Double.parseDouble(MyToolClass.getLongitude().get(0));
-                initRoutePlan(b1, b2);
-//                initRoutePlan(28.421957,117.608362);
+//                b1 = Double.parseDouble(MyToolClass.getLatitude().get(0));
+//                b2 = Double.parseDouble(MyToolClass.getLongitude().get(0));
+//                initRoutePlan(b1, b2);
+                initRoutePlan(40.165791,116.2975);
                 break;
             case 2:
 //                b1 = Double.parseDouble(MyToolClass.getLatitude().get(1));
@@ -362,6 +362,9 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
 //        builder.target(new LatLng(s1, s2)).zoom(17);
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
         mBaiduMap.setMyLocationEnabled(true);
+
+        initSite();
+        initMarket(site);
     }
 
     private void initLocation() {//初始化定位器
@@ -386,6 +389,8 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
     public void initRoutePlan(double b1, double b2) {//根据目的地开启定位，并规划线路
         mBaiduMap.clear();
         direction_face();
+        initSite();
+        initMarket(site);
         RoutePlanSearch newInstance = RoutePlanSearch.newInstance();
         newInstance.setOnGetRoutePlanResultListener(new MyRouteListener());
 
@@ -413,17 +418,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     BitmapDescriptor bitmap1 = BitmapDescriptorFactory
                             .fromResource(R.drawable.use_icon);
 
-                    OverlayOptions option1 = new MarkerOptions()
-                            .position(point1)
-                            .icon(bitmap1);
+//                    OverlayOptions option1 = new MarkerOptions()
+//                            .position(point1)
+//                            .icon(bitmap1);
 
                     OverlayOptions textOption1 = new TextOptions()
                             .bgColor(0x00E0EFF1)
                             .fontSize(60)
                             .fontColor(0xFF000000)
-                            .text("教三")
+                            .text("行政楼")
                             .position(point1);
-                    mBaiduMap.addOverlay(option1);
+//                    mBaiduMap.addOverlay(option1);
                     mBaiduMap.addOverlay(textOption1);
                     break;
                 case 1:
@@ -431,17 +436,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     BitmapDescriptor bitmap2 = BitmapDescriptorFactory
                             .fromResource(R.drawable.use_icon);
 
-                    OverlayOptions option2 = new MarkerOptions()
-                            .position(point2)
-                            .icon(bitmap2);
+//                    OverlayOptions option2 = new MarkerOptions()
+//                            .position(point2)
+//                            .icon(bitmap2);
 
                     OverlayOptions textOption2 = new TextOptions()
                             .bgColor(0x00E0EFF1)
                             .fontSize(60)
                             .fontColor(0xFF000000)
-                            .text("北门")
+                            .text("食堂")
                             .position(point2);
-                    mBaiduMap.addOverlay(option2);
+//                    mBaiduMap.addOverlay(option2);
                     mBaiduMap.addOverlay(textOption2);
                     break;
                 case 2:
@@ -449,17 +454,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     BitmapDescriptor bitmap3 = BitmapDescriptorFactory
                             .fromResource(R.drawable.use_icon);
 
-                    OverlayOptions option3 = new MarkerOptions()
-                            .position(point3)
-                            .icon(bitmap3);
+//                    OverlayOptions option3 = new MarkerOptions()
+//                            .position(point3)
+//                            .icon(bitmap3);
 
                     OverlayOptions textOption3 = new TextOptions()
                             .bgColor(0x00E0EFF1)
                             .fontSize(60)
                             .fontColor(0xFF000000)
-                            .text("明光楼")
+                            .text("雁北楼")
                             .position(point3);
-                    mBaiduMap.addOverlay(option3);
+//                    mBaiduMap.addOverlay(option3);
                     mBaiduMap.addOverlay(textOption3);
                     break;
                 case 3:
@@ -467,17 +472,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     BitmapDescriptor bitmap4 = BitmapDescriptorFactory
                             .fromResource(R.drawable.use_icon);
 
-                    OverlayOptions option4 = new MarkerOptions()
-                            .position(point4)
-                            .icon(bitmap4);
+//                    OverlayOptions option4 = new MarkerOptions()
+//                            .position(point4)
+//                            .icon(bitmap4);
 
                     OverlayOptions textOption4 = new TextOptions()
                             .bgColor(0x00E0EFF1)
                             .fontSize(60)
                             .fontColor(0xFF000000)
-                            .text("枫蓝")
+                            .text("雁南楼")
                             .position(point4);
-                    mBaiduMap.addOverlay(option4);
+//                    mBaiduMap.addOverlay(option4);
                     mBaiduMap.addOverlay(textOption4);
                     break;
                 case 4:
@@ -485,17 +490,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     BitmapDescriptor bitmap5 = BitmapDescriptorFactory
                             .fromResource(R.drawable.use_icon);
 
-                    OverlayOptions option5 = new MarkerOptions()
-                            .position(point5)
-                            .icon(bitmap5);
+//                    OverlayOptions option5 = new MarkerOptions()
+//                            .position(point5)
+//                            .icon(bitmap5);
 
                     OverlayOptions textOption5 = new TextOptions()
                             .bgColor(0x00E0EFF1)
                             .fontSize(60)
                             .fontColor(0xFF000000)
-                            .text("主楼")
+                            .text("教学实验综合楼")
                             .position(point5);
-                    mBaiduMap.addOverlay(option5);
+//                    mBaiduMap.addOverlay(option5);
                     mBaiduMap.addOverlay(textOption5);
                     break;
                 case 5:
@@ -503,17 +508,17 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                     BitmapDescriptor bitmap6 = BitmapDescriptorFactory
                             .fromResource(R.drawable.use_icon);
 
-                    OverlayOptions option6 = new MarkerOptions()
-                            .position(point6)
-                            .icon(bitmap6);
+//                    OverlayOptions option6 = new MarkerOptions()
+//                            .position(point6)
+//                            .icon(bitmap6);
 
                     OverlayOptions textOption6 = new TextOptions()
                             .bgColor(0x00E0EFF1)
                             .fontSize(60)
                             .fontColor(0xFF000000)
-                            .text("图书馆")
+                            .text("体育馆")
                             .position(point6);
-                    mBaiduMap.addOverlay(option6);
+//                    mBaiduMap.addOverlay(option6);
                     mBaiduMap.addOverlay(textOption6);
                     break;
             }
@@ -529,10 +534,10 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
                 direction_face();
                 break;
             case R.id.check_button:
-                mBaiduMap.clear();
-                direction_face();
-                initSite();
-                initMarket(site);
+//                mBaiduMap.clear();
+//                direction_face();
+//                initSite();
+//                initMarket(site);
                 break;
             case R.id.flush_button:
                 if (IsStudent) {
