@@ -172,7 +172,7 @@ public class ExploreFragment extends BottomSheetDialogFragment {
 //        将实例化控件部分放在initView中仍然没有效果
         switch(order){
             case 1:
-                nametext.setText("教三楼");
+                nametext.setText("南门");
                 notetext.setText("沙河校区彩蛋一");
 
                 SpannableString strNav = new SpannableString("步行导航\n全程"+MyToolClass.getDistance1()+"米 "+MyToolClass.getTime1()+"分钟");
@@ -196,7 +196,7 @@ public class ExploreFragment extends BottomSheetDialogFragment {
 //                img3.setImageResource(R.drawable.timg1);
                 break;
             case 2:
-                nametext.setText("科研楼");
+                nametext.setText("大礼堂");
                 notetext.setText("沙河校区彩蛋二");
 
                 SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance2()+"米 "+MyToolClass.getTime2()+"分钟");
