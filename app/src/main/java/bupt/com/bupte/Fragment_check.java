@@ -530,7 +530,7 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         switch (v.getId()) {
             case R.id.locate_button://显示当前位置
 //                navigateTo(a1, a2);
-                mBaiduMap.clear();
+//                mBaiduMap.clear();
                 direction_face();
                 break;
             case R.id.check_button:

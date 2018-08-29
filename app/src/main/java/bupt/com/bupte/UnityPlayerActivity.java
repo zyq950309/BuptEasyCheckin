@@ -62,7 +62,7 @@ public class UnityPlayerActivity extends AppCompatActivity
     private double b1 = 0;//目的地坐标
     private double b2 = 0;
     int id=0;
-    private int Tag;
+    private int Tag=0;
     private PlanNode stNode, enNode;//定位的初始点和终点
     public LocationClient mLocationClient;//定位器
     private BDLocationListener mylistener = new MyLocationListener();//定位监听器

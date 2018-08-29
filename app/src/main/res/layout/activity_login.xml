@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="16.2dp"
         android:layout_marginTop="9.33dp"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:ems="14"
         android:maxLength="21"
         android:id="@+id/id_input"

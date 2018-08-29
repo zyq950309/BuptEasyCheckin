@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.nfc.Tag;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -209,6 +210,7 @@ public class ARrouteActivity extends AppCompatActivity {//AR导航功能页面
         mSensorManager.registerListener(new MySensorEventListener(), magnetic,
                 Sensor.TYPE_MAGNETIC_FIELD);
         super.onResume();
+        TAG2=true;
         requestLocation();
         ThreadTest newThread=new ThreadTest();
         newThread.start();
