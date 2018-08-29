@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BuptE</string>
+    <string name="app_name">北邮E行通</string>
     <string name="check_in">check in</string>
 
     <string name="title_activity_walk_nav">WalkNavActivity</string>

@@ -565,7 +565,7 @@ public class MyDetailFragment extends BottomSheetFragment {
                 manyttext.setText("体检地点：\n" +
                         "教学楼北楼(图书馆南边)一层、二层\n" +
                         "胸部X线检查:\n" +
-                        "图书馆前,移动放射车处\n");
+                        "图书馆前, 移动放射车处\n");
                 break;
             default:
                 break;
