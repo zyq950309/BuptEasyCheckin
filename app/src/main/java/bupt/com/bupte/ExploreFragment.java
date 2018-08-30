@@ -60,27 +60,27 @@ public class ExploreFragment extends BottomSheetDialogFragment {
     public LocationClient mLocationClient;//定位器
     private BDLocationListener mylistener = new MyLocationListener();//定位监听器
 
-    private Handler handler=new Handler(){
-        @Override
-        public void handleMessage(Message msg){
-            switch (msg.what){
-                case 1:
-                    SpannableString strNav1 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance1()+"米 "+MyToolClass.getTime1()+"分钟");
-                    int length1 = strNav1.length();
-                    strNav1.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    strNav1.setSpan(new RelativeSizeSpan(0.8f), 5, length1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    walknavbtn.setText(strNav1);
-                    break;
-                case 2:
-                    SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance2()+"米 "+MyToolClass.getTime2()+"分钟");
-                    int length2 = strNav2.length();
-                    strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    walknavbtn.setText(strNav2);
-                    break;
-            }
-        }
-    };
+//    private Handler handler=new Handler(){
+//        @Override
+//        public void handleMessage(Message msg){
+//            switch (msg.what){
+//                case 1:
+//                    SpannableString strNav1 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance1()+"米 "+MyToolClass.getTime1()+"分钟");
+//                    int length1 = strNav1.length();
+//                    strNav1.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                    strNav1.setSpan(new RelativeSizeSpan(0.8f), 5, length1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                    walknavbtn.setText(strNav1);
+//                    break;
+//                case 2:
+//                    SpannableString strNav2 = new SpannableString("步行导航\n全程"+MyToolClass.getDistance2()+"米 "+MyToolClass.getTime2()+"分钟");
+//                    int length2 = strNav2.length();
+//                    strNav2.setSpan(new RelativeSizeSpan(1.2f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                    strNav2.setSpan(new RelativeSizeSpan(0.8f), 5, length2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                    walknavbtn.setText(strNav2);
+//                    break;
+//            }
+//        }
+//    };
 
     @Nullable
     @Override
@@ -134,38 +134,37 @@ public class ExploreFragment extends BottomSheetDialogFragment {
         }
     }
 
-    private void search_ifo(int i) {
-        final int orderi=i;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (Tag1){
-                    Message msg=new Message();
-                    msg.what=orderi;
-                    handler.sendMessage(msg);
-
-                    try{
-                        Thread.sleep(3000);
-                    }catch (InterruptedException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-    }
+//    private void search_ifo(int i) {
+//        final int orderi=i;
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (Tag1){
+//                    try{
+//                        Thread.sleep(3000);
+//                    }catch (InterruptedException e){
+//                        e.printStackTrace();
+//                    }
+//                    Message msg=new Message();
+//                    msg.what=orderi;
+//                    handler.sendMessage(msg);
+//                }
+//            }
+//        }).start();
+//    }
 
     @Override
     public void onStart() {
         super.onStart();
-        Tag1=true;
-        search_ifo(order);
+//        Tag1=true;
+//        search_ifo(order);
     }
 
     @Override
     public void onStop() {
         super.onStop();
 //        Log.d("wenti","stop detail");
-        Tag1=false;
+//        Tag1=false;
     }
 
     private void initView(int order){
@@ -183,11 +182,21 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        b1=40.163299;
-                        b2=116.290664;
+                        if(MyToolClass.getDistance1()<10000 && MyToolClass.getDistance1()>20) {
+                            b1 = 40.163299;
+                            b2 = 116.290664;
 //                        b1=28.421957;
 //                        b2=117.608362;
-                        requestLocation();
+                            requestLocation();
+//                            Tag1=true;
+                        }else if(MyToolClass.getDistance1()>=10000){
+//                            Tag1=false;
+                            MyToast.makeText(getActivity(), "距离太远，无法导航", Toast.LENGTH_SHORT).show();
+                        }else{
+//                            Tag1=false;
+                            MyToast.makeText(getActivity(), "距离太近，无法导航", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
 
@@ -207,11 +216,20 @@ public class ExploreFragment extends BottomSheetDialogFragment {
                 walknavbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        b1=40.164519;
-                        b2=116.296436;
+                        if(MyToolClass.getDistance2()<10000 && MyToolClass.getDistance2()>20) {
+                            b1 = 40.164519;
+                            b2 = 116.296436;
 //                        b1=28.421957;
 //                        b2=117.608362;
-                        requestLocation();
+                            requestLocation();
+//                            Tag1=true;
+                        }else if(MyToolClass.getDistance2()>=10000){
+//                            Tag1=false;
+                            MyToast.makeText(getActivity(), "距离太远，无法导航", Toast.LENGTH_SHORT).show();
+                        }else{
+//                            Tag1=false;
+                            MyToast.makeText(getActivity(), "距离太近，无法导航", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

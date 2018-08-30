@@ -68,19 +68,19 @@ public class UnityPlayerActivity extends AppCompatActivity
     private BDLocationListener mylistener = new MyLocationListener();//定位监听器
 
     private Handler handler=new Handler(){
-    @Override
-    public void handleMessage(Message msg){
-        switch (msg.what){
-            case 1:
-                initRoutePlan(40.163299,116.290664,1);
-                Tag=1;
-                break;
-            case 2:
-                initRoutePlan(40.164519,116.296436,2);
-                break;
+        @Override
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case 1:
+                    initRoutePlan(40.163299,116.290664,1);
+                    Tag=1;
+                    break;
+                case 2:
+                    initRoutePlan(40.164519,116.296436,2);
+                    break;
+            }
         }
-    }
-};
+    };
 
     @Override protected void onCreate(Bundle savedInstanceState)
     {
@@ -93,18 +93,18 @@ public class UnityPlayerActivity extends AppCompatActivity
 
         setContentView(mUnityPlayer);
         mUnityPlayer.requestFocus();
-       class MyThread implements Runnable{
-           @Override
-           public void run() {
-               try {
-                   Thread.sleep(5000);
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
-               }
-               UserGuideDialog userGuideDialog = new UserGuideDialog();
-               userGuideDialog.show(getFragmentManager(),"");
-           }
-       }
+        class MyThread implements Runnable{
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                UserGuideDialog userGuideDialog = new UserGuideDialog();
+                userGuideDialog.show(getFragmentManager(),"");
+            }
+        }
         SharedPreferences sp = getSharedPreferences(FIRST,0);
         isFirst = sp.getBoolean(FIRST_FLAG,true);
         if(isFirst){
@@ -130,15 +130,38 @@ public class UnityPlayerActivity extends AppCompatActivity
             if (routeLines != null) {
                 if(id==1) {
                     WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
-                    MyToolClass.setDistance1(line.getDistance());
-                    MyToolClass.setTime1(line.getDuration() / 60);
-                    Message msg = new Message();
-                    msg.what = 2;
-                    handler.sendMessage(msg);
+                    if(line.getDistance()<10000 && line.getDistance()>20) {
+                        MyToolClass.setDistance1(line.getDistance());
+                        MyToolClass.setTime1(line.getDuration() / 60);
+                        Message msg = new Message();
+                        msg.what = 2;
+                        handler.sendMessage(msg);
+                    } else if(line.getDistance()>=10000){
+                        MyToolClass.setDistance1(10000);
+                        MyToolClass.setTime1(10000);
+                        Message msg = new Message();
+                        msg.what = 2;
+                        handler.sendMessage(msg);
+                    }else{
+                        MyToolClass.setDistance1(0);
+                        MyToolClass.setTime1(0);
+                        Message msg = new Message();
+                        msg.what = 2;
+                        handler.sendMessage(msg);
+                    }
                 }else {
                     WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
-                    MyToolClass.setDistance2(line.getDistance());
-                    MyToolClass.setTime2(line.getDuration() / 60);
+                    if(line.getDistance()<10000 && line.getDistance()>20) {
+                        MyToolClass.setDistance2(line.getDistance());
+                        MyToolClass.setTime2(line.getDuration() / 60);
+                    }
+                    else if(line.getDistance()>=10000){
+                        MyToolClass.setDistance2(10000);
+                        MyToolClass.setTime2(10000);
+                    }else{
+                        MyToolClass.setDistance2(0);
+                        MyToolClass.setTime2(0);
+                    }
                 }
             }
         }
