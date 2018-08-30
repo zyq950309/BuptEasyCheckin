@@ -50,10 +50,12 @@ public class Fragment_mine extends Fragment implements View.OnClickListener{//�
 
         name_show.setText(""+getArguments().getString("name")+"");//显示学生信息
         sid_show.setText("学号："+getArguments().getInt("sid")+"");
-        depmt_show.setText("院系："+depmt_out+"");
-        prof_show.setText("专业："+prof_out+"");
         //暂时改动
+//        depmt_show.setText("院系："+depmt_out+"");
+//        prof_show.setText("专业："+prof_out+"");
 //        room_show.setText("宿舍：学生公寓"+getArguments().getInt("building")+"号楼"+getArguments().getInt("room")+"");
+        depmt_show.setText("院系："+"未知");
+        prof_show.setText("专业："+"未知");
         room_show.setText("宿舍："+"未知");
 
         return view;
