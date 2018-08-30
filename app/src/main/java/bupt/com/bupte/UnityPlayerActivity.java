@@ -1,5 +1,26 @@
 package bupt.com.bupte;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.PolylineOptions;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.route.BikingRouteResult;
+import com.baidu.mapapi.search.route.DrivingRouteResult;
+import com.baidu.mapapi.search.route.IndoorRouteResult;
+import com.baidu.mapapi.search.route.MassTransitRouteResult;
+import com.baidu.mapapi.search.route.OnGetRoutePlanResultListener;
+import com.baidu.mapapi.search.route.PlanNode;
+import com.baidu.mapapi.search.route.RoutePlanSearch;
+import com.baidu.mapapi.search.route.TransitRouteResult;
+import com.baidu.mapapi.search.route.WalkingRouteLine;
+import com.baidu.mapapi.search.route.WalkingRoutePlanOption;
+import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.unity3d.player.*;
 import android.app.Activity;
 import android.app.Dialog;
@@ -7,8 +28,11 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +43,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.util.List;
+
+import static com.baidu.mapapi.BMapManager.getContext;
 
 public class UnityPlayerActivity extends AppCompatActivity
 {
@@ -28,11 +57,37 @@ public class UnityPlayerActivity extends AppCompatActivity
     private static final String TAG = "UnityPlayerActivity";
     protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
     // Setup activity layout
+    private double a1 = 0;//当前位置坐标
+    private double a2 = 0;
+    private double b1 = 0;//目的地坐标
+    private double b2 = 0;
+    int id=0;
+    private int Tag=0;
+    private PlanNode stNode, enNode;//定位的初始点和终点
+    public LocationClient mLocationClient;//定位器
+    private BDLocationListener mylistener = new MyLocationListener();//定位监听器
+
+    private Handler handler=new Handler(){
+    @Override
+    public void handleMessage(Message msg){
+        switch (msg.what){
+            case 1:
+                initRoutePlan(40.163299,116.290664,1);
+                Tag=1;
+                break;
+            case 2:
+                initRoutePlan(28.421957,117.608362,2);
+                break;
+        }
+    }
+};
+
     @Override protected void onCreate(Bundle savedInstanceState)
     {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
+        requestLocation();
         getWindow().setFormat(PixelFormat.RGBX_8888); // <--- This makes xperia play happy
         mUnityPlayer = new MyUnityPlayer(this);
 
@@ -65,14 +120,109 @@ public class UnityPlayerActivity extends AppCompatActivity
 
 
     }
-    public void showDalitangNavi(){
+
+    class MyRouteListener implements OnGetRoutePlanResultListener {
+
+        @Override
+        public void onGetWalkingRouteResult(WalkingRouteResult walkingRouteResult) {//根据目的地画出路线
+            List<WalkingRouteLine> routeLines = walkingRouteResult.getRouteLines();
+//            mBaiduMap.clear();
+            if (routeLines != null) {
+                if(id==1) {
+                    WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
+                    MyToolClass.setDistance1(line.getDistance());
+                    MyToolClass.setTime1(line.getDuration() / 60);
+                    Message msg = new Message();
+                    msg.what = 2;
+                    handler.sendMessage(msg);
+                }else {
+                    WalkingRouteLine line = walkingRouteResult.getRouteLines().get(0);
+                    MyToolClass.setDistance2(line.getDistance());
+                    MyToolClass.setTime2(line.getDuration() / 60);
+                }
+            }
+        }
+
+        @Override
+        public void onGetTransitRouteResult(TransitRouteResult transitRouteResult) {
+
+        }
+
+        @Override
+        public void onGetMassTransitRouteResult(MassTransitRouteResult massTransitRouteResult) {
+
+        }
+
+        @Override
+        public void onGetDrivingRouteResult(DrivingRouteResult drivingRouteResult) {
+
+        }
+
+        @Override
+        public void onGetIndoorRouteResult(IndoorRouteResult indoorRouteResult) {
+
+        }
+
+        @Override
+        public void onGetBikingRouteResult(BikingRouteResult bikingRouteResult) {
+
+        }
+    }
+
+    public void initRoutePlan(double b1, double b2,int id) {//根据目的地开启定位，并规划线路
+
+        this.id=id;
+        RoutePlanSearch newInstance = RoutePlanSearch.newInstance();
+        newInstance.setOnGetRoutePlanResultListener(new MyRouteListener());
+
+        stNode = PlanNode.withLocation(new LatLng(a1, a2));
+        enNode = PlanNode.withLocation(new LatLng(b1, b2));
+        newInstance.walkingSearch((new WalkingRoutePlanOption())
+                .from(stNode)
+                .to(enNode));
+    }
+
+    private void initLocation() {//初始化定位器
+        mLocationClient = new LocationClient(getContext());
+        mLocationClient.registerLocationListener(mylistener);
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        option.setCoorType("bd09ll");
+        option.setScanSpan(200000);
+        mLocationClient.setLocOption(option);
+    }
+
+    private void requestLocation() {
+        initLocation();//初始化定位器
+        try {
+            mLocationClient.start();//开启定位器
+        } catch (Exception e) {
+            MyToast.makeText(UnityPlayerActivity.this, "定位失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public class MyLocationListener implements BDLocationListener {//定位监听
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            a1 = location.getLatitude();
+            a2 = location.getLongitude();
+            if(Tag==0){
+                Message msg = new Message();
+                msg.what = 1;
+                handler.sendMessage(msg);
+            }
+        }
+    }
+
+    public void showKeyanNavi(){
         ExploreFragment exploreFragment = new ExploreFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("order_explore",2);
         exploreFragment.setArguments(bundle);
         exploreFragment.show(getSupportFragmentManager(),exploreFragment.getTag());
     }
-    public void showNanmenNavi(){
+    public void showJiaosanNavi(){
         ExploreFragment exploreFragment = new ExploreFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("order_explore",1);
