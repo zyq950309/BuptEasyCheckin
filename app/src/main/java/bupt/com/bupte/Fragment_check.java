@@ -3,6 +3,7 @@ package bupt.com.bupte;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.hardware.Sensor;
@@ -702,8 +703,23 @@ public class Fragment_check extends Fragment implements View.OnClickListener{//�
         MyLocationData locationData = locationBuilder.build();
         mBaiduMap.setMyLocationData(locationData);
 
+        Bitmap bit_dic= BitmapFactory.decodeResource(getResources(),R.drawable.direction);
+        int width = bit_dic.getWidth();
+        int height = bit_dic.getHeight();
+        // 设置想要的大小
+        int newWidth = 30;
+        int newHeight = 30;
+        // 计算缩放比例
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap mbitmap = Bitmap.createBitmap(bit_dic, 0, 0, width, height, matrix, true);
+
+//        BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+//                .fromResource(R.drawable.direction);
         BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
-                .fromResource(R.drawable.direction);
+                .fromBitmap(mbitmap);
         MyLocationConfiguration config = new MyLocationConfiguration(
                 MyLocationConfiguration.LocationMode.NORMAL, true, mCurrentMarker);
         mBaiduMap.setMyLocationConfigeration(config);

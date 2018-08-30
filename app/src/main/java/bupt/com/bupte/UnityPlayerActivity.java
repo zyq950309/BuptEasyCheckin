@@ -76,7 +76,7 @@ public class UnityPlayerActivity extends AppCompatActivity
                 Tag=1;
                 break;
             case 2:
-                initRoutePlan(28.421957,117.608362,2);
+                initRoutePlan(40.164519,116.296436,2);
                 break;
         }
     }
