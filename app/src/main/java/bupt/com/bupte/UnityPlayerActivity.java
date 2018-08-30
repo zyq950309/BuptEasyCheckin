@@ -215,14 +215,14 @@ public class UnityPlayerActivity extends AppCompatActivity
         }
     }
 
-    public void showKeyanNavi(){
+    public void showDalitangNavi(){
         ExploreFragment exploreFragment = new ExploreFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("order_explore",2);
         exploreFragment.setArguments(bundle);
         exploreFragment.show(getSupportFragmentManager(),exploreFragment.getTag());
     }
-    public void showJiaosanNavi(){
+    public void showNanmenNavi(){
         ExploreFragment exploreFragment = new ExploreFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("order_explore",1);
